@@ -1,0 +1,217 @@
+.unselectable {
+  /* http://stackoverflow.com/questions/6900124/make-some-text-unselectable-with-css */
+
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+
+  -ms-user-select: none;
+  /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+
+  -o-user-select: none;
+  user-select: none;
+}
+.gradient-fill {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f1f5f6), to(#ebf0f2));
+  background-image: -webkit-linear-gradient(top, #f1f5f6, 0%, #ebf0f2, 100%);
+  background-image: -moz-linear-gradient(top, #f1f5f6 0%, #ebf0f2 100%);
+  background-image: linear-gradient(to bottom, #f1f5f6 0%, #ebf0f2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1f5f6', endColorstr='#ffebf0f2', GradientType=0);
+}
+.rounded-shadow {
+  -webkit-box-shadow: 1px 1px 0px 0px #bdc2c7;
+  box-shadow: 1px 1px 0px 0px #bdc2c7;
+  border-radius: 3px;
+}
+.bordered-box {
+  /*margin: @gutter;*/
+
+  padding: 10px;
+  margin-bottom: 10px;
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f1f5f6), to(#ebf0f2));
+  background-image: -webkit-linear-gradient(top, #f1f5f6, 0%, #ebf0f2, 100%);
+  background-image: -moz-linear-gradient(top, #f1f5f6 0%, #ebf0f2 100%);
+  background-image: linear-gradient(to bottom, #f1f5f6 0%, #ebf0f2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1f5f6', endColorstr='#ffebf0f2', GradientType=0);
+  background-color: #ebf0f2;
+  -webkit-box-shadow: 1px 1px 0px 0px #bdc2c7;
+  box-shadow: 1px 1px 0px 0px #bdc2c7;
+  border-radius: 3px;
+  zoom: 1;
+}
+.bordered-box:before,
+.bordered-box:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.bordered-box:after {
+  clear: both;
+}
+.bordered-box:before {
+  content: '';
+  display: block;
+}
+.bordered-box:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.text-green {
+  color: #429960;
+}
+.text-dark {
+  color: #364b5e;
+}
+.text-grey {
+  color: #bdc2c7;
+}
+.text-light {
+  color: #f1f6f7;
+}
+.bg-green {
+  background-color: #429960;
+}
+.bg-dark {
+  background-color: #364b5e;
+}
+.bg-grey {
+  background-color: #bdc2c7;
+}
+.bg-light {
+  background-color: #f1f6f7;
+}
+.bg-background {
+  background-color: #ebf0f2;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+.logo {
+  margin: -100px 0 0 -84px;
+}
+@include position(absolute, 50% 0 0 50%);
+.nav ul {
+  list-style: none;
+}
+.pitch {
+  display: inline-block;
+  position: relative;
+  /* http://stackoverflow.com/questions/6900124/make-some-text-unselectable-with-css */
+
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+
+  -ms-user-select: none;
+  /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+
+  -o-user-select: none;
+  user-select: none;
+  -webkit-box-shadow: 1px 1px 0px 0px #bdc2c7;
+  box-shadow: 1px 1px 0px 0px #bdc2c7;
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+::selection {
+  background: #333;
+  color: #fff;
+  text-shadow: none;
+}
+::-moz-selection {
+  background: #333;
+  color: #fff;
+  text-shadow: none;
+}
+::-webkit-selection {
+  background: #333;
+  color: #fff;
+  text-shadow: none;
+}
+@media only screen and (min-width: 320px) {
+  
+}
+@media only screen and (min-width: 480px) {
+  
+}
+@media only screen and (min-width: 768px) {
+  
+}
+@media only screen and (min-width: 1024px) {
+  
+}
+@media only screen and (min-width: 1140px) {
+  
+}
+@media only screen and (min-width: 1280px) {
+  
+}
+@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  
+}
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

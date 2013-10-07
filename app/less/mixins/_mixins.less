@@ -1,0 +1,30 @@
+.unselectable{
+	/* http://stackoverflow.com/questions/6900124/make-some-text-unselectable-with-css */
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;	
+}
+
+.gradient-fill{
+	#gradient > .vertical(lighten(@background, 2%), @background);
+}
+
+.rounded-shadow{
+	.box-shadow(@shadow @shadow 0px 0px @grey);
+	border-radius: @radius;
+}
+
+.bordered-box{
+	/*margin: @gutter;*/
+	padding: @padding;
+	margin-bottom: @margin-bottom;
+
+	.gradient-fill;
+	.bg-background;
+	.rounded-shadow;
+	.clearfix();
+}
