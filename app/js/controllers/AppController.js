@@ -1,4 +1,4 @@
-define(['marionette', 'app', 'modules/match/MatchView', 'modules/team/TeamView'], function (Marionette, App, MatchView, TeamView) {
+define(['marionette', 'app', 'modules/matches/MatchView', 'modules/players/IndexPlayersView', 'modules/players/ShowPlayerView', 'modules/matches/IndexMatchView'], function (Marionette, App, MatchView, IndexPlayersView, ShowPlayerView, IndexMatchView) {
     'use strict';
 
     return Backbone.Marionette.Controller.extend({
@@ -16,14 +16,28 @@ define(['marionette', 'app', 'modules/match/MatchView', 'modules/team/TeamView']
 
 		showMatches: function(){
 			console.log('ShowMatches');
+			App.getRegion("main").show(new IndexMatchView({
+				collection: App.DS.matches
+			}));
 		},		
 
 		showTeam: function(id){
 			console.log('ShowTeam');
-			App.getRegion("main").show(new TeamView({
-				model: new Backbone.Model()
-			}));			
 		},
+
+		showPlayer: function(id){
+			console.log('ShowPlayer');
+			App.getRegion("main").show(new ShowPlayerView({
+				model: App.DS.players.get({id:id})
+			}));
+		},
+
+		showPlayers: function(){
+			console.log('ShowPlayers');
+			App.getRegion("main").show(new IndexPlayersView({
+				collection: App.DS.players
+			}));
+		},		
 
 		showTeams: function(){
 			console.log('ShowTeams');

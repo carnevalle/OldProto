@@ -5,8 +5,10 @@ define(['marionette', 'controllers/AppController'], function (Marionette, AppCon
 		controller: new AppController(),
 		appRoutes: {
 			'': 'showIndex',
-			'matches': 'showMatches',
+			'matches(/)': 'showMatches',
 			'matches/:id': 'showMatch',
+			'players(/)':'showPlayers',
+			'players/:id':'showPlayer',
 			'teams': 'showTeams',
 			'teams/:id': 'showTeam',
 			'*notFound': 'notFound'

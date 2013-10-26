@@ -1,0 +1,49 @@
+
+<div class="row">
+	<div class="col-md-4">
+		<h1>Spillere</h1>
+
+		<table id="playerlist" class="table">
+			<tbody></tbody>
+		</table>
+	</div>
+	<div class="col-md-8">
+		<h1>Opret spiller</h1>
+
+		<form id="create-player-form" role="form">
+		    <div class="form-group">
+		        <label for="player-name">Navn</label>
+		        <input class="form-control" name="name" id="player-name" placeholder="Skriv navn" type="text">
+		    </div>
+
+		    <div class="form-group">
+		        <label for="player-birthdate">Fødselsdag</label>
+		        <input class="form-control"  name="birthdate" id="player-birthdate" placeholder="yyyy-mm-dd" type="date">
+		    </div>
+
+			<div class="form-group">
+				<label class="checkbox-inline">
+					<input type="checkbox" name="positions[]" id="player-position1" value="goalkeeper"> Målmand
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="positions[]" id="player-position2" value="defence"> Forsvar
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="positions[]" id="player-position3" value="midfield"> Midtbane
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" name="positions[]" id="player-position4" value="attack"> Angreb
+				</label>				
+			</div>
+
+			<button class="btn btn-default" type="submit">Submit</button>
+		</form>		
+
+		{{!-- <table class="table">
+			<tr>
+				<td><input id="playername" type="text" placeholder="Spillernavn" class="form-control"/></td>
+				<td><button class="btn btn-primary btn-block btn-save">Gem</button></td>
+			</tr>
+		</table> --}}
+	</div>
+</div>

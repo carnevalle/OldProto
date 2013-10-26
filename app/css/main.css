@@ -98,16 +98,19 @@
   text-rendering: optimizeLegibility;
   box-sizing: border-box;
 }
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .logo {
   margin: -100px 0 0 -84px;
 }
 @include position(absolute, 50% 0 0 50%);
-.nav ul {
-  list-style: none;
-}
 .pitch {
   display: inline-block;
-  position: relative;
   /* http://stackoverflow.com/questions/6900124/make-some-text-unselectable-with-css */
 
   -webkit-user-select: none;
@@ -127,6 +130,9 @@
   border-radius: 3px;
   width: 100%;
   margin-bottom: 20px;
+  position: relative;
+  z-index: -1;
+  max-height: 100%;
 }
 ::selection {
   background: #333;
@@ -142,6 +148,14 @@
   background: #333;
   color: #fff;
   text-shadow: none;
+}
+.table .playername {
+  width: 80%;
+  padding: 0;
+}
+.table .playername a {
+  display: block;
+  padding: 8px;
 }
 @media only screen and (min-width: 320px) {
   

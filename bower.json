@@ -7,9 +7,11 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.10.2",
     "handlebars.js": "~1.0.0",
-    "backbone": "latest",
+    "backbone": "1.0.0",
     "backbone.marionette": "~1.1.0",
-    "fastclick": "0.6.10"
+    "fastclick": "0.6.10",
+    "backbone.localStorage":"1.1.7",
+    "json2":"*"
   },
   "devDependencies": {}
 }
