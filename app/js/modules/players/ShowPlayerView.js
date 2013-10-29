@@ -1,6 +1,6 @@
 /*global define */
 define(['marionette', 'modules/players/ShowPlayerView.hbs'], function (Marionette, template) {
-    
+
     'use strict';
 
     return Marionette.ItemView.extend({

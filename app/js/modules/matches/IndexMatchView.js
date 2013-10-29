@@ -1,12 +1,38 @@
 /*global define */
 define(['marionette', 'modules/matches/IndexMatchView.hbs', 'modules/matches/ListMatchView.hbs'], function (Marionette, template, matchlistTemplate) {
-    
+
     'use strict';
 
     var MatchView = Marionette.ItemView.extend({
     	template: matchlistTemplate,
     	className: 'player',
-		tagName: 'tr'
+		tagName: 'tr',
+
+        events: {
+            "click .btn-delete":"deleteMatch"
+        },
+
+        onRender: function(){
+            this.$el.hide();
+            this.$el.fadeIn("fast");
+        },
+
+        deleteMatch: function(){
+
+            var _this = this;
+
+            this.$el.fadeOut("fast");
+
+            setTimeout(function(){
+                // if(confirm("Match deleted. You want to undo?")){
+                //     _this.$el.show();
+                // }else{
+                //     _this.model.destroy();
+                // }
+                _this.model.destroy();
+            }, 300);
+        }
+
     })
 
 	return Marionette.CompositeView.extend({
@@ -33,8 +59,14 @@ define(['marionette', 'modules/matches/IndexMatchView.hbs', 'modules/matches/Lis
 			    this.reset();
 			});
 
-			console.log(data);
-			this.collection.create(data);
+			console.log("Saving match: ", data);
+			this.collection.create(data, {
+                wait: true,
+                success: function(match){
+                    console.log("MATCH IS SAVED! ", match);
+                    match.trigger("change");
+                }
+            });
 		}
     })
 });

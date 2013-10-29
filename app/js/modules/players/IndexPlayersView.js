@@ -1,6 +1,6 @@
 /*global define */
 define(['marionette', 'jquery', 'modules/players/IndexPlayersView.hbs', 'modules/players/ListPlayerView'], function (Marionette, $, template, PlayerView) {
-    
+
     'use strict';
 
     return Marionette.CompositeView.extend({
@@ -23,11 +23,11 @@ define(['marionette', 'jquery', 'modules/players/IndexPlayersView.hbs', 'modules
 
 		deletePlayer: function(e){
 			console.log(e.currentTarget.dataset.playerid);
-			
+
 			var playerid = e.currentTarget.dataset.playerid;
 			var model = this.collection.get(playerid);
 			model.destroy();
-			
+
 		},
 
 		addPlayer: function(e){
@@ -47,7 +47,9 @@ define(['marionette', 'jquery', 'modules/players/IndexPlayersView.hbs', 'modules
 			}
 
 			console.log("Saving Player: ", data);
-    		this.collection.create(data)
+    		this.collection.create(data, {
+                wait: true
+            })
 		}
     })
 });

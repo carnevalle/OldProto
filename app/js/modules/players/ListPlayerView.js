@@ -1,6 +1,6 @@
 /*global define */
 define(['marionette', 'modules/players/ListPlayerView.hbs'], function (Marionette, template) {
-    
+
     'use strict';
 
     return Marionette.ItemView.extend({
@@ -16,6 +16,11 @@ define(['marionette', 'modules/players/ListPlayerView.hbs'], function (Marionett
 			"click .btn-delete":"deletePlayer"
 		},
 
+        onRender: function(){
+            this.$el.hide();
+            this.$el.fadeIn("fast");
+        },
+
 		deletePlayer: function(){
 
 			var _this = this;
@@ -23,7 +28,13 @@ define(['marionette', 'modules/players/ListPlayerView.hbs'], function (Marionett
 			this.$el.fadeOut("fast");
 
 			setTimeout(function(){
-				_this.model.destroy();
+
+                if(confirm("Player deleted. You want to undo?")){
+				    _this.$el.show();
+                }else{
+                    _this.model.destroy();
+                }
+
 			}, 300);
 		}
     })

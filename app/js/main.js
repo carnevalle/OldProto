@@ -18,6 +18,8 @@ require.config({
         matches : 'data/Matches',
         player : 'data/Player',
         players : 'data/Players',
+        matchreport : 'data/MatchReport',
+        matchreports : 'data/MatchReports',
     },
     shim: {
         bootstrap: {
@@ -51,9 +53,9 @@ require.config({
 });
 
 require(['jquery', 'fastclick', 'app', 'router', 'modules/navigation/Navigation'], function ($, FastClick, App, router, Navigation) {
-    
+
     'use strict';
-    
+
     $.fn.serializeObject = function()
     {
         var o = {};
@@ -73,7 +75,7 @@ require(['jquery', 'fastclick', 'app', 'router', 'modules/navigation/Navigation'
         });
         return o;
     };
-    
+
     $(function() {
         FastClick.attach(document.body);
     });

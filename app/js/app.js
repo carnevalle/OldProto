@@ -1,14 +1,45 @@
 /*global define */
-define(['backbone', 'marionette', 'underscore', 'players', 'player', 'matches', 'match'], function (Backbone, Marionette, _, Players, Player, Matches, Match) {
+define([
+    'backbone',
+    'marionette',
+    'underscore',
+    'players',
+    'player',
+    'matches',
+    'match',
+    'matchreports',
+    'matchreport'
+    ], function (
+        Backbone,
+        Marionette,
+        _,
+        Players,
+        Player,
+        Matches,
+        Match,
+        MatchReports,
+        MatchReport
+    ) {
+
     'use strict';
 
 	var App = new Backbone.Marionette.Application({});
 
 	App.DS = {
 		players: new Players(),
-		matches: new Matches()
+		matches: new Matches(),
+        matchreports: new MatchReports(),
+
+        fetchAll: function(){
+            this.players.fetch();
+            this.matches.fetch();
+            this.matchreports.fetch();
+        }
 	}
 
+    App.DS.fetchAll();
+
+    /*
 	if(App.DS.players.length === 0){
 		App.DS.players.fetch({
 			success: function(data){
@@ -17,6 +48,7 @@ define(['backbone', 'marionette', 'underscore', 'players', 'player', 'matches', 
 			}
 		});
 	}
+    */
 
 	App.addRegions({
 		header: '#header',
