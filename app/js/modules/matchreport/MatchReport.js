@@ -1,5 +1,10 @@
 /*global define */
-define(['marionette', 'modules/matchreport/MatchReport.hbs'], function (Marionette, template) {
+define([
+    'marionette',
+    'modules/matchreport/MatchReportLayout.hbs',
+    'modules/matchreport/MatchReport.hbs',
+    'holderjs'
+    ], function (Marionette, templateLayout, template, Holder) {
 
     'use strict';
 
@@ -13,6 +18,15 @@ define(['marionette', 'modules/matchreport/MatchReport.hbs'], function (Marionet
 
 		events: {
 
-		}
+		},
+
+        onRender: function(){
+
+
+        },
+
+        onDomRefresh: function(){
+            Holder.run();
+        }
     })
 });

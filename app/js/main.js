@@ -8,6 +8,7 @@ require.config({
         handlebars: '../bower_components/handlebars.js/dist/handlebars',
         marionette : '../bower_components/backbone.marionette/lib/backbone.marionette',
         fastclick : '../bower_components/fastclick/lib/fastclick',
+        holderjs : '../bower_components/holderjs/holder',
         // json : '../bower_components/json2/json2',
         pushmenu : 'vendors/mlpushmenu',
         classie : 'vendors/classie',
