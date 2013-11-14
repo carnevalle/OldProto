@@ -1,5 +1,11 @@
 /*global define */
-define(['marionette', 'modules/matches/ShowMatchView.hbs', 'modules/matches/ListMatchReportView.hbs'], function (Marionette, template, reportlistTemplate) {
+define([
+    'marionette',
+    'app',
+    'modules/matches/ShowMatchView.hbs',
+    'modules/matches/ListMatchReportView.hbs',
+    'matchreports'
+    ], function (Marionette, App, template, reportlistTemplate, MatchReports) {
 
     'use strict';
 
@@ -51,7 +57,15 @@ define(['marionette', 'modules/matches/ShowMatchView.hbs', 'modules/matches/List
         createMatchReport: function(e){
             console.log("CREATING MATCH REPORT!");
 
-            this.collection.create({matchid: this.model.get("id")}, {wait: true});
+            var _this = this;
+            App.DS.matchreports.create({matchid: this.model.get("id")}, {
+                wait: true,
+                success: function(report){
+                    _this.collection.reset(App.DS.matchreports.belongsToMatch(_this.model.get('id')));
+                }
+            });
+
+            //this.collection.create({matchid: this.model.get("id")}, {wait: true});
         }
     })
 });

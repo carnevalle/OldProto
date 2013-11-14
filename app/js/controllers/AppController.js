@@ -41,10 +41,11 @@ define([
         showMatchReport: function(matchid, reportid){
             console.log('ShowMatchReport: ', matchid, reportid);
 
+            console.log(App.DS.matchreports.toJSON());
+            console.log(App.DS.matchreports.get({id:reportid}));
+
             var layout = new MatchReport({
-                model: new Backbone.Model({
-                    buttons: ['Bolderobring', 'Boldtab', 'Indlæg', 'Stikning']
-                })
+                model: App.DS.matchreports.get({id:reportid})
             });
 
             App.getRegion("main").show(layout);

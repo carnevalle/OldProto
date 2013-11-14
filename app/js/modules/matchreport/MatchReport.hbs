@@ -1,11 +1,35 @@
 <div class="row">
     <div class="col-sm-6">
-        <img src="img/betterteam-pitch-vertical.svg" style="width: 100%"/>
+        <img class="fnPitch" src="img/betterteam-pitch-vertical.svg" style="width: 100%"/>
     </div>
     <div class="col-sm-6">
-        {{#each buttons}}
-            <button class="btn" data-type="button">{{this}}</button>
-        {{/each}}
+        <div class="row">
+            <div class="col-sm-12">
+                {{#each observations}}
+                    <button class="btn btn-scout {{type}}" data-type="{{@key}}">
+                        <span class="count">{{count}}</span>
+                        <span class="text">{{name}}</span>
+                    </button>
+                {{/each}}
+            </div>
+        </div>
+
+
+{{!--         <div class="row">
+            <div class="col-sm-12">
+                {{#each positivebuttons}}
+                    <button class="btn btn-scout positive" data-type="{{this}}">{{this}}</button>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                {{#each negativebuttons}}
+                    <button class="btn btn-scout negative" data-type="{{this}}">{{this}}</button>
+                {{/each}}
+            </div>
+        </div> --}}
         {{!-- <button class="btn" data-type="button">Knap</button> --}}
     </div>
 </div>

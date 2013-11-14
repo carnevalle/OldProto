@@ -43,7 +43,7 @@ module.exports = function (grunt) {
             less:{
                 files: ['<%= yeoman.app %>/less/**/*.less'],
                 tasks: ['less:server']
-            },            
+            },
             handlebars:{
                 files: ['<%= yeoman.app %>/js/**/*.hbs'],
                 tasks: ['handlebars:server']
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
               },
             },
           },
-        
+
         connect: {
             options: {
                 port: 9000,
@@ -219,9 +219,9 @@ module.exports = function (grunt) {
                 /*
                 files: [
                     {
-                        expand: true, 
-                        cwd:'<%= yeoman.app %>/less/', 
-                        src: ['style.less'], 
+                        expand: true,
+                        cwd:'<%= yeoman.app %>/less/',
+                        src: ['style.less'],
                         dest: '<%= yeoman.app %>/css',
                         ext: '.css'
                     }
@@ -375,7 +375,7 @@ module.exports = function (grunt) {
                 //'coffee',
                 //'compass:dist',
                 'imagemin',
-                'svgmin',
+                //'svgmin',
                 'htmlmin'
             ]
         },
@@ -428,12 +428,12 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
-    
+
     grunt.registerTask('screenshots', [
         'clean:server',
         'concurrent:server',
         'connect:livereload',
         'autoshot'
     ]);
-    
+
 };

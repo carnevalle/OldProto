@@ -1,6 +1,6 @@
 /*global define */
-define(['marionette', 'modules/navigation/Navigation.hbs', 'dimenu'], function (Marionette, template) {
-    
+define(['marionette', 'modules/navigation/Navigation.hbs'], function (Marionette, template) {
+
     'use strict';
 
 
@@ -52,7 +52,7 @@ define(['marionette', 'modules/navigation/Navigation.hbs', 'dimenu'], function (
 			trigger[0].addEventListener( eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
-				
+
 				if( classie.has( _this.el, 'bt-menu-open' ) ) {
 					resetMenu();
 				}

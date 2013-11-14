@@ -12,7 +12,9 @@
     "fastclick": "0.6.10",
     "backbone.localStorage":"1.1.7",
     "json2":"*",
-    "holderjs":"*"
+    "holderjs":"*",
+    "jqueryui-touch-punch":"*",
+    "greensock":"*"
   },
   "devDependencies": {}
 }
