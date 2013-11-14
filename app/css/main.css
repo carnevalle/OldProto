@@ -23,8 +23,8 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1f5f6', endColorstr='#ffebf0f2', GradientType=0);
 }
 .rounded-shadow {
-  -webkit-box-shadow: 1px 1px 0px 0px #bdc2c7;
-  box-shadow: 1px 1px 0px 0px #bdc2c7;
+  -webkit-box-shadow: 4px 4px 0px 0px #bdc2c7;
+  box-shadow: 4px 4px 0px 0px #bdc2c7;
   border-radius: 3px;
 }
 .bordered-box {
@@ -39,8 +39,8 @@
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1f5f6', endColorstr='#ffebf0f2', GradientType=0);
   background-color: #ebf0f2;
-  -webkit-box-shadow: 1px 1px 0px 0px #bdc2c7;
-  box-shadow: 1px 1px 0px 0px #bdc2c7;
+  -webkit-box-shadow: 4px 4px 0px 0px #bdc2c7;
+  box-shadow: 4px 4px 0px 0px #bdc2c7;
   border-radius: 3px;
   zoom: 1;
 }
@@ -125,14 +125,55 @@
 
   -o-user-select: none;
   user-select: none;
-  -webkit-box-shadow: 1px 1px 0px 0px #bdc2c7;
-  box-shadow: 1px 1px 0px 0px #bdc2c7;
+  -webkit-box-shadow: 4px 4px 0px 0px #bdc2c7;
+  box-shadow: 4px 4px 0px 0px #bdc2c7;
   border-radius: 3px;
   width: 100%;
   margin-bottom: 20px;
   position: relative;
   z-index: -1;
   max-height: 100%;
+}
+.btn {
+  margin-right: 5px;
+  height: 100px;
+  width: 100px;
+  /*margin: @gutter;*/
+
+  padding: 10px;
+  margin-bottom: 10px;
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f1f5f6), to(#ebf0f2));
+  background-image: -webkit-linear-gradient(top, #f1f5f6, 0%, #ebf0f2, 100%);
+  background-image: -moz-linear-gradient(top, #f1f5f6 0%, #ebf0f2 100%);
+  background-image: linear-gradient(to bottom, #f1f5f6 0%, #ebf0f2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1f5f6', endColorstr='#ffebf0f2', GradientType=0);
+  background-color: #ebf0f2;
+  -webkit-box-shadow: 4px 4px 0px 0px #bdc2c7;
+  box-shadow: 4px 4px 0px 0px #bdc2c7;
+  border-radius: 3px;
+  zoom: 1;
+}
+.btn:before,
+.btn:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.btn:after {
+  clear: both;
+}
+.btn:before {
+  content: '';
+  display: block;
+}
+.btn:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 ::selection {
   background: #333;

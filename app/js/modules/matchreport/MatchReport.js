@@ -1,10 +1,8 @@
 /*global define */
 define([
     'marionette',
-    'modules/matchreport/MatchReportLayout.hbs',
     'modules/matchreport/MatchReport.hbs',
-    'holderjs'
-    ], function (Marionette, templateLayout, template, Holder) {
+    ], function (Marionette, template, Holder) {
 
     'use strict';
 
@@ -17,8 +15,12 @@ define([
 		},
 
 		events: {
-
+            'click button':'onButtonClick'
 		},
+
+        onButtonClick: function(e){
+            console.log(e.currentTarget.dataset.type);
+        },
 
         onRender: function(){
 
@@ -26,7 +28,7 @@ define([
         },
 
         onDomRefresh: function(){
-            Holder.run();
+
         }
     })
 });

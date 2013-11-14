@@ -6,6 +6,7 @@ define([
     'modules/players/IndexPlayersView',
     'modules/players/ShowPlayerView',
     'modules/matches/IndexMatchView',
+    'modules/matchreport/MatchReportLayout',
     'modules/matchreport/MatchReport'
 ], function (
     Marionette,
@@ -15,6 +16,7 @@ define([
     IndexPlayersView,
     ShowPlayerView,
     IndexMatchView,
+    MatchReportLayout,
     MatchReport
 ) {
 
@@ -38,9 +40,14 @@ define([
 
         showMatchReport: function(matchid, reportid){
             console.log('ShowMatchReport: ', matchid, reportid);
-            App.getRegion("main").show(new MatchReport({
-                model: new Backbone.Model()
-            }));
+
+            var layout = new MatchReport({
+                model: new Backbone.Model({
+                    buttons: ['Bolderobring', 'Boldtab', 'Indlæg', 'Stikning']
+                })
+            });
+
+            App.getRegion("main").show(layout);
         },
 
 		showMatches: function(){
