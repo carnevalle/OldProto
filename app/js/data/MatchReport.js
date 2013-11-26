@@ -36,6 +36,26 @@ define(['backbone'], function (Backbone) {
                     count: 0,
                     type: 'negative'
                 },
+                cornerFor: {
+                    name: "Hjørne For",
+                    count: 0,
+                    type: 'positive'
+                },
+                cornerAgainst: {
+                    name: "Hjørne Imod",
+                    count: 0,
+                    type: 'negative'
+                },
+                offsideFor: {
+                    name: "Offside For",
+                    count: 0,
+                    type: 'positive'
+                },
+                offsideAgainst: {
+                    name: "Offside Imod",
+                    count: 0,
+                    type: 'negative'
+                },
             }
         }
     });

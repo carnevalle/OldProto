@@ -17,10 +17,20 @@ define([
             console.log(this.model.toJSON());
 		},
 
-		events: {
-            'touchstart .btn-scout':'onButtonClick',
-            //'click .btn-scout':'onButtonClick'
-		},
+		// events: {
+  //           'touchstart .btn-scout':'onButtonClick',
+  //           //'click .btn-scout':'onButtonClick'
+		// },
+        events: function() {
+            return window.mobilecheck() ?
+               {
+                 'touchstart .btn-scout':'onButtonClick'
+               } :
+               {
+                 'click .btn-scout':'onButtonClick'
+               }
+        },
+
 
         onButtonClick: function(e){
             if(window.mobilecheck() && e.type === 'click'){

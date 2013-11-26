@@ -29,9 +29,7 @@ function program1(depth0,data) {
   buffer += "<div class=\"row\">\n    <div class=\"col-sm-6\">\n        <img class=\"fnPitch\" src=\"img/betterteam-pitch-vertical.svg\" style=\"width: 100%\"/>\n    </div>\n    <div class=\"col-sm-6\">\n        <div class=\"row\">\n            <div class=\"col-sm-12\">\n                ";
   stack1 = helpers.each.call(depth0, depth0.observations, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n        </div>\n\n\n"
-    + "\n        "
-    + "\n    </div>\n</div>\n";
+  buffer += "\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;
   })
 

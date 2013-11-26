@@ -31,7 +31,9 @@ define([
         matchreports: new MatchReports(),
 
         fetchAll: function(){
-            this.players.fetch();
+            this.players.fetch({
+                dataType: 'jsonp'
+            });
             this.matches.fetch();
             this.matchreports.fetch();
         }

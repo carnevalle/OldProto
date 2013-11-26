@@ -7,7 +7,8 @@ define([
     'modules/players/ShowPlayerView',
     'modules/matches/IndexMatchView',
     'modules/matchreport/MatchReportLayout',
-    'modules/matchreport/MatchReport'
+    'modules/matchreport/MatchReport',
+    'modules/modal/Modal'
 ], function (
     Marionette,
     App,
@@ -17,7 +18,8 @@ define([
     ShowPlayerView,
     IndexMatchView,
     MatchReportLayout,
-    MatchReport
+    MatchReport,
+    ModalView
 ) {
 
     'use strict';
@@ -75,6 +77,12 @@ define([
 				collection: App.DS.players
 			}));
 		},
+
+        showModal: function(){
+            App.getRegion("main").show(new ModalView({
+                model: new Backbone.Model()
+            }));
+        },
 
 		showTeams: function(){
 			console.log('ShowTeams');

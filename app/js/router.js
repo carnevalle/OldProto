@@ -11,7 +11,8 @@ define(['marionette', 'controllers/AppController'], function (Marionette, AppCon
 			'players(/)':'showPlayers',
 			'players/:id':'showPlayer',
 			'teams': 'showTeams',
-			'teams/:id': 'showTeam',
+            'teams/:id': 'showTeam',
+			'modal(/)': 'showModal',
 			'*notFound': 'notFound'
 		}
 	});
