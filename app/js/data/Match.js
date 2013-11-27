@@ -6,6 +6,9 @@ define(['backbone'], function (Backbone) {
         defaults: {
             hometeam: "",
             awayteam: ""
+        },
+        urlRoot: function(){
+            return "http://localhost:8000/v1/matches/";
         }
     });
 

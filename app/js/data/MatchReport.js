@@ -57,6 +57,10 @@ define(['backbone'], function (Backbone) {
                     type: 'negative'
                 },
             }
+        },
+
+        urlRoot: function(){
+            return "http://localhost:8000/v1/matches/"+this.get("match_id")+"/reports";
         }
     });
 

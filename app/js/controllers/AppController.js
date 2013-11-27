@@ -1,7 +1,9 @@
 define([
     'marionette',
     'app',
+    'matchreport',
     'matchreports',
+    'match',
     'modules/matches/ShowMatchView',
     'modules/players/IndexPlayersView',
     'modules/players/ShowPlayerView',
@@ -12,13 +14,15 @@ define([
 ], function (
     Marionette,
     App,
+    MatchReport,
     MatchReports,
+    Match,
     ShowMatchView,
     IndexPlayersView,
     ShowPlayerView,
     IndexMatchView,
     MatchReportLayout,
-    MatchReport,
+    MatchReportView,
     ModalView
 ) {
 
@@ -32,25 +36,41 @@ define([
 
 		showMatch: function(id){
 
-            var reports = new MatchReports(App.DS.matchreports.belongsToMatch(id));
+            var match = new Match({
+                id: id
+            });
+            var reports = new MatchReports(undefined, {
+                matchid: id
+            });
+            reports.fetch();
 
-			App.getRegion("main").show(new ShowMatchView({
-				model: App.DS.matches.get({id:id}),
-                collection: reports
-			}));
+            match.fetch({
+                success: function(data){
+                    App.getRegion("main").show(new ShowMatchView({
+                        model: match,
+                        collection: reports
+                    }));
+                }
+            });
 		},
 
         showMatchReport: function(matchid, reportid){
-            console.log('ShowMatchReport: ', matchid, reportid);
 
-            console.log(App.DS.matchreports.toJSON());
-            console.log(App.DS.matchreports.get({id:reportid}));
-
-            var layout = new MatchReport({
-                model: App.DS.matchreports.get({id:reportid})
+            var matchreport = new MatchReport({
+                id: reportid,
+                match_id: matchid
             });
 
-            App.getRegion("main").show(layout);
+            matchreport.fetch({
+                success: function(model){
+                    console.log(model);
+                    var layout = new MatchReportView({
+                        model: matchreport
+                    });
+
+                    App.getRegion("main").show(layout);
+                }
+            })
         },
 
 		showMatches: function(){

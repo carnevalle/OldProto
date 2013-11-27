@@ -28,14 +28,12 @@ define([
 	App.DS = {
 		players: new Players(),
 		matches: new Matches(),
-        matchreports: new MatchReports(),
+        //matchreports: new MatchReports(),
 
         fetchAll: function(){
-            this.players.fetch({
-                dataType: 'jsonp'
-            });
+            this.players.fetch();
             this.matches.fetch();
-            this.matchreports.fetch();
+            //this.matchreports.fetch();
         }
 	}
 
