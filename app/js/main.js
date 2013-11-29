@@ -17,6 +17,7 @@ require.config({
         'touchpunch': '../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch',
         'tweenlite': '../bower_components/greensock/src/uncompressed/TweenLite',
         'tweencss': '../bower_components/greensock/src/uncompressed/plugins/CSSPlugin',
+        'tweenease': '../bower_components/greensock/src/uncompressed/easing/EasePack',
 
         // Models
         'match' : 'data/Match',
@@ -64,6 +65,29 @@ require([
     ], function ($, Backbone, FastClick, App, router, Navigation) {
 
     'use strict';
+
+    // $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+    //     options.crossDomain ={
+    //         crossDomain: true
+    //     };
+    //     options.xhrFields = {
+    //         withCredentials: true
+    //     };
+    // });
+
+    (function() {
+      var proxiedSync = Backbone.sync;
+      Backbone.sync = function(method, model, options) {
+        options || (options = {});
+        if (!options.crossDomain) {
+          options.crossDomain = true;
+        }
+        if (!options.xhrFields) {
+          //options.xhrFields = {withCredentials:true};
+        }
+        return proxiedSync(method, model, options);
+      };
+    })();
 
     $.fn.serializeObject = function()
     {

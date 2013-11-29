@@ -8,7 +8,6 @@ define([
     'modules/players/IndexPlayersView',
     'modules/players/ShowPlayerView',
     'modules/matches/IndexMatchView',
-    'modules/matchreport/MatchReportLayout',
     'modules/matchreport/MatchReport',
     'modules/modal/Modal'
 ], function (
@@ -21,7 +20,6 @@ define([
     IndexPlayersView,
     ShowPlayerView,
     IndexMatchView,
-    MatchReportLayout,
     MatchReportView,
     ModalView
 ) {
@@ -55,6 +53,8 @@ define([
 		},
 
         showMatchReport: function(matchid, reportid){
+
+            App.getRegion('header').reset();
 
             var matchreport = new MatchReport({
                 id: reportid,

@@ -5,6 +5,7 @@ define([
     'modules/matchreport/MatchReport.hbs',
     'tweenlite',
     'tweencss',
+    'tweenease'
     ], function (Marionette, $, template) {
 
     'use strict';
@@ -15,6 +16,8 @@ define([
 
 		initialize: function(){
             console.log(this.model.toJSON());
+
+            this.isTopToggled = false;
 		},
 
 		// events: {
@@ -27,16 +30,29 @@ define([
                  'touchstart .btn-scout':'onButtonClick'
                } :
                {
-                 'click .btn-scout':'onButtonClick'
+                 'click .btn-scout':'onButtonClick',
+                 'click .score':'onScoreClick'
                }
         },
 
+        onScoreClick: function(){
+            this.isTopToggled = !this.isTopToggled;
+
+            if(this.isTopToggled){
+                //TweenLite.to(this.$el.find(".topbar"), .2, {height:50});
+                TweenLite.to(this.$el.find(".topmenu"), .2, {height:200, ease:Power1.easeOut});
+            }else{
+                //TweenLite.to(this.$el.find(".topbar"), .2, {height:10});
+                TweenLite.to(this.$el.find(".topmenu"), .2, {height:0, ease:Power1.easeOut});
+            }
+        },
 
         onButtonClick: function(e){
-            if(window.mobilecheck() && e.type === 'click'){
-                //return;
-            }
 
+            console.log("Clicking Button!");
+            this.model.save();
+
+            /*
             var el = $(e.currentTarget);
             var key = e.currentTarget.dataset.type;
             var observations = this.model.get('observations');
@@ -52,10 +68,11 @@ define([
             this.model.set(observations);
             this.model.save();
             console.log(this.model.toJSON());
+            */
         },
 
         onRender: function(){
-            TweenLite.fromTo(this.$el.find(".fnPitch"), .5, {alpha:0}, {alpha:1});
+            //TweenLite.to(this.$el.find(".topmenu"), .5, {height:200, ease:Power1.easeOut});
         }
     })
 });

@@ -134,28 +134,105 @@
   z-index: -1;
   max-height: 100%;
 }
-.btn-scout {
-  margin-right: 5px;
-  height: 100px;
-  width: 100px;
-  /*margin: @gutter;*/
+/*
+.btn-scout{
+	margin-right: 5px;
+    margin-bottom: 10px;
+	height: 100px;
+	width: 100px;
 
+	//.bordered-box();
+
+    .count{
+        display: block;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    &.positive{
+        color: green;
+    }
+
+    &.negative{
+        color: red;
+    }
+}
+*/
+button::-moz-focus-inner {
+  border: 0;
+}
+button:focus {
+  outline: none;
+}
+.btn-scout {
+  font-size: 20px;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #429960;
+  border: 1px solid #429960;
+  color: white;
+  text-shadow: #135f83 0 -1px 0;
+  -moz-box-shadow: #3a8755 0 0.2em 0px, #4aab6b 0 1px 0 inset;
+  -webkit-box-shadow: #3a8755 0 0.2em 0px, #4aab6b 0 1px 0 inset;
+  -o-box-shadow: #3a8755 0 0.2em 0px, #4aab6b 0 1px 0 inset;
+  box-shadow: #3a8755 0 0.2em 0px, #4aab6b 0 1px 0 inset;
+  border-bottom: solid 1px #40955e;
+  position: relative;
+  margin-bottom: 15px;
+}
+.btn-scout:hover {
+  background-color: #4aab6b;
+}
+.btn-scout:active {
+  top: 0.1em;
+  -moz-box-shadow: #3a8755 0 0.1em 0px;
+  -webkit-box-shadow: #3a8755 0 0.1em 0px;
+  -o-box-shadow: #3a8755 0 0.1em 0px;
+  box-shadow: #3a8755 0 0.1em 0px;
+}
+.sign {
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #364b5e;
+  border: 1px solid #364b5e;
+  color: white;
+  text-shadow: #135f83 0 -1px 0;
+  border-bottom: solid 1px #34485b;
+  margin: 10px;
+  margin-bottom: 15px;
   padding: 10px;
-  margin-bottom: 10px;
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f1f5f6), to(#ebf0f2));
-  background-image: -webkit-linear-gradient(top, #f1f5f6, 0%, #ebf0f2, 100%);
-  background-image: -moz-linear-gradient(top, #f1f5f6 0%, #ebf0f2 100%);
-  background-image: linear-gradient(to bottom, #f1f5f6 0%, #ebf0f2 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff1f5f6', endColorstr='#ffebf0f2', GradientType=0);
-  background-color: #ebf0f2;
-  -webkit-box-shadow: 4px 4px 0px 0px #bdc2c7;
-  box-shadow: 4px 4px 0px 0px #bdc2c7;
-  border-radius: 3px;
+}
+.matchreport {
+  height: 660px;
+  width: 1010px;
+}
+.matchreport .topmenu {
+  background-color: red;
+  height: 0px;
+}
+.matchreport .topbar {
+  position: relative;
+  height: 50px;
+  overflow: hidden;
   zoom: 1;
 }
-.btn-scout:before,
-.btn-scout:after {
+.matchreport .topbar:before,
+.matchreport .topbar:after {
   content: " ";
   /* 1 */
 
@@ -163,28 +240,62 @@
   /* 2 */
 
 }
-.btn-scout:after {
+.matchreport .topbar:after {
   clear: both;
 }
-.btn-scout:before {
+.matchreport .topbar:before {
   content: '';
   display: block;
 }
-.btn-scout:after {
+.matchreport .topbar:after {
   content: '';
   display: table;
   clear: both;
 }
-.btn-scout .count {
-  display: block;
-  font-size: 2em;
+.matchreport .topbar .first,
+.matchreport .topbar .second {
+  width: 45%;
+  float: left;
+}
+.matchreport .topbar .score {
+  width: 10%;
+  float: left;
+  text-align: center;
+  line-height: 50px;
+  font-size: 25px;
   font-weight: bold;
+  cursor: pointer;
 }
-.btn-scout.positive {
-  color: green;
+.matchreport .middle {
+  height: 560px;
+  background-color: #eee;
+  overflow: hidden;
 }
-.btn-scout.negative {
-  color: red;
+.matchreport .middle .buttons {
+  padding: 10px;
+}
+.matchreport .bottom {
+  min-height: 50px;
+  background-color: #ccc;
+}
+.matchreport .clock {
+  height: 100%;
+  /* Can be anything */
+
+  position: relative;
+  background: #555;
+  padding: 0;
+  border: 1px solid black;
+}
+.matchreport .clock > span {
+  display: block;
+  height: 100%;
+  background-color: black;
+}
+.type1 .btn-scout {
+  font-size: 2em;
+  width: 189px;
+  height: 75px;
 }
 ::selection {
   background: #333;
