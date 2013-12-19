@@ -38,29 +38,27 @@ define([
         this.$canvas = $('<div/>',{'id':'pitchcanvas', 'class':'canvas'});
         this.$container.append(this.$canvas);
 
-        var stage = new Kinetic.Stage({
+        this.stage = new Kinetic.Stage({
             container: 'pitchcanvas',
-            width: 578,
-            height: 200
+            width: this.width,
+            height: this.height
         });
 
-        var layer = new Kinetic.Layer();
-
-        var rect = new Kinetic.Rect({
-            x: 239,
-            y: 75,
-            width: 100,
-            height: 50,
-            fill: 'green',
-            stroke: 'black',
-            strokeWidth: 4
+        var layer = new Kinetic.Layer({
+            id: "layer"
         });
 
-        // add the shape to the layer
-        layer.add(rect);
+      var circle = new Kinetic.Circle({
+        x: this.stage.getWidth() / 2,
+        y: this.stage.getHeight() / 2,
+        radius: 70,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 4
+      });
 
-        // add the layer to the stage
-        stage.add(layer);
+
+        this.stage.add(layer);
 
         var all_events = ["touch", "release", "hold", "tap", "doubletap", "dragstart", "drag", "dragend", "dragleft", "dragright", "dragup", "dragdown", "swipe", "swipeleft", "swiperight", "swipeup", "swipedown", "transformstart", "transform", "transformend", "rotate", "pinch", "pinchin", "pinchout"];
 
@@ -77,7 +75,7 @@ define([
             console.log(e);
             console.log(_this.getNormalizedPosition(e.gesture.center.pageX, e.gesture.center.pageY))
 
-            var pos = _this.getNormalizedPosition(e.gesture.center.pageX, e.gesture.center.pageY);
+            var pos = _this.getPosition(e.gesture.center.pageX, e.gesture.center.pageY);
 
             _this.$display.text("X="+pos.x+",Y="+pos.y+" ("+e.type+")");
 
@@ -99,6 +97,20 @@ define([
         },
 
         addMarker: function(x, y, type){
+            console.log("add marker: ", x, y, type);
+
+            var circle = new Kinetic.Circle({
+                x: x,
+                y: y,
+                radius: 70,
+                fill: 'red',
+                stroke: 'black',
+                strokeWidth: 4
+            });
+
+            this.stage.getLayer('layer').add(circle);
+
+            /*
             var marker = $(document.createElement('div'));
             marker.addClass("marker");
             marker.addClass(type);
@@ -108,6 +120,7 @@ define([
             this.$container.append(marker);
 
             return marker;
+            */
         },
 
         getPosition: function(x, y){
