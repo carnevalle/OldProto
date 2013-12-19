@@ -1,4 +1,7 @@
-define(['backbone'], function (Backbone) {
+define([
+    'backbone',
+    'app'
+    ], function (Backbone, App) {
 
     'use strict';
 
@@ -8,7 +11,13 @@ define(['backbone'], function (Backbone) {
             awayteam: ""
         },
         urlRoot: function(){
-            return "http://localhost:8000/v1/matches/";
+            return App.config.apiroot+"/matches";
+
+            // if(true){
+            //     return "http://api.betterteam.dk/v1/matches/";
+            // }else{
+            //     return "http://localhost:8000/v1/matches/";
+            // }
         }
     });
 

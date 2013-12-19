@@ -1,4 +1,8 @@
-define(["backbone","matchreport","localstorage"], function(Backbone, MatchReport) {
+define([
+    "backbone",
+    "matchreport",
+    "app"
+    ], function(Backbone, MatchReport, App) {
 
     return Backbone.Collection.extend({
         model: MatchReport,
@@ -17,8 +21,13 @@ define(["backbone","matchreport","localstorage"], function(Backbone, MatchReport
         },
 
         url: function(){
-            console.log("http://localhost:8000/v1/matches/"+this.matchid+"/reports");
-            return "http://localhost:8000/v1/matches/"+this.matchid+"/reports";
+            return App.config.apiroot+"/matches/"+this.matchid+"/reports";
+
+            // if(true){
+            //     return "http://api.betterteam.dk/v1/matches/"+this.matchid+"/reports";
+            // }else{
+            //     return "http://localhost:8000/v1/matches/"+this.matchid+"/reports";
+            // }
         }
     });
 });

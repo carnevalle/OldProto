@@ -1,12 +1,22 @@
-define(["backbone","player","localstorage"], function(Backbone, player) {
+define([
+    "backbone",
+    "player",
+    "app"
+    ], function(Backbone, player, App) {
 
     return Backbone.Collection.extend({
-    	//localStorage: new Backbone.LocalStorage("betterteam-players"),
         model: player,
         initialize: function(models, options){
         },
         url: function(){
-            return "http://localhost:8000/v1/players";
+
+            return App.config.apiroot+"/players";
+
+            // if(true){
+            //     return "http://api.betterteam.dk/v1/players";
+            // }else{
+            //     return "http://localhost:8000/v1/players";
+            // }
         }
     });
 });

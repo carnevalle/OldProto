@@ -19,7 +19,10 @@
     "json2":"*",
     "holderjs":"*",
     "jqueryui-touch-punch":"*",
-    "greensock":"*"
+    "greensock":"*",
+    "Swipe":"*",
+    "nouislider":"*",
+    "hammerjs":"*"
   },
   "devDependencies": {}
 }

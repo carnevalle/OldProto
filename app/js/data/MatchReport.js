@@ -1,4 +1,7 @@
-define(['backbone'], function (Backbone) {
+define([
+    'backbone',
+    'app'
+    ], function (Backbone, App) {
 
     'use strict';
 
@@ -60,7 +63,13 @@ define(['backbone'], function (Backbone) {
         },
 
         urlRoot: function(){
-            return "http://localhost:8000/v1/matches/"+this.get("match_id")+"/reports";
+            return App.config.apiroot+"/matches/"+this.get("match_id")+"/reports";
+
+            // if(true){
+            //     return "http://api.betterteam.dk/v1/matches/"+this.get("match_id")+"/reports";
+            // }else{
+            //     return "http://localhost:8000/v1/matches/"+this.get("match_id")+"/reports";
+            // }
         }
     });
 

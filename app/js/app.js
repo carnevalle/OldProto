@@ -2,53 +2,26 @@
 define([
     'backbone',
     'marionette',
-    'underscore',
-    'players',
-    'player',
-    'matches',
-    'match',
-    'matchreports',
-    'matchreport'
+    'underscore'
     ], function (
         Backbone,
         Marionette,
-        _,
-        Players,
-        Player,
-        Matches,
-        Match,
-        MatchReports,
-        MatchReport
+        _
     ) {
 
     'use strict';
 
 	var App = new Backbone.Marionette.Application({});
 
-	App.DS = {
-		players: new Players(),
-		matches: new Matches(),
-        //matchreports: new MatchReports(),
-
-        fetchAll: function(){
-            this.players.fetch();
-            this.matches.fetch();
-            //this.matchreports.fetch();
-        }
-	}
-
-    App.DS.fetchAll();
-
-    /*
-	if(App.DS.players.length === 0){
-		App.DS.players.fetch({
-			success: function(data){
-				console.log("FETCH IS COMPLETE!");
-				console.log(data);
-			}
-		});
-	}
-    */
+    App.config = {
+        apiroot: function(){
+            if(window.location.host === "localhost:9100"){
+                return "http://localhost:8000/v1";
+            }else{
+                return "http://api.betterteam.dk/v1";
+            }
+        }()
+    }
 
 	App.addRegions({
 		header: '#header',
@@ -56,16 +29,7 @@ define([
 		overlay: '#overlay'
 	});
 
-	App.on('initialize:before', function() {
-		console.log('initialize:before');
-	});
-
-	App.on('initialize:after', function() {
-		console.log('initialize:after');
-	});
-
 	App.on('start', function() {
-		console.log('start');
 		Backbone.history.start({
 			//pushState: true
 		});

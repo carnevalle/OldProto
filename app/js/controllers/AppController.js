@@ -4,24 +4,32 @@ define([
     'matchreport',
     'matchreports',
     'match',
+    'matches',
+    'player',
+    'players',
     'modules/matches/ShowMatchView',
     'modules/players/IndexPlayersView',
     'modules/players/ShowPlayerView',
     'modules/matches/IndexMatchView',
     'modules/matchreport/MatchReport',
-    'modules/modal/Modal'
+    'modules/modal/Modal',
+    'modules/pitch/PitchView'
 ], function (
     Marionette,
     App,
     MatchReport,
     MatchReports,
     Match,
+    Matches,
+    Player,
+    Players,
     ShowMatchView,
     IndexPlayersView,
     ShowPlayerView,
     IndexMatchView,
     MatchReportView,
-    ModalView
+    ModalView,
+    PitchView
 ) {
 
     'use strict';
@@ -75,9 +83,16 @@ define([
 
 		showMatches: function(){
 			console.log('ShowMatches');
-			App.getRegion("main").show(new IndexMatchView({
-				collection: App.DS.matches
-			}));
+
+            var matches = new Matches();
+
+            matches.fetch({
+                success: function(){
+                    App.getRegion("main").show(new IndexMatchView({
+                        collection: matches
+                    }));
+                }
+            })
 		},
 
 		showTeam: function(id){
@@ -86,17 +101,42 @@ define([
 
 		showPlayer: function(id){
 			console.log('ShowPlayer');
-			App.getRegion("main").show(new ShowPlayerView({
-				model: App.DS.players.get({id:id})
-			}));
+
+            var player = new Player({
+                id: id
+            });
+
+            player.fetch({
+                success: function(){
+                    App.getRegion("main").show(new ShowPlayerView({
+                        model: player
+                    }));
+                }
+            })
 		},
 
 		showPlayers: function(){
 			console.log('ShowPlayers');
-			App.getRegion("main").show(new IndexPlayersView({
-				collection: App.DS.players
-			}));
+
+            var players = new Players();
+
+            players.fetch({
+                success: function(){
+                    App.getRegion("main").show(new IndexPlayersView({
+                        collection: players
+                    }));
+                }
+            })
 		},
+
+        showPitch: function(){
+
+            App.getRegion('header').reset();;
+
+            App.getRegion("main").show(new PitchView({
+                model: new Backbone.Model()
+            }));
+        },
 
         showModal: function(){
             App.getRegion("main").show(new ModalView({

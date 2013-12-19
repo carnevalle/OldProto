@@ -1,4 +1,7 @@
-define(['backbone'], function (Backbone) {
+define([
+    'backbone',
+    'app'
+    ], function (Backbone, App) {
 
     'use strict';
 
@@ -7,6 +10,10 @@ define(['backbone'], function (Backbone) {
             name: "Michael Laudrup",
             birthdate: "",
             positions: []
+        },
+
+        urlRoot: function(){
+            return App.config.apiroot+"/players";
         }
     });
 

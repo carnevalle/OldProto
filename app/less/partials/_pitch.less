@@ -11,3 +11,43 @@
 	z-index: -1;
 	max-height: 100%;
 }
+
+
+.footballpitch-wrapper{
+
+    position: relative;
+
+    .footballpitch{
+        .unselectable;
+        z-index: -1;
+        max-height: 100%;
+
+        img{
+            width: 100%;
+        }
+    }
+
+    .display{
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .marker{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        margin-left: -15px;
+        margin-top: -15px;
+
+        &.start{
+            background-color: green;
+        }
+        &.end{
+            background-color: red;
+        }
+    }
+
+}
