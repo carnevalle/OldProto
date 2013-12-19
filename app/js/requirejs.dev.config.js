@@ -22,6 +22,7 @@ require.config({
         'swipe': '../bower_components/Swipe/swipe',
         'hammer': '../bower_components/hammerjs/dist/hammer',
         'hammer.jquery': '../bower_components/hammerjs/dist/jquery.hammer',
+        'kineticjs': 'vendors/kinetic-v4.7.4.min',
 
         // Models
         'match' : 'data/Match',

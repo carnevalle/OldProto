@@ -22,7 +22,8 @@
     "greensock":"*",
     "Swipe":"*",
     "nouislider":"*",
-    "hammerjs":"*"
+    "hammerjs":"*",
+    "kineticjs":"*"
   },
   "devDependencies": {}
 }

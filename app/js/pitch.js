@@ -1,9 +1,12 @@
 define([
   "jquery",
   "underscore",
+  "kineticjs",
   "hammer.jquery"
-  ], function($, _) {
+  ], function($, _, Kinetic) {
 
+
+    console.log("Kinetic: ", Kinetic);
 
     var Pitch = function(container, options) {
 
@@ -21,14 +24,43 @@ define([
 
         // this.offsetX = this.$container.offset().left;
         // this.offsetY = this.$container.offset().top;
-        // this.width = this.$container.width();
-        // this.height = this.$container.height();
+        this.width = this.$container.width();
+        this.height = this.$container.height();
 
         this.$display = $(document.createElement('div'));
         this.$display.addClass("display");
         this.$container.append(this.$display);
-        this.$canvas = $(document.createElement('canvas'));
 
+        // this.$canvas = $('<canvas/>',{'id':'pitchcanvas'})
+        // .width(this.width)
+        // .height(this.height);
+
+        this.$canvas = $('<div/>',{'id':'pitchcanvas', 'class':'canvas'});
+        this.$container.append(this.$canvas);
+
+        var stage = new Kinetic.Stage({
+            container: 'pitchcanvas',
+            width: 578,
+            height: 200
+        });
+
+        var layer = new Kinetic.Layer();
+
+        var rect = new Kinetic.Rect({
+            x: 239,
+            y: 75,
+            width: 100,
+            height: 50,
+            fill: 'green',
+            stroke: 'black',
+            strokeWidth: 4
+        });
+
+        // add the shape to the layer
+        layer.add(rect);
+
+        // add the layer to the stage
+        stage.add(layer);
 
         var all_events = ["touch", "release", "hold", "tap", "doubletap", "dragstart", "drag", "dragend", "dragleft", "dragright", "dragup", "dragdown", "swipe", "swipeleft", "swiperight", "swipeup", "swipedown", "transformstart", "transform", "transformend", "rotate", "pinch", "pinchin", "pinchout"];
 
