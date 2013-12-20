@@ -12,6 +12,8 @@ define([
     'modules/players/ShowPlayerView',
     'modules/matches/IndexMatchView',
     'modules/matchreport/MatchReport',
+    'modules/matchreport/MatchReportLayout',
+    'modules/timeslider/TimeSlider',
     'modules/modal/Modal',
     'modules/pitch/PitchView'
 ], function (
@@ -28,6 +30,8 @@ define([
     ShowPlayerView,
     IndexMatchView,
     MatchReportView,
+    MatchReportLayout,
+    TimeSlider,
     ModalView,
     PitchView
 ) {
@@ -64,6 +68,9 @@ define([
 
             App.getRegion('header').reset();
 
+            App.getRegion("main").show(new MatchReportLayout());
+
+            /*
             var matchreport = new MatchReport({
                 id: reportid,
                 match_id: matchid
@@ -79,6 +86,7 @@ define([
                     App.getRegion("main").show(layout);
                 }
             })
+            */
         },
 
 		showMatches: function(){

@@ -137,11 +137,10 @@
 }
 .footballpitch-wrapper {
   position: relative;
-  height: 810px;
+  height: 100%;
   width: 100%;
 }
 .footballpitch-wrapper .canvas {
-  border: 1px solid black;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -200,14 +199,11 @@ button:focus {
   width: 189px;
   height: 75px;
 }
-.matchreport {
-  height: 660px;
-}
-.matchreport .time-container {
+.time-container {
   zoom: 1;
 }
-.matchreport .time-container:before,
-.matchreport .time-container:after {
+.time-container:before,
+.time-container:after {
   content: " ";
   /* 1 */
 
@@ -215,22 +211,22 @@ button:focus {
   /* 2 */
 
 }
-.matchreport .time-container:after {
+.time-container:after {
   clear: both;
 }
-.matchreport .time-container:before {
+.time-container:before {
   content: '';
   display: block;
 }
-.matchreport .time-container:after {
+.time-container:after {
   content: '';
   display: table;
   clear: both;
 }
-.matchreport .time-container .time-left-wrapper {
+.time-container .time-left-wrapper {
   overflow: hidden;
 }
-.matchreport .time-container .time-display {
+.time-container .time-display {
   width: 50px;
   float: right;
   text-align: center;
@@ -239,13 +235,16 @@ button:focus {
   line-height: 34px;
   padding: 0 5px;
 }
-.matchreport .time-container .time-controls-wrapper {
+.time-container .time-controls-wrapper {
   width: 50px;
   float: left;
   padding: 0 5px;
 }
-.matchreport .time-container .time-bar-wrapper {
+.time-container .time-bar-wrapper {
   overflow: hidden;
+}
+.matchreport {
+  height: 660px;
 }
 .matchreport .top {
   position: relative;
@@ -288,6 +287,12 @@ button:focus {
   float: left;
   width: 100%;
   position: relative;
+}
+.badge-danger {
+  background-color: #d9534f;
+}
+.badge-success {
+  background-color: #5cb85c;
 }
 /* Functional styling;
  * These styles are required for noUiSlider to function.

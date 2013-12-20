@@ -22,8 +22,17 @@ define([
 
         onDomRefresh: function(){
             console.log("DOM REFRESH!");
-            var self = this;
-            new Pitch(this.$el);
+
+            var _this = this;
+
+
+            this.$el.find('img').on('load', function() {
+                new Pitch(_this.$el);
+            });
+            // setTimeout(function(){
+            //     new Pitch(_this.$el);
+            // }, 200);
+
         }
     })
 });
