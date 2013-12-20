@@ -35,57 +35,120 @@ define([
         // .width(this.width)
         // .height(this.height);
 
-        this.$canvas = $('<div/>',{'id':'pitchcanvas', 'class':'canvas'});
-        this.$container.append(this.$canvas);
+        this.$canvascontainer = $('<div/>',{'id':'pitchcanvas', 'class':'canvas'});
+        this.$container.append(this.$canvascontainer);
 
-        this.stage = new Kinetic.Stage({
-            container: 'pitchcanvas',
-            width: this.width,
-            height: this.height
-        });
+        this.canvas = {
+            stage: new Kinetic.Stage({
+                container: 'pitchcanvas',
+                width: this.width,
+                height: this.height
+            }),
+            layer: new Kinetic.Layer()
+        }
 
-        var layer = new Kinetic.Layer({
-            id: "layer"
-        });
-
-      var circle = new Kinetic.Circle({
-        x: this.stage.getWidth() / 2,
-        y: this.stage.getHeight() / 2,
-        radius: 70,
-        fill: 'red',
-        stroke: 'black',
-        strokeWidth: 4
-      });
-
-
-        this.stage.add(layer);
+        this.canvas.stage.add(this.canvas.layer);
 
         var all_events = ["touch", "release", "hold", "tap", "doubletap", "dragstart", "drag", "dragend", "dragleft", "dragright", "dragup", "dragdown", "swipe", "swipeleft", "swiperight", "swipeup", "swipedown", "transformstart", "transform", "transformend", "rotate", "pinch", "pinchin", "pinchout"];
 
-        this.hammertime.on("dragstart", "img", function(e) {
-            return false;
-        });
+        //this.hammertime.on("dragstart", "img", function(e) {
+            //return false;
+        //});
 
         var _this = this;
-        //this.hammertime.on(all_events.join(" "), function(e) {
-        this.hammertime.on("touch release dragstart drag dragend", function(e) {
 
+
+        // this.hammertime.on("dragstart drag dragend", _.bind(function(e) {
+
+        //     console.log(e.type);
+
+        //     var pos = this.getPosition(e.gesture.center.pageX, e.gesture.center.pageY);
+
+        //     if(e.type === "dragstart"){
+
+        //         this.dragline = new Kinetic.Line({
+        //             points: [pos.x, pos.y],
+        //             stroke: 'rgba(0,0,0,0.5)',
+        //             dashArray: [10, 5]
+        //         });
+
+        //         this.canvas.layer.add(this.dragline);
+
+        //         this.dragstart = pos;
+
+        //     }else if(e.type === "dragend"){
+
+        //         this.dragstart = pos;
+        //     }else{
+        //         console.log();
+
+        //         this.dragstart = pos;
+        //         console.log(this.dragline.getPoints());
+        //         var points = this.dragline.getPoints();
+
+        //         if(points.length === 1){
+        //             points.push(pos);
+        //         }else{
+        //             points[1] = pos;
+        //         }
+
+
+        //         //console.log(points);
+        //         //this.dragline.setPoints(this.dragline.getPoints().push(pos));
+        //     }
+
+        //     this.canvas.layer.draw();
+
+        // },this));
+
+        this.hammertime.on("touch release dragstart drag dragend", _.bind(function(e) {
+            //console.log(e);
             e.gesture.preventDefault();
 
-            console.log(e);
-            console.log(_this.getNormalizedPosition(e.gesture.center.pageX, e.gesture.center.pageY))
-
-            var pos = _this.getPosition(e.gesture.center.pageX, e.gesture.center.pageY);
-
-            _this.$display.text("X="+pos.x+",Y="+pos.y+" ("+e.type+")");
+            var pos = this.getPosition(e.gesture.center.pageX, e.gesture.center.pageY);
+            this.$display.text("X="+pos.x+",Y="+pos.y+" ("+e.type+")");
 
             if(e.type === "touch"){
-                _this.addMarker(pos.x, pos.y, "start");
+                this.dragline = new Kinetic.Line({
+                    points: [pos.x, pos.y],
+                    stroke: 'rgba(0,0,0,0.5)',
+                    dashArray: [10, 5]
+                });
+
+                this.canvas.layer.add(this.dragline);
+                this.dragstart = pos;
+
+                this.addMarker(pos.x, pos.y, "start");
+
+            }else if(e.type === "drag"){
+
+                this.dragend = pos;
+                var points = this.dragline.getPoints();
+
+                if(points.length === 1){
+                    points.push(pos);
+                }else{
+                    points[1] = pos;
+                }
+
+            }else if(e.type === "dragend"){
+
+                this.dragend = pos;
+                var points = this.dragline.getPoints();
+
+                if(points.length === 1){
+                    points.push(pos);
+                }else{
+                    points[1] = pos;
+                }
+
             }else if(e.type === "release"){
-                _this.addMarker(pos.x, pos.y, "end");
+                this.addMarker(pos.x, pos.y, "end");
             }
 
-        });
+            this.canvas.layer.draw();
+
+        },this));
 
         this.init();
     }
@@ -99,17 +162,24 @@ define([
         addMarker: function(x, y, type){
             console.log("add marker: ", x, y, type);
 
+            var color = "";
+            if(type === "start"){
+                color = "green";
+            }else{
+                color = "red";
+            }
+
             var circle = new Kinetic.Circle({
                 x: x,
                 y: y,
-                radius: 70,
-                fill: 'red',
-                stroke: 'black',
-                strokeWidth: 4
+                radius: 15,
+                fill: color,
+                stroke: 'rgba(0,0,0,0.6)',
+                strokeWidth: 2,
+                listening: false
             });
 
-            this.stage.getLayer('layer').add(circle);
-
+            this.canvas.layer.add(circle);
             /*
             var marker = $(document.createElement('div'));
             marker.addClass("marker");
