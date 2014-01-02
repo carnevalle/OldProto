@@ -15,15 +15,21 @@
     "backbone.babysitter": "*",
     "backbone.basicauth": "*",
     "fastclick": "0.6.10",
-    "backbone.localStorage":"1.1.7",
-    "json2":"*",
-    "holderjs":"*",
-    "jqueryui-touch-punch":"*",
-    "greensock":"*",
-    "Swipe":"*",
-    "nouislider":"*",
-    "hammerjs":"*",
-    "kineticjs":"*"
+    "backbone.localStorage": "1.1.7",
+    "json2": "*",
+    "holderjs": "*",
+    "jqueryui-touch-punch": "*",
+    "greensock": "*",
+    "Swipe": "*",
+    "nouislider": "*",
+    "hammerjs": "*",
+    "kineticjs": "*",
+    "play-audio": "*",
+    "soundmanager2": "*",
+    "jquery-hammerjs": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "backbone": "1.1.0"
+  }
 }

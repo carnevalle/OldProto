@@ -36,10 +36,16 @@ define([
 	});
 
 	Marionette.Region.prototype.open = function(view){
-	  this.$el.hide();
+
 	  this.$el.html(view.el);
-	  this.$el.fadeIn("fast");
+
+      if(!view.disableFade){
+          this.$el.hide();
+    	  this.$el.fadeIn("fast");
+      }
 	}
+
+    App.isLoaded = false;
 
     return App;
 });

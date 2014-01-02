@@ -15,16 +15,21 @@ require.config({
         'holderjs' : '../bower_components/holderjs/holder',
         'json' : '../bower_components/json2/json2',
         'touchpunch': '../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch',
+        'nouislider': '../bower_components/nouislider/jquery.nouislider',
+        'swipe': '../bower_components/Swipe/swipe',
+        'hammer': '../bower_components/hammerjs/hammer',
+        'hammer.jquery': '../bower_components/jquery-hammerjs/jquery.hammer-standalone',
+        'play-audio': '../bower_components/play-audio/dist/play-audio',
+        'kineticjs': 'vendors/kinetic-v4.7.4.min',
+        'howler': 'vendors/howler',
         'tweenlite': '../bower_components/greensock/src/uncompressed/TweenLite',
         'tweencss': '../bower_components/greensock/src/uncompressed/plugins/CSSPlugin',
         'tweenease': '../bower_components/greensock/src/uncompressed/easing/EasePack',
-        'nouislider': '../bower_components/nouislider/jquery.nouislider',
-        'swipe': '../bower_components/Swipe/swipe',
-        'hammer': '../bower_components/hammerjs/dist/hammer',
-        'hammer.jquery': '../bower_components/hammerjs/dist/jquery.hammer',
-        'kineticjs': 'vendors/kinetic-v4.7.4.min',
+        'gsap': '../bower_components/greensock/src/uncompressed/easing/EasePack',
 
         // Models
+        'team' : 'data/Team',
+        'teams' : 'data/Teams',
         'match' : 'data/Match',
         'matches' : 'data/Matches',
         'player' : 'data/Player',
@@ -66,5 +71,8 @@ require.config({
         'hammer.jquery' : {
             deps: ['jquery', 'hammer']
         },
+        'gsap' : {
+            deps: ['tweenlite', 'tweencss']
+        },        
     }
 });

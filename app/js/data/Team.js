@@ -7,13 +7,11 @@ define([
 
     return Backbone.Model.extend({
         defaults: {
-            name: "Michael Laudrup",
-            birthdate: "",
-            positions: []
+
         },
 
         urlRoot: function(){
-            return App.config.apiroot+"/players";
+            return App.config.apiroot+"/teams";
         }
     });
 

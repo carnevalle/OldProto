@@ -6,7 +6,7 @@ define([
   ], function($, _, Kinetic) {
 
 
-    console.log("Kinetic: ", Kinetic);
+    //console.log("Kinetic: ", Kinetic);
 
     var Pitch = function(container, options) {
 

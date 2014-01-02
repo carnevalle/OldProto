@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# 2012-08-09:v1.3
+
+NETWORK:
+*
+
+CACHE:
+/sound/click.wav
+/sound/click2.wav
+/sound/click3.wav
