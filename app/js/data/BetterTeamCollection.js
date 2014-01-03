@@ -1,24 +1,9 @@
 define([
     "backbone",
-    "betterteam-collection",
-    "player",
     "app"
-    ], function(Backbone, BetterTeamCollection, player, App) {
+    ], function(Backbone, App) {
 
-    return BetterTeamCollection.extend({
-        model: player,
-        initialize: function(models, options){
-        },
-        url: function(){
-
-            return App.config.apiroot+"/players";
-
-            // if(true){
-            //     return "http://api.betterteam.dk/v1/players";
-            // }else{
-            //     return "http://localhost:8000/v1/players";
-            // }
-        },
+    return Backbone.Collection.extend({
         fetch: function(options) {
 
             var _this = this;

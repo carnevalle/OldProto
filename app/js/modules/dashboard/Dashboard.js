@@ -13,8 +13,6 @@ define([
 		className: 'dashboard',
 
 		initialize: function(){
-            console.log("INIT DASHBOARD!");
-
             this.sound = new Howl({
               urls: ['sound/click3.wav']
             })
@@ -23,10 +21,12 @@ define([
         events: function() {
             return window.mobilecheck() ?
                {
-                 'touchstart .btbtn':'onButtonClick'
+                 'touchstart .btbtn':'onButtonClick',
+                 'touchstart img':'onButtonClick'
                } :
                {
-                 'click .btbtn':'onButtonClick'
+                 'click .btbtn':'onButtonClick',
+                 'click img':'onButtonClick'
                }
         },
 

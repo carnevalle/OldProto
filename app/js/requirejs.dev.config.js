@@ -28,6 +28,7 @@ require.config({
         'gsap': '../bower_components/greensock/src/uncompressed/easing/EasePack',
 
         // Models
+        'betterteam-collection' : 'data/BetterTeamCollection',
         'team' : 'data/Team',
         'teams' : 'data/Teams',
         'match' : 'data/Match',

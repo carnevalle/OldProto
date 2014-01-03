@@ -42,6 +42,14 @@ define([
 
 			var teams = new Teams();
 
+			teams.on("fetch", function(collection, options){
+				console.log("FETCHING: ", collection, options);
+			})
+
+			teams.on("progress", function(collection, e){
+				console.log("PROGRESS: ", collection, e);
+			})
+
             teams.fetch({
                 success: function(){
                 	App.getRegion("main").show(new Dashboard());

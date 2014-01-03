@@ -1,10 +1,11 @@
 define([
     "backbone",
+    "betterteam-collection",
     "team",
     "app"
-    ], function(Backbone, TeamModel, App) {
+    ], function(Backbone, BetterTeamCollection, TeamModel, App) {
 
-    return Backbone.Collection.extend({
+    return BetterTeamCollection.extend({
         model: TeamModel,
         initialize: function(models, options){
 
