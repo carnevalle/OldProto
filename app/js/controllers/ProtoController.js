@@ -2,6 +2,7 @@ define([
     'marionette',
     'app',
     'layouts/FullPageLayout',
+    'layouts/MatchLayout',
     'modules/dashboard/Dashboard',
     'team',
     'teams',
@@ -13,6 +14,7 @@ define([
     Marionette,
     App,
     FullPageLayout,
+    MatchLayout,
     Dashboard,
     Team,
     Teams,
@@ -40,6 +42,9 @@ define([
 		showDashboard: function(){
 			console.log('ShowDashboard');
 
+			App.getRegion("main").show(new MatchLayout());
+
+			/*
 			var teams = new Teams();
 
 			teams.on("fetch", function(collection, options){
@@ -55,14 +60,9 @@ define([
                 	App.getRegion("main").show(new Dashboard());
 
                 	console.log(teams);
-
-                	/*
-                    App.getRegion("main").show(new IndexPlayersView({
-                        collection: players
-                    }));
-					*/
                 }
             })
+			*/
 		},
 
 		showMatch: function(id){

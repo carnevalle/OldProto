@@ -35,15 +35,15 @@ define([
 		});
 	});
 
-	Marionette.Region.prototype.open = function(view){
+	// Marionette.Region.prototype.open = function(view){
 
-	  this.$el.html(view.el);
+	//   this.$el.html(view.el);
 
-      if(!view.disableFade){
-          this.$el.hide();
-    	  this.$el.fadeIn("fast");
-      }
-	}
+ //      if(!view.disableFade){
+ //          this.$el.hide();
+ //    	  this.$el.fadeIn("fast");
+ //      }
+	// }
 
     App.isLoaded = false;
 
