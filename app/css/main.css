@@ -78,6 +78,9 @@
 .text-light {
   color: #f1f6f7;
 }
+.bg-primary {
+  background-color: rgba(34, 85, 52, 0.8);
+}
 .bg-green {
   background-color: #429960;
 }
@@ -88,7 +91,7 @@
   background-color: #bdc2c7;
 }
 .bg-light {
-  background-color: #f1f6f7;
+  background-color: #3fbe5b;
 }
 .bg-background {
   background-color: #ebf0f2;
@@ -482,22 +485,35 @@ button:focus {
   padding: 10px;
   border-bottom: 1px solid rgba(19, 49, 30, 0.8);
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #ffffff;
+  overflow: hidden;
 }
 .well {
-  margin: 10px;
+  margin: 0;
   border-radius: 0;
   border: 1px solid transparent;
-  background-color: rgba(34, 85, 52, 0.8);
   color: #ededed;
 }
 .well h1 {
-  margin: 0;
+  margin: 0 0 10px 0;
   text-transform: uppercase;
-  font-weight: bold;
+  text-align: center;
+  font-weight: 300;
   font-size: 2em;
-  max-width: 70%;
 }
+.btbtn {
+  border: none;
+  width: 179px;
+  height: 90px;
+  background: #3fbe5b;
+  color: #ededed;
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+}
+.btbtn:active {
+  box-shadow: inset 1px 2px 5px rgba(19, 49, 30, 0.8);
+}
+/*
 .btbtn {
   border: none;
   font-family: inherit;
@@ -512,13 +528,14 @@ button:focus {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-  width: 169px;
+  width: 174px;
   height: 90px;
   font-weight: bold;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
-  font-size: 0.9em;
+  text-shadow: 1px 1px rgba(0,0,0,0.3);
+  font-size: 1.2em;
   line-height: 1.1em;
 }
+
 .btbtn:after {
   content: '';
   position: absolute;
@@ -527,23 +544,31 @@ button:focus {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
+
 .btn-2 {
-  background: #3fbe5b;
-  color: #ededed;
-  box-shadow: 2px 4px rgba(19, 49, 30, 0.8);
+  background: @buttoncolor;
+  color: @primarytextcolor;
+  box-shadow: 2px 4px darken(@primarycolor, 10%);
   -webkit-transition: none;
   -moz-transition: none;
   transition: none;
 }
-/* Button 2b */
+
 .btn-2c {
   border-radius: 2px;
 }
+
+.btn-2c:hover {
+  //box-shadow: 0 4px #ab3c3c;
+  //top: 2px;
+}
+
 .btn-2c:active {
-  box-shadow: 1px 2px rgba(19, 49, 30, 0.8);
+  box-shadow: 1px 2px darken(@primarycolor, 10%);
   left: 1px;
   top: 2px;
 }
+*/
 .button {
   border-radius: 0;
   background-color: #3fbe5b;

@@ -22,12 +22,12 @@ define([
         },
 
         onRender: function(){
-
+            TweenLite.from(this.$el.find("#r-top"), 0.3, {top:'+=10px', opacity: 0, delay: 0.5});
+            TweenLite.from(this.$el.find("#r-bottom"), 0.3, {top:'+=10px', opacity: 0, delay: 0.6});
         },
 
         onDomRefresh: function(){
-            TweenLite.from($("#r-top"), 0.3, {top:'+=10px', opacity: 0, delay: 0.5});
-            TweenLite.from($("#r-bottom"), 0.3, {top:'+=10px', opacity: 0, delay: 0.6});
+            
             //this.bottom.getEl().slideDown("slow");            
         },
 
