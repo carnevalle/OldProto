@@ -1,11 +1,12 @@
 define([
     'backbone',
-    'app'
-    ], function (Backbone, App) {
+    'app',
+    'betterteam-model'
+    ], function (Backbone, App, BetterTeamModel) {
 
     'use strict';
 
-    return Backbone.Model.extend({
+    return BetterTeamModel.extend({
         defaults: {
 
         },

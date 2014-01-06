@@ -26,7 +26,10 @@
     "kineticjs": "*",
     "play-audio": "*",
     "soundmanager2": "*",
-    "jquery-hammerjs": "*"
+    "jquery-hammerjs": "*",
+    "spinjs":"*",
+    "nprogress":"*",
+    "backbone.hammer":"*"
   },
   "devDependencies": {},
   "resolutions": {

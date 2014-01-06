@@ -1,0 +1,200 @@
+// ----------------------------
+// Prototype Variables
+// ----------------------------
+
+@height: 1024px;
+@width: 768px;
+
+
+@betterteam-primary: rgb(34, 85, 52);
+@betterteam-primary-transparent: rgba(34, 85, 52, 0.8);
+
+@betterteam-primary-dark: darken(@betterteam-primary, 10%);
+@betterteam-primary-light: #3fbe5b;
+
+@betterteam-secondary: #223d4d;
+
+@betterteam-text: #ededed;
+@betterteam-text-secondary: #223d4d;
+@betterteam-text-highlight: #3fbe5b;
+
+@betterteam-button: #3fbe5b;
+@betterteam-button-active: darken(#3fbe5b,5%);
+
+#app{
+  width: @width;
+  height: @height;
+
+  margin: 0 auto;
+  background: url(../img/betterteam-background-optimized.jpg) no-repeat center center; 
+}
+
+
+.box{
+  position: relative;
+  display: block;
+  padding: 10px;
+  margin: 10px;
+
+  border-radius: 0;
+  border: 1px solid transparent;
+  color: @betterteam-text;
+
+  background-color: @betterteam-primary-transparent;
+
+  .clearfix();
+
+  // alternate background colors
+  &.box-dark{ background-color: @betterteam-primary-dark }
+  &.box-light{ background-color: @betterteam-primary-light }
+  &.box-white{ background-color: #fff; color: @betterteam-text-secondary }
+  &.box-transparent{ background-color: @betterteam-primary-transparent }
+
+  &.clickable{
+    cursor: pointer;
+
+    // &:active{
+    //   color: @betterteam-text;
+    //   background-color: @betterteam-primary-light;
+    // }    
+  }
+
+  .hideable{
+    overflow: hidden;
+  }
+
+  &.collapsed{
+
+    h1{
+      margin: 0 !important; 
+    }
+
+    .hideable{
+      display: none;
+    }
+  }
+
+  h1{
+    margin: 0 0 10px 0; // margin-bottom: 10px
+
+    &:only-child{
+      margin: 0;
+    }
+
+    .selected-value{
+      color: @betterteam-text-highlight;
+    }
+
+    text-transform: uppercase;
+    //text-align: center;
+    font-weight: 300;
+    font-size: 2em;
+  }  
+}
+
+a{
+  &.box{
+    // &:hover{
+    //   color: @betterteam-text;
+    //   background-color: @betterteam-primary-light;
+    // }
+
+    .box.clickable;
+  }
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.btn-event{
+  display: block;
+  float: left;
+  border: none;
+  //width: 150px;
+  width: 24.3%;
+  height: 90px;
+  background: @betterteam-button;
+  color: @betterteam-text; 
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 1px rgba(0,0,0,0.3);
+  margin-right: 5px;
+  margin-bottom: 5px;
+
+  &::nth-child(4n){
+    margin-right: 0;
+  }
+
+  &:active{
+    box-shadow: inset 1px 2px 5px @betterteam-primary-dark;
+    background-color: @betterteam-button-active;
+  }  
+}
+
+.splashscreen{
+
+  position: relative;
+
+  width: @width;
+  height: @height;
+
+  background: url(../img/betterteam-background-optimized.jpg) no-repeat center center; 
+  
+
+  img{
+
+    position: absolute;
+
+    width: 600px;
+    top: 50%;
+    left: 50%;
+    //margin-top: -63px;
+    margin-top: -150px;
+    margin-left: -300px;
+  }
+}
+
+.header{
+  //margin: 10px 0;
+  padding: 10px;
+  border-bottom: 1px solid darken(@primarycolor, 10%);
+  text-align: center;
+  //background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+
+
+}
+
+.well{
+  //margin: 10px 0;
+  margin: 10px;
+  //margin: 0;
+  border-radius: 0;
+  border: 1px solid transparent;
+  //background-color: @primarycolor;
+  color: @primarytextcolor;
+
+  h1{
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    font-size: 2em;
+  }
+}
+
+.btbtn {
+  border: none;
+  width: 179px;
+  height: 90px;
+  background: @buttoncolor;
+  color: @primarytextcolor; 
+  font-weight: bold;
+  text-shadow: 1px 1px rgba(0,0,0,0.3);
+}
+
+.btbtn:active {
+  box-shadow: inset 1px 2px 5px darken(@primarycolor, 10%);
+}

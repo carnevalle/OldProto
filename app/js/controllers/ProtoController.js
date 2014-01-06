@@ -9,7 +9,8 @@ define([
     'match',
     'matches',
     'player',
-    'players',    
+    'players',
+    'nprogress'
 ], function (
     Marionette,
     App,
@@ -40,29 +41,26 @@ define([
 		},
 
 		showDashboard: function(){
-			console.log('ShowDashboard');
+			
+			var match = new Match({id: 1});
 
-			App.getRegion("main").show(new MatchLayout());
-
-			/*
-			var teams = new Teams();
-
-			teams.on("fetch", function(collection, options){
-				console.log("FETCHING: ", collection, options);
+			match.on("fetch", function(collection, options){
+				NProgress.start();
 			})
 
-			teams.on("progress", function(collection, e){
-				console.log("PROGRESS: ", collection, e);
+			match.on("progress", function(collection, e){
+				NProgress.set(e.position / e.total);
 			})
 
-            teams.fetch({
+            match.fetch({
                 success: function(){
-                	App.getRegion("main").show(new Dashboard());
-
-                	console.log(teams);
+                	
+                	NProgress.done();
+                	App.getRegion("main").show(new MatchLayout({
+                		model: match
+                	}));
                 }
             })
-			*/
 		},
 
 		showMatch: function(id){

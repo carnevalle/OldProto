@@ -2,7 +2,8 @@
 define([
     'backbone',
     'marionette',
-    'underscore'
+    'underscore',
+    'gsap'
     ], function (
         Backbone,
         Marionette,
@@ -12,6 +13,8 @@ define([
     'use strict';
 
 	var App = new Backbone.Marionette.Application({});
+
+    App.tl = new TimelineLite();
 
     App.config = {
         apiroot: function(){
@@ -35,15 +38,19 @@ define([
 		});
 	});
 
-	// Marionette.Region.prototype.open = function(view){
+	Marionette.Region.prototype.open = function(view){
 
-	//   this.$el.html(view.el);
+        this.$el.html(view.el);
 
- //      if(!view.disableFade){
- //          this.$el.hide();
- //    	  this.$el.fadeIn("fast");
- //      }
-	// }
+        this.$el.find(".fnSlideTransition").each(function( index ) {
+          if(index == 0){
+            App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, delay: 0.5, ease: "Power2.easeOut"});
+          }else{
+            App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, ease: "Power2.easeOut"}, "-=0.2");
+          }
+        });
+
+	}
 
     App.isLoaded = false;
 

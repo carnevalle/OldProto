@@ -145,7 +145,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     baseUrl: yeomanConfig.app + '/js',
-                    mainConfigFile: yeomanConfig.app + '/js/requirejs.dev.config.js',
+                    mainConfigFile: yeomanConfig.app + '/js/requirejs.config.js',
                     name: "main",
                     out: yeomanConfig.dist+"/js/app.js",
                     optimize: 'uglify'
