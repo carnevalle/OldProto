@@ -12,14 +12,11 @@ require.config({
         'lodash' : '../bower_components/lodash/dist/lodash.compat',
         'handlebars': '../bower_components/handlebars.js/dist/handlebars',
         'marionette' : '../bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
-        'fastclick' : '../bower_components/fastclick/lib/fastclick',
-        'holderjs' : '../bower_components/holderjs/holder',
         'json' : '../bower_components/json2/json2',
-        'touchpunch': '../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch',
         'nouislider': '../bower_components/nouislider/jquery.nouislider',
         'swipe': '../bower_components/Swipe/swipe',
-        'hammer': '../bower_components/hammerjs/hammer',
-        'hammer.jquery': '../bower_components/jquery-hammerjs/jquery.hammer-standalone',
+        'hammer.core': '../bower_components/hammerjs/dist/hammer',
+        'hammer': '../bower_components/hammerjs/dist/jquery.hammer',
         'kineticjs': 'vendors/kinetic-v4.7.4.min',
         'howler': 'vendors/howler',
         'timelinelite': '../bower_components/greensock/src/uncompressed/TimelineLite',
@@ -45,6 +42,9 @@ require.config({
         'matchreports' : 'data/MatchReports',
     },
     shim: {
+        'main' : {
+            deps: ['hammer']
+        },
         'jquery' : {
             exports : 'jQuery'
         },
@@ -62,12 +62,12 @@ require.config({
             deps : ['bootstrap', 'lodash'],
             exports : 'Backbone'
         },
-        'marionette' : {
-            deps : ['backbone', 'backbone.wreqr', 'backbone.babysitter', 'backbone.hammer', 'handlebars'],
-            exports : 'Marionette'
+        'backbone.hammer' : {
+            deps: ['jquery','hammer']
         },
-        'touchpunch': {
-            deps: ['jquery']
+        'marionette' : {
+            deps : ['handlebars', 'backbone.hammer'],
+            exports : 'Marionette'
         },
         'nouislider' : {
             deps: ['jquery']
@@ -75,8 +75,8 @@ require.config({
         'swipe' : {
             deps: ['jquery']
         },
-        'hammer.jquery' : {
-            deps: ['jquery', 'hammer']
+        'hammer' : {
+            deps: ['jquery', 'hammer.core']
         },
         'timelinelite' : {
             deps: ['tweenlite', 'tweencss']

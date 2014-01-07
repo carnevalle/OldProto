@@ -22,7 +22,7 @@
     "greensock": "*",
     "Swipe": "*",
     "nouislider": "*",
-    "hammerjs": "*",
+    "hammerjs": "1.0.5",
     "kineticjs": "*",
     "play-audio": "*",
     "soundmanager2": "*",

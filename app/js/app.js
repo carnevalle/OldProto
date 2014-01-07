@@ -1,11 +1,13 @@
 /*global define */
 define([
     'backbone',
+    'backbone.hammer',
     'marionette',
     'underscore',
     'gsap'
     ], function (
         Backbone,
+        undefined,
         Marionette,
         _
     ) {

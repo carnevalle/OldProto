@@ -148,7 +148,7 @@ module.exports = function (grunt) {
                     mainConfigFile: yeomanConfig.app + '/js/requirejs.config.js',
                     name: "main",
                     out: yeomanConfig.dist+"/js/app.js",
-                    optimize: 'uglify'
+                    optimize: 'none'
                 }
             }
         },

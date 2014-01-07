@@ -1,20 +1,24 @@
+// require([
+//     'dependencies',
+//     'marionette'
+//     ], function () {
+
+//     'use strict';
+
+//     console.log("main");
+
+// });
+
 require([
     'jquery',
     'backbone',
-    'fastclick',
     'app',
-    'router',
-    'modules/navigation/Navigation',
-    'pitch',
-    'json'
-    ], function ($, Backbone, FastClick, App, router, Navigation, Pitch) {
+    'router'
+    ], function ($, Backbone, App, router) {
 
     'use strict';
 
     console.log("HOST: ", window.location.host);
-
-    //var pitch = new Pitch();
-    //console.log(pitch);
 
     // $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     //     options.crossDomain ={
@@ -59,9 +63,9 @@ require([
         return o;
     };
 
-    $(function() {
-        FastClick.attach(document.body);
-    });
+    // $(function() {
+    //     FastClick.attach(document.body);
+    // });
 
     //$(document).bind('touchmove', false);
 
