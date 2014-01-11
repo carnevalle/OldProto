@@ -29,6 +29,9 @@ require.config({
         'spinjs': '../bower_components/spinjs/spin',
         'nprogress': '../bower_components/nprogress/nprogress',
 
+        // Custom Views
+        'valueselectorview' : 'views/ValueSelectorView',
+
         // Models
         'betterteam-collection' : 'data/BetterTeamCollection',
         'betterteam-model' : 'data/BetterTeamModel',
@@ -43,7 +46,7 @@ require.config({
     },
     shim: {
         'main' : {
-            deps: ['hammer']
+            deps: ['hammer', 'valueselectorview']
         },
         'jquery' : {
             exports : 'jQuery'

@@ -199,7 +199,7 @@ button:focus {
 }
 .btn-touch {
   font-size: 2em;
-  width: 140.6px;
+  width: 7%;
   height: 75px;
 }
 .time-container {
@@ -470,10 +470,17 @@ button:focus {
   padding: 8px;
 }
 #app {
-  width: 768px;
+  width: 100%;
   height: 1024px;
   margin: 0 auto;
-  background: url(../img/betterteam-background-optimized.jpg) no-repeat center center;
+  background: url(../img/betterteam-background-optimized.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.touchable {
+  cursor: pointer;
 }
 .box {
   position: relative;
@@ -573,9 +580,8 @@ a:hover {
 }
 .splashscreen {
   position: relative;
-  width: 768px;
+  width: 100%;
   height: 1024px;
-  background: url(../img/betterteam-background-optimized.jpg) no-repeat center center;
 }
 .splashscreen img {
   position: absolute;

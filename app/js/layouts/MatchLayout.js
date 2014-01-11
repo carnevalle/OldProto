@@ -4,9 +4,10 @@ define([
     'jquery',
     'layouts/MatchLayout.hbs',
     'proto/match/matchscore/MatchScore',
+    'proto/match/position-chooser/PositionChooser',
     'gsap',
     'howler'
-    ], function (Marionette, $, template, MatchScore) {
+    ], function (Marionette, $, template, MatchScore, PositionChooser) {
 
     'use strict';
 
@@ -28,6 +29,7 @@ define([
 
         regions: {
             score: "#r-score",
+            where: "#r-where",
             top: "#r-top",
             bottom: "#r-bottom",
         },
@@ -132,6 +134,8 @@ define([
             this.score.show(new MatchScore({
                 model: this.model
             }));
+
+            this.where.show(new PositionChooser());
             
             //TweenLite.from(this.$el.find("#r-top"), 0.3, {top:'+=10px', opacity: 0, delay: 0.5});
             //TweenLite.from(this.$el.find("#r-bottom"), 0.3, {top:'+=10px', opacity: 0, delay: 0.6});
