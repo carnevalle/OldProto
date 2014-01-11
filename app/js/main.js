@@ -20,6 +20,8 @@ require([
 
     console.log("HOST: ", window.location.host);
 
+    window.BetterTeamApp = App;
+
     // $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     //     options.crossDomain ={
     //         crossDomain: true

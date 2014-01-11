@@ -5,9 +5,10 @@ define([
     'layouts/MatchLayout.hbs',
     'proto/match/matchscore/MatchScore',
     'proto/match/position-chooser/PositionChooser',
+    'modules/timeslider/TimeSlider',
     'gsap',
     'howler'
-    ], function (Marionette, $, template, MatchScore, PositionChooser) {
+    ], function (Marionette, $, template, MatchScore, PositionChooser, TimeSlider) {
 
     'use strict';
 
@@ -20,15 +21,15 @@ define([
 
             this.model = options.model;
 
-            this.sound = new Howl({
-              urls: ['sound/click3.wav']
-            })
-
             //$(document).bind('touchmove', false);
+            BetterTeamApp.on("value:selected", function(value, type){
+                console.log(value, type);
+            })
 		},
 
         regions: {
             score: "#r-score",
+            when: "#r-time",
             where: "#r-where",
             top: "#r-top",
             bottom: "#r-bottom",
@@ -38,29 +39,22 @@ define([
             'touch .fnRegisterEvent':'onRegisterEvent',
             'touch .fnRegisterWho':'onRegisterWho',
             'touch .fnEditEvent':'onEditEvent',
-            'touch .fnEditWho':'onEditWho'
+            'touch .fnEditWho':'onEditWho',
+            'touch .fnSaveEvent':'onSaveEvent',
         },
 
-        /*
-        events: function() {
-            return window.mobilecheck() ?
-               {
-                 'touchstart .fnRegisterEvent':'onRegisterEvent',
-                 'touchstart .fnRegisterWho':'onRegisterWho',
-                 'touchstart .fnEditEvent':'onEditEvent',
-                 'touchstart .fnEditWho':'onEditWho'
-               } :
-               {
-                 'click .fnRegisterEvent':'onRegisterEvent',
-                 'click .fnRegisterWho':'onRegisterWho',
-                 'click .fnEditEvent':'onEditEvent',
-                 'click .fnEditWho':'onEditWho'
-               }
-        },
-        */        
+        onSaveEvent: function(){
+            console.log("Saaaaaave Event!");
+            console.log(this.where.currentView.getValue());
+
+            this.where.currentView.reset()
+        },   
 
         onRegisterEvent: function(e){
-            this.sound.play();
+            //this.sound.play();
+
+            BetterTeamApp.trigger("BetterTeamSound", "click");
+
             e.stopPropagation()
 
             console.log(e.currentTarget.dataset.value);
@@ -92,11 +86,16 @@ define([
             this.$el.find('#r-top .selected-value').text("");
             this.$el.find('#r-top .register-label').show();
             $(e.currentTarget).removeClass('collapsed');
-            this.registerWhatTween.reverse();
+
+            if(this.registerWhatTween){
+                this.registerWhatTween.reverse();
+            }
         },
 
         onRegisterWho: function(e){
-            this.sound.play();
+            //this.sound.play();
+            BetterTeamApp.trigger("BetterTeamSound", "click");
+
             e.stopPropagation()
 
             console.log(e.currentTarget.dataset.value);
@@ -126,7 +125,10 @@ define([
             this.$el.find('#r-who .selected-value').text("");
             this.$el.find('#r-who .register-label').show();
             $(e.currentTarget).removeClass('collapsed');
-            this.registerWhoTween.reverse();
+
+            if(this.registerWhoTween){
+                this.registerWhoTween.reverse();
+            }
         },
 
         onRender: function(){
@@ -135,7 +137,10 @@ define([
                 model: this.model
             }));
 
-            this.where.show(new PositionChooser());
+            this.when.show(new TimeSlider());
+            this.where.show(new PositionChooser({
+                valueType: "where"
+            }));
             
             //TweenLite.from(this.$el.find("#r-top"), 0.3, {top:'+=10px', opacity: 0, delay: 0.5});
             //TweenLite.from(this.$el.find("#r-bottom"), 0.3, {top:'+=10px', opacity: 0, delay: 0.6});

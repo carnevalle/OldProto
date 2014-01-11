@@ -14,7 +14,7 @@ define([
 		className: 'time-slider',
 
 		initialize: function(){
-
+            console.log("TIME SLIDER!");
 		},
 
         events: function() {

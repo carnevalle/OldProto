@@ -11,10 +11,42 @@ define([
 		constructor: function (options) {
 			options = options || {};
 
-			console.log("Options: ", options);
+			this.value = undefined;
+			this.valueType = (options.valueType) ? options.valueType : undefined;
 
 			Marionette.ItemView.prototype.constructor.call(this, options);
 		},
+
+		setValue: function(value){
+			this.value = value;
+			this.trigger("value:selected");
+
+			if(this.valueType){
+				BetterTeamApp.trigger("value:"+this.valueType+":selected", this.value, this.valueType);
+			}
+			
+			BetterTeamApp.trigger("value:selected", this.value, this.valueType);
+		},
+
+		getValue: function(){
+			return this.value;
+		},
+
+		reset: function(){
+			this.value = undefined;
+
+			if(this.valueType){
+				BetterTeamApp.trigger("value:"+this.valueType+":selected", this.valueType);
+			}
+
+			BetterTeamApp.trigger("value:reset", this.valueType);
+
+			this.onReset();
+		},
+
+		onReset: function(){
+
+		}
     });
 
     return Marionette;

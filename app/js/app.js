@@ -4,7 +4,8 @@ define([
     'backbone.hammer',
     'marionette',
     'underscore',
-    'gsap'
+    'gsap',
+    'howler'
     ], function (
         Backbone,
         undefined,
@@ -40,11 +41,26 @@ define([
 		});
 	});
 
+    App.sounds = {
+        click: new Howl({
+            urls: ['sound/click3.wav']
+        })
+    }
+
+    App.on("BetterTeamSound", function(id){
+        console.log(id);
+        console.log("SOUND: ", this);
+        this.sounds[id].play();
+
+    })
+
+
+
 	Marionette.Region.prototype.open = function(view){
 
         this.$el.html(view.el);
 
-        this.$el.find(".fnSlideTransition").each(function( index ) {
+        this.$el.find(".fnIntroTransition").each(function( index ) {
           if(index == 0){
             App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, delay: 0.5, ease: "Power2.easeOut"});
           }else{
