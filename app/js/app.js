@@ -43,7 +43,7 @@ define([
 
     App.sounds = {
         click: new Howl({
-            urls: ['sound/click3.wav']
+            urls: ['sound/tap-hollow.mp3']
         })
     }
 
@@ -53,8 +53,6 @@ define([
         this.sounds[id].play();
 
     })
-
-
 
 	Marionette.Region.prototype.open = function(view){
 
