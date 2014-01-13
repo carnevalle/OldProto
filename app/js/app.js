@@ -44,12 +44,13 @@ define([
     App.sounds = {
         click: new Howl({
             urls: ['sound/tap-hollow.mp3']
-        })
+        }),
+        slide: new Howl({
+            urls: ['sound/slide-metal.mp3']
+        }),
     }
 
     App.on("BetterTeamSound", function(id){
-        console.log(id);
-        console.log("SOUND: ", this);
         this.sounds[id].play();
 
     })

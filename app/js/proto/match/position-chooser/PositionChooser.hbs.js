@@ -6,7 +6,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<h1>Registrer <strong>hvor</strong>: <span class=\"selected-value\"></span></h1>\n\n<div class=\"hideable touchable fnTouchArea\" style=\"position: relative\">\n	<img src=\"img/horizontal-pitch-narrow.svg\" style=\"width: 100%\"/>\n	<div class=\"positionMarker\" style=\"position: absolute; top: 50%; left: 50%\">Marker</div>\n</div>";
+  return "<h1>Registrer <strong>hvor</strong>: <span class=\"selected-value\"></span></h1>\n\n<div class=\"touchable collapsable fnTouchArea\" style=\"position: relative\">\n	<div class=\"hideable\">\n		<img src=\"img/horizontal-pitch-narrow.svg\" style=\"width: 100%\"/>\n		<div class=\"positionMarker\" style=\"position: absolute; top: 50%; left: 50%\">Marker</div>\n	</div>\n</div>";
   })
 
 });

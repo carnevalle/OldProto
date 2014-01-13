@@ -5,10 +5,11 @@ define([
     'layouts/MatchLayout.hbs',
     'proto/match/matchscore/MatchScore',
     'proto/match/position-chooser/PositionChooser',
+    'proto/option-chooser/OptionChooser',
     'modules/timeslider/TimeSlider',
     'gsap',
     'howler'
-    ], function (Marionette, $, template, MatchScore, PositionChooser, TimeSlider) {
+    ], function (Marionette, $, template, MatchScore, PositionChooser, OptionChooser, TimeSlider) {
 
     'use strict';
 
@@ -21,38 +22,111 @@ define([
 
             this.model = options.model;
 
-            //$(document).bind('touchmove', false);
+            var _this = this;
+
             BetterTeamApp.on("value:selected", function(value, type){
-                console.log(value, type);
+                //console.log(value, type);
+
+                if(type === "where"){
+                    _this.where.currentView.toggle();
+                }else if(type === "who"){
+
+                    var box = _this.$el.find('.fnToggleWho');
+                    box.find('.selected-value').text(value.name);
+                    TweenLite.from(box.find('.selected-value'), 0.5, {marginLeft: 15, opacity: 0, ease: "Power2.easeOut"});
+                    box.find('.register-label').hide();
+
+                    _this._onToggleBox(box);
+
+                }else if(type === "what"){
+
+                    var box = _this.$el.find('.fnToggleWhat');
+                    box.find('.selected-value').text(value.name);
+                    TweenLite.from(box.find('.selected-value'), 0.5, {marginLeft: 15, opacity: 0, ease: "Power2.easeOut"});
+                    box.find('.register-label').hide();
+
+                    _this._onToggleBox(box);
+
+                }
             })
 		},
 
         regions: {
             score: "#r-score",
-            when: "#r-time",
+            who: "#r-who",
+            what: "#r-what",
             where: "#r-where",
-            top: "#r-top",
-            bottom: "#r-bottom",
+            when: "#r-time"
         },
 
         hammerEvents: {
-            'touch .fnRegisterEvent':'onRegisterEvent',
+            'touch .fnToggleWhat' : 'onToggleWhat',
+            'touch .fnToggleWho' : 'onToggleWho',
+            /*
+            'touch .fnRegisterWhat':'onRegisterWhat',
             'touch .fnRegisterWho':'onRegisterWho',
-            'touch .fnEditEvent':'onEditEvent',
+            'touch .fnEditWhat':'onEditWhat',
             'touch .fnEditWho':'onEditWho',
+            */
             'touch .fnSaveEvent':'onSaveEvent',
         },
 
         onSaveEvent: function(){
-            console.log("Saaaaaave Event!");
-            console.log(this.where.currentView.getValue());
-
+            BetterTeamApp.trigger("BetterTeamSound", "slide");
             this.where.currentView.reset()
         },   
 
-        onRegisterEvent: function(e){
+        onToggleWhat: function(e){
+            console.log("Toggle What?");
+            e.stopPropagation();
+
+            var box = $(e.currentTarget);
+            this._onToggleBox(box);
+        },
+
+        onToggleWho: function(e){
+            console.log("Toggle Who?");
+            e.stopPropagation();
+
+            var box = $(e.currentTarget);
+            this._onToggleBox(box);
+            //box.toggleClass('collapsed');
+        },
+
+        _onToggleBox: function(box){
+
+            if(box.hasClass('collapsed')){
+                BetterTeamApp.trigger("BetterTeamSound", "click");
+            }
+
+            setTimeout(function(){
+                box.toggleClass('collapsed');      
+            },0);
+            /*
+            if(!box.hasClass('collapsed')){
+                TweenLite.to(box.find('.hideable'), 0.1,{
+                    height: 0, 
+                    onComplete: function(){
+                        console.log("on Complete");
+                        box.addClass('collapsed');
+                    }
+                });
+            }else{
+                BetterTeamApp.trigger("BetterTeamSound", "click");
+
+                box.find('.hideable').css({height: "auto"});
+                box.removeClass('collapsed');
+                TweenLite.from(box.find('.hideable'), 0.1,{
+                    height: 0
+                });
+            }
+            */
+        },
+
+        onRegisterWhat: function(e){
             //this.sound.play();
 
+            /*
             BetterTeamApp.trigger("BetterTeamSound", "click");
 
             e.stopPropagation()
@@ -68,7 +142,11 @@ define([
 
             box.find('.register-label').hide();
 
-            //this.$el.find("#r-top").addClass('collapsed');
+            box.addClass('collapsed');
+
+            */
+
+            /*
             this.registerWhatTween = TweenLite.to(box.find('.hideable'), 0.1,{
                 height: 0, 
                 onComplete: function(){
@@ -76,9 +154,10 @@ define([
                     box.addClass('collapsed');
                 }
             });
+            */
         },
 
-        onEditEvent: function(e){
+        onEditWhat: function(e){
             console.log("onEditEvent");
 
             //this.$el.find('.selected-value').text(Math.random()+''+window.mobilecheck());
@@ -88,7 +167,7 @@ define([
             $(e.currentTarget).removeClass('collapsed');
 
             if(this.registerWhatTween){
-                this.registerWhatTween.reverse();
+                //this.registerWhatTween.reverse();
             }
         },
 
@@ -109,7 +188,10 @@ define([
 
             box.find('.register-label').hide();
 
+            box.addClass('collapsed');
+
             //this.$el.find("#r-top").addClass('collapsed');
+            /*
             this.registerWhoTween = TweenLite.to(box.find('.hideable'), 0.1,{
                 height: 0, 
                 onComplete: function(){
@@ -117,6 +199,7 @@ define([
                     box.addClass('collapsed');
                 }
             });
+            */
         },
 
         onEditWho: function(e){
@@ -127,7 +210,7 @@ define([
             $(e.currentTarget).removeClass('collapsed');
 
             if(this.registerWhoTween){
-                this.registerWhoTween.reverse();
+                //this.registerWhoTween.reverse();
             }
         },
 
@@ -137,9 +220,31 @@ define([
                 model: this.model
             }));
 
+            this.who.show(new OptionChooser({
+                valueType: 'who',
+                title: "Registrer Hvem",
+                options: [
+                    {id: 'troelsjohnsen', name: 'Troels Johnsen'},
+                    {id: 'larspedersen', name: 'Lars Pedersen'},
+                    {id: 'michaellaudrup', name: 'Michael Laudrup'},
+                    {id: 'brianlaudrup', name: 'Brian Laudrup'},
+                ]
+            }));
+
+            this.what.show(new OptionChooser({
+                valueType: 'what',
+                title: "Registrer Hvad",
+                options: [
+                    {id: 'shot', name: 'Skud'},
+                    {id: 'pass', name: 'Aflevering'},
+                    {id: 'yellowcard', name: 'Gult Kort'},
+                    {id: 'redcard', name: 'Rødt Kort'},
+                ]
+            }));            
+
             this.when.show(new TimeSlider());
             this.where.show(new PositionChooser({
-                valueType: "where"
+                valueType: 'where'
             }));
             
             //TweenLite.from(this.$el.find("#r-top"), 0.3, {top:'+=10px', opacity: 0, delay: 0.5});

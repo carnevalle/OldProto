@@ -17,16 +17,21 @@ define([
             console.log("TIME SLIDER!");
 		},
 
-        events: function() {
-            return window.mobilecheck() ?
-               {
-
-               } :
-               {
-                 'click #btn-play':'onPlayClick',
-                 'click #btn-pause':'onPauseClick'
-               }
+        hammerEvents: {
+            'tap #btn-play':'onPlayClick',
+            'tap #btn-pause':'onPauseClick'
         },
+
+        // events: function() {
+        //     return window.mobilecheck() ?
+        //        {
+
+        //        } :
+        //        {
+        //          'click #btn-play':'onPlayClick',
+        //          'click #btn-pause':'onPauseClick'
+        //        }
+        // },
 
         onPlayClick: function(e){
             this.startClock();

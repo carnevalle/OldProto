@@ -44,6 +44,10 @@ define([
 			this.onReset();
 		},
 
+		toggle: function(){
+			console.log("I want to toggle this bastard!");
+		},
+
 		onReset: function(){
 
 		}
