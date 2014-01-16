@@ -39,6 +39,18 @@
 
 }
 
+ul.link-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li{
+    float:left;
+    padding: 0 3px;
+    width: 50%;
+  }
+}
+
 .touchable{
   cursor: pointer;
 }
@@ -62,15 +74,6 @@
   &.box-light{ background-color: @betterteam-primary-light }
   &.box-white{ background-color: #fff; color: @betterteam-text-secondary }
   &.box-transparent{ background-color: @betterteam-primary-transparent }
-
-  &.clickable{
-    cursor: pointer;
-
-    // &:active{
-    //   color: @betterteam-text;
-    //   background-color: @betterteam-primary-light;
-    // }    
-  }
 
   .hideable{
     overflow: hidden;
@@ -112,7 +115,7 @@ a{
     //   background-color: @betterteam-primary-light;
     // }
 
-    .box.clickable;
+    .touchable;
   }
 
   &:hover{
@@ -121,32 +124,34 @@ a{
 }
 
 .btn-event{
-  display: block;
-  float: left;
-  border: none;
-  //width: 150px;
-  //width: 24.3%;
-  width: 33.3%;
-  height: 90px;
-  background: @betterteam-button;
-  color: @betterteam-text; 
-  font-weight: bold;
-  font-size: 1.2em;
-  text-shadow: 1px 1px rgba(0,0,0,0.3);
-  /*
-  margin-right: 5px;
-  */
-  padding-right: 5px;
-  margin-bottom: 5px;
 
-  &::nth-child(4n){
-    margin-right: 0;
+  display: table;
+  width: 100%;
+  background: @betterteam-button;
+  color: @betterteam-text;
+  margin-bottom: 5px;
+  border: none;
+  cursor: pointer;
+
+  span{
+
+    display: table-cell;
+    height: 70px;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 1px 1px rgba(0,0,0,0.3);
+    
   }
 
   &:active{
     box-shadow: inset 1px 2px 5px @betterteam-primary-dark;
     background-color: @betterteam-button-active;
-  }  
+    color: @betterteam-text;
+  }
 }
 
 .splashscreen{

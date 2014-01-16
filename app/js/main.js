@@ -13,8 +13,9 @@ require([
     'jquery',
     'backbone',
     'app',
-    'router'
-    ], function ($, Backbone, App, router) {
+    'router',
+    'navigation'
+    ], function ($, Backbone, App, router, Navigation) {
 
     'use strict';
 
@@ -74,7 +75,7 @@ require([
     App.router = router;
 
     App.addInitializer(function(options){
-        //App.getRegion('header').show(new Navigation());
+        App.getRegion('header').show(new Navigation());
     });
 
     window.mobilecheck = function() {

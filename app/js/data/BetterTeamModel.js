@@ -8,6 +8,10 @@ define([
 
             var _this = this;
 
+            options = options || {};
+
+            console.log("OPTIONS: ",options);
+
             options.xhr = function() {
                 var xhr = $.ajaxSettings.xhr();
                 xhr.onprogress = function(e){

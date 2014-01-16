@@ -29,6 +29,13 @@ require.config({
         'spinjs': '../bower_components/spinjs/spin',
         'nprogress': '../bower_components/nprogress/nprogress',
 
+        // Pages
+        'dashboard' : 'proto/dashboard/Dashboard',
+        'dashboard-teams' : 'proto/dashboard/DashboardTeams',
+        'teamview' : 'proto/team/Team',
+        'playerview' : 'proto/player/Player',
+        'navigation' : 'proto/navigation/Navigation',
+
         // Custom Views
         'valueselectorview' : 'views/ValueSelectorView',
 

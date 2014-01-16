@@ -1,6 +1,6 @@
 define([
     'valueselectorview',
-    'proto/match/position-chooser/PositionChooser.hbs',
+    'proto/position-chooser/PositionChooser.hbs',
     'gsap'
     ], function (Marionette, template) {
 

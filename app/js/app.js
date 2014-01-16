@@ -61,7 +61,7 @@ define([
 
         this.$el.find(".fnIntroTransition").each(function( index ) {
           if(index == 0){
-            App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, delay: 0.5, ease: "Power2.easeOut"});
+            App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, delay: 0.05, ease: "Power2.easeOut"});
           }else{
             App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, ease: "Power2.easeOut"}, "-=0.2");
           }

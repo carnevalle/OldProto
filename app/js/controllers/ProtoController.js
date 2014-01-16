@@ -1,9 +1,13 @@
 define([
     'marionette',
+    'jquery',
     'app',
     'layouts/FullPageLayout',
     'layouts/MatchLayout',
-    'modules/dashboard/Dashboard',
+    'dashboard',
+    'dashboard-teams',
+    'teamview',
+    'playerview',
     'team',
     'teams',
     'match',
@@ -13,10 +17,14 @@ define([
     'nprogress'
 ], function (
     Marionette,
+    $,
     App,
     FullPageLayout,
     MatchLayout,
     Dashboard,
+    DashboardTeams,
+    TeamView,
+    PlayerView,
     Team,
     Teams,
     Match,
@@ -42,7 +50,34 @@ define([
 
 		showDashboard: function(){
 			
-			var match = new Match({id: 1});
+			NProgress.start();
+
+			var dashboard = new Dashboard();
+			var matches = new Matches();
+			var teams = new Teams();
+
+			teams.on("progress", function(collection, e){
+				console.log("teams progress: ", e.position / e.total);
+			})
+			matches.on("progress", function(collection, e){
+				console.log("matches progress: ", e.position / e.total);
+			})
+
+			$.when(matches.fetch(), teams.fetch())
+			.done(function(matchCol, teamCol){
+				App.getRegion("main").show(dashboard);
+				dashboard.teams.show(new DashboardTeams({
+					collection: teams
+				}))
+
+			    NProgress.done();
+			});
+		},
+
+		showMatch: function(id){
+            console.log('ShowMatch');
+
+			var match = new Match({id: id});
 
 			match.on("fetch", function(collection, options){
 				NProgress.start();
@@ -60,11 +95,7 @@ define([
                 		model: match
                 	}));
                 }
-            })
-		},
-
-		showMatch: function(id){
-            console.log('ShowMatch');
+            })            
 		},
 
 		showMatches: function(){
@@ -73,10 +104,52 @@ define([
 
 		showTeam: function(id){
 			console.log('ShowTeam');
+
+			var team = new Team({
+				id: id
+			})
+
+			team.on("fetch", function(collection, options){
+				NProgress.start();
+			})
+
+			team.on("progress", function(collection, e){
+				NProgress.set(e.position / e.total);
+			})
+
+            team.fetch({
+                success: function(){
+                	
+                	NProgress.done();
+                	App.getRegion("main").show(new TeamView({
+                		model: team
+                	}));
+                }
+            })
 		},
 
 		showPlayer: function(id){
 			console.log('ShowPlayer');
+
+			var player = new Player({id:id});
+
+			player.on("fetch", function(collection, options){
+				NProgress.start();
+			})
+
+			player.on("progress", function(collection, e){
+				NProgress.set(e.position / e.total);
+			})
+
+            player.fetch({
+                success: function(){
+                	
+                	NProgress.done();
+                	App.getRegion("main").show(new PlayerView({
+                		model: player
+                	}));
+                }
+            })			
 		},
 
 		showPlayers: function(){

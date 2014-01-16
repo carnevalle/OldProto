@@ -22,6 +22,7 @@ define([
 
         onTouch: function(e){
 
+            e.preventDefault();
             e.stopPropagation();
 
             BetterTeamApp.trigger("BetterTeamSound", "click");

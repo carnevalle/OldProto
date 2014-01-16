@@ -4,7 +4,7 @@ define([
     'jquery',
     'layouts/MatchLayout.hbs',
     'proto/match/matchscore/MatchScore',
-    'proto/match/position-chooser/PositionChooser',
+    'proto/position-chooser/PositionChooser',
     'proto/option-chooser/OptionChooser',
     'modules/timeslider/TimeSlider',
     'gsap',
