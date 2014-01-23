@@ -3,34 +3,40 @@ define([
     'jquery',
     'app',
     'layouts/FullPageLayout',
-    'layouts/MatchLayout',
+    'match.main',
+    'matchevent.create',
     'dashboard',
     'dashboard-teams',
     'teamview',
     'playerview',
+    'proto/option-chooser/OptionChooser',
     'team',
     'teams',
     'match',
     'matches',
     'player',
     'players',
+    'matcheventtypes',
     'nprogress'
 ], function (
     Marionette,
     $,
     App,
     FullPageLayout,
-    MatchLayout,
+    MatchMain,
+    MatchEventCreate,
     Dashboard,
     DashboardTeams,
     TeamView,
     PlayerView,
+    OptionChooser,
     Team,
     Teams,
     Match,
     Matches,
     Player,
-    Players    
+    Players,
+    MatchEventTypes
 ) {
 
     'use strict';
@@ -56,12 +62,12 @@ define([
 			var matches = new Matches();
 			var teams = new Teams();
 
-			teams.on("progress", function(collection, e){
-				console.log("teams progress: ", e.position / e.total);
-			})
-			matches.on("progress", function(collection, e){
-				console.log("matches progress: ", e.position / e.total);
-			})
+			// teams.on("progress", function(collection, e){
+			// 	console.log("teams progress: ", e.position / e.total);
+			// })
+			// matches.on("progress", function(collection, e){
+			// 	console.log("matches progress: ", e.position / e.total);
+			// })
 
 			$.when(matches.fetch(), teams.fetch())
 			.done(function(matchCol, teamCol){
@@ -78,24 +84,58 @@ define([
             console.log('ShowMatch');
 
 			var match = new Match({id: id});
+			var matcheventtypes = new MatchEventTypes();
+			var players = new Players();
 
-			match.on("fetch", function(collection, options){
-				NProgress.start();
-			})
+			NProgress.start();
 
-			match.on("progress", function(collection, e){
-				NProgress.set(e.position / e.total);
-			})
+			$.when(match.fetch(), matcheventtypes.fetch(), players.fetch())
+			.done(function(){
+                
+				App.getRegion("main").show(new MatchMain({
+					model: match
+				}));
 
-            match.fetch({
-                success: function(){
+                /*
+                var matchEventCreateView = new MatchEventCreate({
+                    model: match
+                })
+
+				App.getRegion("main").show(matchEventCreateView);
+
+                matchEventCreateView.what.show(new OptionChooser({
+				    valueType: 'what',
+				    title: "Registrer Hvad",
+				    options: matcheventtypes.toJSON()
+				}));
+
+				matchEventCreateView.who.show(new OptionChooser({
+				    valueType: 'who',
+				    title: "Registrer Hvem",
+				    options: players.toJSON()
+				}));
+				*/
+
+			    NProgress.done();
+			});
+
+			// match.on("fetch", function(collection, options){
+			// 	NProgress.start();
+			// })
+
+			// match.on("progress", function(collection, e){
+			// 	NProgress.set(e.position / e.total);
+			// })
+
+            // match.fetch({
+            //     success: function(){
                 	
-                	NProgress.done();
-                	App.getRegion("main").show(new MatchLayout({
-                		model: match
-                	}));
-                }
-            })            
+            //     	NProgress.done();
+            //     	App.getRegion("main").show(new MatchEventCreate({
+            //     		model: match
+            //     	}));
+            //     }
+            // })            
 		},
 
 		showMatches: function(){

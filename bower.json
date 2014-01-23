@@ -29,7 +29,8 @@
     "jquery-hammerjs": "*",
     "spinjs":"*",
     "nprogress":"*",
-    "backbone.hammer":"*"
+    "backbone.hammer":"*",
+    "Backbone.Modal":"*"
   },
   "devDependencies": {},
   "resolutions": {

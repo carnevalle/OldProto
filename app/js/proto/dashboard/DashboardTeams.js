@@ -8,6 +8,7 @@ define([
 
     var TeamItemView = Marionette.ItemView.extend({
         template: templateItem,
+        tagName: "li"
     })
 
 

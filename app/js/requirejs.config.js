@@ -32,6 +32,8 @@ require.config({
         // Pages
         'dashboard' : 'proto/dashboard/Dashboard',
         'dashboard-teams' : 'proto/dashboard/DashboardTeams',
+        'match.main' : 'proto/match/main/MatchMain',
+        'matchevent.create' : 'proto/matchevent/create/MatchEventCreate',
         'teamview' : 'proto/team/Team',
         'playerview' : 'proto/player/Player',
         'navigation' : 'proto/navigation/Navigation',
@@ -50,6 +52,8 @@ require.config({
         'players' : 'data/Players',
         'matchreport' : 'data/MatchReport',
         'matchreports' : 'data/MatchReports',
+        'matcheventtype' : 'data/MatchEventType',
+        'matcheventtypes' : 'data/MatchEventTypes',
     },
     shim: {
         'main' : {

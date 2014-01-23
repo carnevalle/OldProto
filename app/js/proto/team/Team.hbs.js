@@ -39,13 +39,13 @@ function program3(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"row\">\n	<div class=\"col-xs-6\">\n		<div id=\"r-players\" class=\"box fnIntroTransition\">\n			<h1>BetterTeam <strong>Spillere</strong></h1>\n\n\n			<ul class=\"link-list\">\n			";
+  buffer += "<div class=\"row\">\n	<div class=\"col-md-8\">\n		<div id=\"r-players\" class=\"box fnIntroTransition\">\n			<h1>BetterTeam <strong>Spillere</strong></h1>\n\n\n			<ul class=\"link-list\">\n			";
   stack1 = helpers.each.call(depth0, depth0.players, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n			</ul>\n\n		</div>\n	</div>\n\n	<div class=\"col-xs-6\">\n		<div id=\"r-matches\" class=\"box fnIntroTransition\">\n			<h1>BetterTeam <strong>Kampe</strong></h1>\n\n			";
+  buffer += "\n			</ul>\n\n		</div>\n	</div>\n\n	<div class=\"col-md-4\">\n		<div id=\"r-matches\" class=\"box fnIntroTransition\">\n			<h1>BetterTeam <strong>Kampe</strong></h1>\n\n			";
   stack1 = helpers.each.call(depth0, depth0.matches, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n		</div>\n	</div>\n\n</div>";
+  buffer += "\n\n			<a class=\"btn-event btn-alt\" href=\"#\"><span>Opret Kamp</span></a>\n		</div>\n	</div>\n\n</div>";
   return buffer;
   })
 

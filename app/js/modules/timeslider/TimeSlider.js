@@ -4,7 +4,8 @@ define([
     'jquery',
     'underscore',
     'modules/timeslider/TimeSlider.hbs',
-    'nouislider'
+    'nouislider',
+    'gsap'
     ], function (Marionette, $, _, template) {
 
     'use strict';
@@ -15,9 +16,11 @@ define([
 
 		initialize: function(){
             console.log("TIME SLIDER!");
+            this.isOpen = false;
 		},
 
         hammerEvents: {
+            'tap':'enableSlider',
             'tap #btn-play':'onPlayClick',
             'tap #btn-pause':'onPauseClick'
         },
@@ -32,6 +35,20 @@ define([
         //          'click #btn-pause':'onPauseClick'
         //        }
         // },
+
+        enableSlider: function(e){
+            var el = this.$el.find('.time-progress-filled');
+
+            if(this.isOpen){
+                //TweenLite.to(el, 0.2, {height: "10px", ease: 'Strong.easeOut'});
+                this.isOpen = false;
+                this.$el.find('.time-container').hide();
+            }else{
+                //TweenLite.to(el, 0.2, {height: "30px", ease: 'Strong.easeOut'});
+                this.isOpen = true;
+                this.$el.find('.time-container').show();
+            }
+        },
 
         onPlayClick: function(e){
             this.startClock();
@@ -86,11 +103,14 @@ define([
                     resolution: 1
                 },
                 set: _.bind(function(){
+                    console.log("SETVALUE", this.slider.val());
                     if(this.slideAndPlay){
                         this.startClock();
                     }
 
                     this.slideAndPlay = undefined;
+
+                    TweenLite.to(this.$el.find('.time-progress-filled'), 0.5, {width: this.slider.val()+"%", ease: 'Strong.easeOut'});
 
                     //this.$el.find("#clock").text(this.slider.val());
                 }, this),
@@ -106,6 +126,8 @@ define([
                     console.log("Slider CHANGE callback");
                 }, this)
             });
+
+            this.$el.find('.time-container').hide();
         },
     })
 });

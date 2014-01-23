@@ -6,7 +6,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"header\">\n	<a href=\"javascript:history.back()\"><img src=\"img/betterteam-logo-small.png\" /></a>\n</div>";
+  return "<div class=\"header\">\n	<a href=\"javascript:history.back()\" class=\"btn btn-default\" style=\"float:left\">\n		<span class=\"glyphicon glyphicon-circle-arrow-left\"></span>\n	</a>\n\n	<img src=\"img/betterteam-logo-small.png\" />\n</div>";
   })
 
 });

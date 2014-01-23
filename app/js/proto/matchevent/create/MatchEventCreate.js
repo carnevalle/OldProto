@@ -2,7 +2,7 @@
 define([
     'marionette',
     'jquery',
-    'layouts/MatchLayout.hbs',
+    'proto/matchevent/create/MatchEventCreate.hbs',
     'proto/match/matchscore/MatchScore',
     'proto/position-chooser/PositionChooser',
     'proto/option-chooser/OptionChooser',
@@ -25,7 +25,7 @@ define([
             var _this = this;
 
             BetterTeamApp.on("value:selected", function(value, type){
-                //console.log(value, type);
+                console.log(value, type);
 
                 if(type === "where"){
                     _this.where.currentView.toggle();
@@ -60,15 +60,15 @@ define([
         },
 
         hammerEvents: {
-            'touch .fnToggleWhat' : 'onToggleWhat',
-            'touch .fnToggleWho' : 'onToggleWho',
+            'tap .fnToggleWhat' : 'onToggleWhat',
+            'tap .fnToggleWho' : 'onToggleWho',
             /*
             'touch .fnRegisterWhat':'onRegisterWhat',
             'touch .fnRegisterWho':'onRegisterWho',
             'touch .fnEditWhat':'onEditWhat',
             'touch .fnEditWho':'onEditWho',
             */
-            'touch .fnSaveEvent':'onSaveEvent',
+            'tap .fnSaveEvent':'onSaveEvent',
         },
 
         onSaveEvent: function(){
@@ -155,27 +155,27 @@ define([
             //     model: this.model
             // }));
 
-            this.who.show(new OptionChooser({
-                valueType: 'who',
-                title: "Registrer Hvem",
-                options: [
-                    {id: 'troelsjohnsen', name: 'Troels Johnsen'},
-                    {id: 'larspedersen', name: 'Lars Pedersen'},
-                    {id: 'michaellaudrup', name: 'Michael Laudrup'},
-                    {id: 'brianlaudrup', name: 'Brian Laudrup'},
-                ]
-            }));
+            // this.who.show(new OptionChooser({
+            //     valueType: 'who',
+            //     title: "Registrer Hvem",
+            //     options: [
+            //         {id: 'troelsjohnsen', name: 'Troels Johnsen'},
+            //         {id: 'larspedersen', name: 'Lars Pedersen'},
+            //         {id: 'michaellaudrup', name: 'Michael Laudrup'},
+            //         {id: 'brianlaudrup', name: 'Brian Laudrup'},
+            //     ]
+            // }));
 
-            this.what.show(new OptionChooser({
-                valueType: 'what',
-                title: "Registrer Hvad",
-                options: [
-                    {id: 'shot', name: 'Skud'},
-                    {id: 'pass', name: 'Aflevering'},
-                    {id: 'yellowcard', name: 'Gult Kort'},
-                    {id: 'redcard', name: 'Rødt Kort'},
-                ]
-            }));            
+            // this.what.show(new OptionChooser({
+            //     valueType: 'what',
+            //     title: "Registrer Hvad",
+            //     options: [
+            //         {id: 'shot', name: 'Skud'},
+            //         {id: 'pass', name: 'Aflevering'},
+            //         {id: 'yellowcard', name: 'Gult Kort'},
+            //         {id: 'redcard', name: 'Rødt Kort'},
+            //     ]
+            // }));            
 
             this.when.show(new TimeSlider());
             this.where.show(new PositionChooser({

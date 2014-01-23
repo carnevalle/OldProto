@@ -8,7 +8,7 @@
 
 
 @betterteam-primary: rgb(34, 85, 52);
-@betterteam-primary-transparent: rgba(34, 85, 52, 0.8);
+@betterteam-primary-transparent: rgba(34, 85, 52, 1);
 
 @betterteam-primary-dark: darken(@betterteam-primary, 10%);
 @betterteam-primary-light: #3fbe5b;
@@ -47,8 +47,33 @@ ul.link-list{
   li{
     float:left;
     padding: 0 3px;
-    width: 50%;
+    width: 25%;
   }
+
+  &.btn-1{
+    li{
+      width: 100% !important;
+    }
+  }
+
+  &.btn-2{
+    li{
+      width: 50% !important;
+    }
+  }
+
+  &.btn-3{
+    li{
+      width: 33% !important;
+    }
+  }
+
+  &.btn-4{
+    li{
+      width: 25% !important;
+    }
+  }  
+
 }
 
 .touchable{
@@ -68,7 +93,6 @@ ul.link-list{
   .time-progress-bar{
 
     background-color: #ff967f;
-    height: 10px;
     margin-top: 10px;
 
     .time-progress-filled{
@@ -83,8 +107,8 @@ ul.link-list{
   position: relative;
   display: block;
   padding: 10px;
-  //margin: 10px;
-  margin: 0px;
+  margin: 5px;
+  //margin: 0px;
 
   border-radius: 0;
   border: 1px solid transparent;
@@ -106,7 +130,7 @@ ul.link-list{
 
   &.collapsed{
 
-    h1{
+    h1, h2, h3{
       margin: 0 !important; 
     }
 
@@ -115,7 +139,7 @@ ul.link-list{
     }
   }
 
-  h1{
+  h1, h2, h3{
     margin: 0 0 10px 0; // margin-bottom: 10px
 
     &:only-child{
@@ -129,8 +153,17 @@ ul.link-list{
     text-transform: uppercase;
     //text-align: center;
     font-weight: 300;
-    font-size: 2em;
   }  
+
+  h1{
+    font-size: 2em;
+  }
+  h2{
+    font-size: 1.5em;
+  }
+  h3{
+    font-size: 1.2em;
+  }
 }
 
 a{
@@ -151,12 +184,16 @@ a{
 .btn-event{
 
   display: table;
+  table-layout: fixed;
   width: 100%;
   background: @betterteam-button;
   color: @betterteam-text;
   margin-bottom: 5px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 1px rgba(0,0,0,0.3);  
 
   span{
 
@@ -166,10 +203,18 @@ a{
     vertical-align: middle;
     text-align: center;
     
-    font-weight: bold;
-    font-size: 1.2em;
-    text-shadow: 1px 1px rgba(0,0,0,0.3);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;      
     
+    
+    
+  }
+
+  &:hover{
+    background: darken(@betterteam-button,10%);
+    color: @betterteam-text;
   }
 
   &:active{
@@ -177,6 +222,14 @@ a{
     background-color: @betterteam-button-active;
     color: @betterteam-text;
   }
+
+  &.btn-alt{
+    background: @betterteam-secondary;
+
+    &:hover{
+      background: darken(@betterteam-secondary, 5%);
+    }
+  }  
 }
 
 .splashscreen{
@@ -218,13 +271,81 @@ a{
   position: relative;
 }
 
+
+.scoreboard{
+
+  .team{
+   
+    margin: 5px 0;
+    font-size: 35px;
+    text-transform: uppercase;
+    line-height: 40px;
+    //border: 1px solid black;
+
+    .clearfix;
+
+    > div{
+      height: 40px;
+      float: left;
+    }
+
+    table{
+      width: 100%;
+      table-layout: fixed;
+
+      td{
+        &:first-child{
+          width: 80%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;          
+        }
+        &:last-child{
+          text-align: right;
+        }
+      }
+    }
+
+    .filler-left{
+      width: 5%;
+    }
+
+    .filler-right{
+      width: 65%;
+    }
+
+    .score{
+      width: 30%;
+      padding: 0 5px;
+    }
+
+    &.team-home{
+      .filler{
+        background-color: @betterteam-primary-light;
+      }
+    }
+
+    &.team-away{
+      .filler{
+        background-color: lighten(@betterteam-secondary, 20%);
+      }
+    }    
+
+  }
+}
+
 // ----------------------------
 // Bootstrap Customization
 // ----------------------------
 
+.row{
+  margin-right: 0px;
+  margin-left: 0px;  
+}
+
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
 
   /*
   &:first-child{

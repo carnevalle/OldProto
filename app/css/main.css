@@ -491,7 +491,19 @@ ul.link-list {
 ul.link-list li {
   float: left;
   padding: 0 3px;
-  width: 50%;
+  width: 25%;
+}
+ul.link-list.btn-1 li {
+  width: 100% !important;
+}
+ul.link-list.btn-2 li {
+  width: 50% !important;
+}
+ul.link-list.btn-3 li {
+  width: 33% !important;
+}
+ul.link-list.btn-4 li {
+  width: 25% !important;
 }
 .touchable {
   cursor: pointer;
@@ -506,7 +518,6 @@ ul.link-list li {
 }
 .time-progress .time-progress-bar {
   background-color: #ff967f;
-  height: 10px;
   margin-top: 10px;
 }
 .time-progress .time-progress-bar .time-progress-filled {
@@ -518,11 +529,11 @@ ul.link-list li {
   position: relative;
   display: block;
   padding: 10px;
-  margin: 0px;
+  margin: 5px;
   border-radius: 0;
   border: 1px solid transparent;
   color: #ededed;
-  background-color: rgba(34, 85, 52, 0.8);
+  background-color: #225534;
   zoom: 1;
 }
 .box:before,
@@ -557,28 +568,44 @@ ul.link-list li {
   color: #223d4d;
 }
 .box.box-transparent {
-  background-color: rgba(34, 85, 52, 0.8);
+  background-color: #225534;
 }
 .box .hideable {
   overflow: hidden;
 }
-.box.collapsed h1 {
+.box.collapsed h1,
+.box.collapsed h2,
+.box.collapsed h3 {
   margin: 0 !important;
 }
 .box.collapsed .hideable {
   display: none;
 }
-.box h1 {
+.box h1,
+.box h2,
+.box h3 {
   margin: 0 0 10px 0;
   text-transform: uppercase;
   font-weight: 300;
-  font-size: 2em;
 }
-.box h1:only-child {
+.box h1:only-child,
+.box h2:only-child,
+.box h3:only-child {
   margin: 0;
 }
-.box h1 .selected-value {
+.box h1 .selected-value,
+.box h2 .selected-value,
+.box h3 .selected-value {
   color: #3fbe5b;
+}
+.box h1 {
+  font-size: 2em;
+}
+.box h2 {
+  font-size: 1.5em;
+}
+.box h3 {
+  font-size: 1.2em;
 }
 a.box {
   cursor: pointer;
@@ -588,12 +615,16 @@ a:hover {
 }
 .btn-event {
   display: table;
+  table-layout: fixed;
   width: 100%;
   background: #3fbe5b;
   color: #ededed;
   margin-bottom: 5px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
 }
 .btn-event span {
   display: table-cell;
@@ -601,14 +632,24 @@ a:hover {
   width: 100%;
   vertical-align: middle;
   text-align: center;
-  font-weight: bold;
-  font-size: 1.2em;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.btn-event:hover {
+  background: #329849;
+  color: #ededed;
 }
 .btn-event:active {
   box-shadow: inset 1px 2px 5px #13311e;
   background-color: #39ab52;
   color: #ededed;
+}
+.btn-event.btn-alt {
+  background: #223d4d;
+}
+.btn-event.btn-alt:hover {
+  background: #1a2f3b;
 }
 .splashscreen {
   position: relative;
@@ -632,6 +673,71 @@ a:hover {
 }
 .fnIntroTransition {
   position: relative;
+}
+.scoreboard .team {
+  margin: 5px 0;
+  font-size: 35px;
+  text-transform: uppercase;
+  line-height: 40px;
+  zoom: 1;
+}
+.scoreboard .team:before,
+.scoreboard .team:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.scoreboard .team:after {
+  clear: both;
+}
+.scoreboard .team:before {
+  content: '';
+  display: block;
+}
+.scoreboard .team:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.scoreboard .team > div {
+  height: 40px;
+  float: left;
+}
+.scoreboard .team table {
+  width: 100%;
+  table-layout: fixed;
+}
+.scoreboard .team table td:first-child {
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.scoreboard .team table td:last-child {
+  text-align: right;
+}
+.scoreboard .team .filler-left {
+  width: 5%;
+}
+.scoreboard .team .filler-right {
+  width: 65%;
+}
+.scoreboard .team .score {
+  width: 30%;
+  padding: 0 5px;
+}
+.scoreboard .team.team-home .filler {
+  background-color: #3fbe5b;
+}
+.scoreboard .team.team-away .filler {
+  background-color: #417594;
+}
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 .col-xs-1,
 .col-sm-1,
@@ -681,8 +787,8 @@ a:hover {
 .col-sm-12,
 .col-md-12,
 .col-lg-12 {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   /*
   &:first-child{
     padding-left: 15px;
