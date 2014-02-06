@@ -6,7 +6,7 @@ define([
     'proto/match/matchscore/MatchScore',
     'proto/position-chooser/PositionChooser',
     'proto/option-chooser/OptionChooser',
-    'modules/timeslider/TimeSlider',
+    'proto/timeslider/TimeSlider',
     'gsap',
     'howler'
     ], function (Marionette, $, template, MatchScore, PositionChooser, OptionChooser, TimeSlider) {

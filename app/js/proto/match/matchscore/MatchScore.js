@@ -15,6 +15,7 @@ define([
         initialize: function(){
             console.log("SHOW MATCH SCORE");
             //this.collection.fetch();
+            console.log(this.model.toJSON());
         }
     })
 });

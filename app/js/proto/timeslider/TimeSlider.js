@@ -3,7 +3,7 @@ define([
     'marionette',
     'jquery',
     'underscore',
-    'modules/timeslider/TimeSlider.hbs',
+    'proto/timeslider/TimeSlider.hbs',
     'nouislider',
     'gsap'
     ], function (Marionette, $, _, template) {

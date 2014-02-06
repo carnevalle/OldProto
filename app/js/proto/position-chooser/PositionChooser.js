@@ -27,8 +27,6 @@ define([
         	var pos = this.getPosition(e.gesture.center.pageX, e.gesture.center.pageY);
         	var posNormalized = this.getNormalizedPosition(e.gesture.center.pageX, e.gesture.center.pageY);
 
-        	this.$el.find(".selected-value").text(posNormalized);
-
         	var marker = this.$el.find(".positionMarker");
             marker.show();
             //marker.css({ top: pos.y-marker.height()/2+"px", left: pos.x-marker.width()/2+"px"});
@@ -41,7 +39,6 @@ define([
         	//TweenLite.to(marker, 0.1, {top: pos.y-marker.height()/2, left: pos.x-marker.width()/2});
         	TweenLite.from(marker, 0.1, {opacity: 0, scaleX: 2, scaleY: 2});
         	marker.text(posNormalized);
-        	console.log("TOUCHING: ", pos, posNormalized);
             this.setValue(posNormalized);
 
         },
@@ -53,7 +50,6 @@ define([
         onReset: function(){
             var marker = this.$el.find(".positionMarker");
             marker.hide();
-            this.$el.find(".selected-value").text("");
         },
 
         getPosition: function(x, y){

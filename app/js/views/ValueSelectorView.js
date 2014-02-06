@@ -24,8 +24,12 @@ define([
 			if(this.valueType){
 				BetterTeamApp.trigger("value:"+this.valueType+":selected", this.value, this.valueType);
 			}
-			
+
 			BetterTeamApp.trigger("value:selected", this.value, this.valueType);
+
+			if(this.options.onValueSelect){
+				this.options.onValueSelect(this.value, this.valueType);
+			}
 		},
 
 		getValue: function(){

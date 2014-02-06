@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'modules/matchreport/MatchReportLayout.hbs',
-    'modules/timeslider/TimeSlider',
+    'proto/timeslider/TimeSlider',
     'modules/pitch/PitchView'
     ], function (Marionette, $, _, template, TimeSlider, PitchView) {
 

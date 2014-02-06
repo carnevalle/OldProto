@@ -17,7 +17,7 @@ define([
     	},
 
         hammerEvents: {
-            'tap .fnTouch':'onTouch'
+            'touch .fnTouch':'onTouch'
         },
 
         onTouch: function(e){

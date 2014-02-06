@@ -2,7 +2,7 @@
 define([
     'marionette',
     'jquery',
-    'proto/matchevent/create/MatchEventCreate.hbs',
+    'proto/matchevent/create/1/MatchEventCreate.hbs',
     'proto/match/matchscore/MatchScore',
     'proto/position-chooser/PositionChooser',
     'proto/option-chooser/OptionChooser',
@@ -14,10 +14,10 @@ define([
     'use strict';
 
     return Marionette.Layout.extend({
-		template: template,
-		className: '',
+        template: template,
+        className: '',
 
-		initialize: function(options){
+        initialize: function(options){
             console.log(options);
 
             this.model = options.model;
@@ -49,7 +49,7 @@ define([
 
                 }
             })
-		},
+        },
 
         regions: {
             score: "#r-score",

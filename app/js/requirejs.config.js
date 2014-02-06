@@ -29,11 +29,17 @@ require.config({
         'spinjs': '../bower_components/spinjs/spin',
         'nprogress': '../bower_components/nprogress/nprogress',
 
+        // Widget
+        'timeslider' : 'proto/timeslider/TimeSlider',
+        'option-chooser' : 'proto/option-chooser/OptionChooser',
+
         // Pages
         'dashboard' : 'proto/dashboard/Dashboard',
         'dashboard-teams' : 'proto/dashboard/DashboardTeams',
         'match.main' : 'proto/match/main/MatchMain',
-        'matchevent.create' : 'proto/matchevent/create/MatchEventCreate',
+        'match.score' : 'proto/match/matchscore/MatchScore',
+        'matchevent.create' : 'proto/matchevent/create/2/MatchEventCreate',
+        'matchevent.index' : 'proto/matchevent/index/MatchEventIndex',
         'teamview' : 'proto/team/Team',
         'playerview' : 'proto/player/Player',
         'navigation' : 'proto/navigation/Navigation',
@@ -52,6 +58,8 @@ require.config({
         'players' : 'data/Players',
         'matchreport' : 'data/MatchReport',
         'matchreports' : 'data/MatchReports',
+        'matchevent' : 'data/MatchEvent',
+        'matchevents' : 'data/MatchEvents',
         'matcheventtype' : 'data/MatchEventType',
         'matcheventtypes' : 'data/MatchEventTypes',
     },

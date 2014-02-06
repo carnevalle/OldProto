@@ -27,16 +27,23 @@
   height: @height;
 
   margin: 0 auto;
-  background: url(../img/betterteam-background-optimized.jpg) no-repeat center center; 
+  //background: url(../img/betterteam-background-optimized.jpg) no-repeat center center;
 
-  /*
   background: url(../img/betterteam-background-optimized.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  */
 
+}
+
+.betterteam-theme{
+  background: @betterteam-button;
+  color: @betterteam-text;
+}
+
+.text-upper{
+  text-transform: uppercase;
 }
 
 ul.link-list{
@@ -107,7 +114,8 @@ ul.link-list{
   position: relative;
   display: block;
   padding: 10px;
-  margin: 5px;
+  //margin: 5px;
+  margin: 5px 0;
   //margin: 0px;
 
   border-radius: 0;
@@ -208,12 +216,10 @@ a{
     white-space: nowrap;
     overflow: hidden;      
     
-    
-    
   }
 
   &:hover{
-    background: darken(@betterteam-button,10%);
+    //background: darken(@betterteam-button,10%);
     color: @betterteam-text;
   }
 
@@ -263,75 +269,39 @@ a{
   //background-color: rgba(0, 0, 0, 0.75);
   background-color: rgb(255, 255, 255);
   overflow: hidden;
-
-
 }
 
 .fnIntroTransition{
   position: relative;
 }
 
-
 .scoreboard{
+  background-color: #fff;
+  padding: 5px;
+  text-transform: uppercase;
+}
 
-  .team{
-   
-    margin: 5px 0;
-    font-size: 35px;
-    text-transform: uppercase;
-    line-height: 40px;
-    //border: 1px solid black;
+.positionMarker{
+  position: absolute;
+  background-color: @secondarycolor;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  line-height: 50px;
+  text-align: center;
+  overflow: hidden;
+}
 
-    .clearfix;
+.active{
+  background-color: @buttoncolor;
+}
 
-    > div{
-      height: 40px;
-      float: left;
-    }
+.selected{
+ background-color: @secondarycolor; 
+}
 
-    table{
-      width: 100%;
-      table-layout: fixed;
-
-      td{
-        &:first-child{
-          width: 80%;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;          
-        }
-        &:last-child{
-          text-align: right;
-        }
-      }
-    }
-
-    .filler-left{
-      width: 5%;
-    }
-
-    .filler-right{
-      width: 65%;
-    }
-
-    .score{
-      width: 30%;
-      padding: 0 5px;
-    }
-
-    &.team-home{
-      .filler{
-        background-color: @betterteam-primary-light;
-      }
-    }
-
-    &.team-away{
-      .filler{
-        background-color: lighten(@betterteam-secondary, 20%);
-      }
-    }    
-
-  }
+.inactive{
+  background-color: grey;
 }
 
 // ----------------------------

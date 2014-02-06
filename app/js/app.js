@@ -59,6 +59,7 @@ define([
 
         this.$el.html(view.el);
 
+        /*
         this.$el.find(".fnIntroTransition").each(function( index ) {
           if(index == 0){
             App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, delay: 0.05, ease: "Power2.easeOut"});
@@ -66,6 +67,7 @@ define([
             App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, ease: "Power2.easeOut"}, "-=0.2");
           }
         });
+        */
 
 	}
 

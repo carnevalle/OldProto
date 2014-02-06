@@ -93,7 +93,9 @@ define([
 			.done(function(){
                 
 				App.getRegion("main").show(new MatchMain({
-					model: match
+					model: match,
+					matchEventTypes: matcheventtypes.toJSON(),
+					players: players.toJSON()
 				}));
 
                 /*
@@ -118,25 +120,7 @@ define([
 
 			    NProgress.done();
 			});
-
-			// match.on("fetch", function(collection, options){
-			// 	NProgress.start();
-			// })
-
-			// match.on("progress", function(collection, e){
-			// 	NProgress.set(e.position / e.total);
-			// })
-
-            // match.fetch({
-            //     success: function(){
-                	
-            //     	NProgress.done();
-            //     	App.getRegion("main").show(new MatchEventCreate({
-            //     		model: match
-            //     	}));
-            //     }
-            // })            
-		},
+		},		
 
 		showMatches: function(){
 			console.log('ShowMatches');
