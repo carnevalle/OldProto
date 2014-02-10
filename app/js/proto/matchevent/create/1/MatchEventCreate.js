@@ -24,6 +24,7 @@ define([
 
             var _this = this;
 
+            /*
             BetterTeamApp.on("value:selected", function(value, type){
                 console.log(value, type);
 
@@ -49,6 +50,7 @@ define([
 
                 }
             })
+            */
         },
 
         regions: {
@@ -71,6 +73,36 @@ define([
             'tap .fnSaveEvent':'onSaveEvent',
         },
 
+        onValueSelect: function(value, type){
+            console.log("VALUE SELECT!",value, type);
+
+            if(type === "where"){
+                //this.where.currentView.toggle();
+
+                var box = this.$el.find('.fnToggleWhere');
+                box.find('.selected-value').text(value);
+
+            }else if(type === "who"){
+
+                var box = this.$el.find('.fnToggleWho');
+                box.find('.selected-value').text(value.name);
+                TweenLite.from(box.find('.selected-value'), 0.5, {marginLeft: 15, opacity: 0, ease: "Power2.easeOut"});
+                box.find('.register-label').hide();
+
+                //this.onToggleBox(box);
+
+            }else if(type === "what"){
+
+                var box = this.$el.find('.fnToggleWhat');
+                box.find('.selected-value').text(value.name);
+                TweenLite.from(box.find('.selected-value'), 0.5, {marginLeft: 15, opacity: 0, ease: "Power2.easeOut"});
+                box.find('.register-label').hide();
+
+                //this.onToggleBox(box);
+
+            }
+        },
+
         onSaveEvent: function(){
             BetterTeamApp.trigger("BetterTeamSound", "slide");
             this.where.currentView.reset()
@@ -81,7 +113,7 @@ define([
             e.stopPropagation();
 
             var box = $(e.currentTarget);
-            this._onToggleBox(box);
+            this.onToggleBox(box);
         },
 
         onToggleWho: function(e){
@@ -89,11 +121,11 @@ define([
             e.stopPropagation();
 
             var box = $(e.currentTarget);
-            this._onToggleBox(box);
+            this.onToggleBox(box);
             //box.toggleClass('collapsed');
         },
 
-        _onToggleBox: function(box){
+        onToggleBox: function(box){
 
             if(box.hasClass('collapsed')){
                 BetterTeamApp.trigger("BetterTeamSound", "click");
@@ -125,21 +157,31 @@ define([
         onRender: function(){
 
             //this.when.show(new TimeSlider());
+            var _this = this;
 
             this.who.show(new OptionChooser({
                 valueType: 'who',
                 title: "Registrer Hvem",
-                options: this.options.who
+                options: this.options.who,
+                onValueSelect: function(value, type){
+                    _this.onValueSelect(value, type);
+                }
             }));
 
             this.what.show(new OptionChooser({
                 valueType: 'what',
                 title: "Registrer Hvad",
-                options: this.options.what
+                options: this.options.what,
+                onValueSelect: function(value, type){
+                    _this.onValueSelect(value, type);
+                }
             }));            
 
             this.where.show(new PositionChooser({
-                valueType: 'where'
+                valueType: 'where',
+                onValueSelect: function(value, type){
+                    _this.onValueSelect(value, type);
+                }
             }));
         },
 

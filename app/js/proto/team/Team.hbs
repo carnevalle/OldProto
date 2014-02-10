@@ -21,7 +21,29 @@
 				<a class="btn-event" href="#/m/{{id}}"><span>{{hometeam}}-{{awayteam}}</span></a>
 			{{/each}}
 
-			<a class="btn-event btn-alt" href="#"><span>Opret Kamp</span></a>
+			<div id="create-match-form" class="hidden">
+				<form role="form">
+					<table class="table">
+						<tr>
+							<td>
+							  <div class="form-group">
+							    <label for="hometeam">Email address</label>
+							    <input type="text" class="form-control" id="hometeam" placeholder="Hjemmehold">
+							  </div>			
+							</td>
+							<td>
+							  <div class="form-group">
+							    <label for="awayteam">Email address</label>
+							    <input type="text" class="form-control" id="awayteam" placeholder="Udehold">
+							  </div>			
+							</td>
+						</tr>
+
+					</table>
+				</form>
+			</div>
+
+			<a class="btn-event btn-alt" id="btn-create-match"><span>Opret Kamp</span></a>
 		</div>
 	</div>
 

@@ -16,6 +16,6 @@ define([
 
     	initialize: function(){
     		console.log("this.collection: ",this.collection);
-    	} 
+    	}
     })
 });

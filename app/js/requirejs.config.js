@@ -38,7 +38,7 @@ require.config({
         'dashboard-teams' : 'proto/dashboard/DashboardTeams',
         'match.main' : 'proto/match/main/MatchMain',
         'match.score' : 'proto/match/matchscore/MatchScore',
-        'matchevent.create' : 'proto/matchevent/create/2/MatchEventCreate',
+        'matchevent.create' : 'proto/matchevent/create/1/MatchEventCreate',
         'matchevent.index' : 'proto/matchevent/index/MatchEventIndex',
         'teamview' : 'proto/team/Team',
         'playerview' : 'proto/player/Player',

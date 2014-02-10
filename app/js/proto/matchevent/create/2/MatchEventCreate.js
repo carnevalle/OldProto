@@ -52,8 +52,8 @@ define([
 
             this.matchevent = new MatchEvent({match_id: this.model.get("id")});
             this.matchevents = new MatchEvents({}, {match_id: this.model.get("id")});
-            this.matchevents.fetch();
 
+            this.matchevents.fetch();
 
             this.matchevents.on("add", function(matchevent) {
                 console.log("Adding Event: ", matchevent);
@@ -78,6 +78,7 @@ define([
         showTab: function(id){
 
             this.$el.find('.fnValueSelector').addClass('hidden');
+            this.$el.find('#c-what').removeClass('hidden');
 
             if(id === "who"){
                 this.$el.find('#c-who').removeClass('hidden');
@@ -85,7 +86,7 @@ define([
 
                 //TweenLite.from(this.$el.find('#c-who'), 0.5, {marginTop: 15, ease: "Power2.easeOut"});
             }else if(id === "what"){
-                this.$el.find('#c-what').removeClass('hidden');
+                //this.$el.find('#c-what').removeClass('hidden');
                 this.$el.find('#tab-what').removeClass('inactive').addClass('active');
                 //TweenLite.from(this.$el.find('#c-what'), 0.5, {marginTop: 15, ease: "Power2.easeOut"});
             }else if(id === "where"){
@@ -101,7 +102,6 @@ define([
             console.log("VALUE SELECT!",value, type);
 
             var _this = this;
-            //this.$el.find('.fnValueSelector').addClass('hidden');
 
             if(type === "who"){
 
@@ -111,6 +111,8 @@ define([
                 this.matchevent.set("player_id", value.id);
 
                 this.saveEvent();
+
+                this.$el.find('.fnTabSelector').removeClass('selected');
 
                 this.showTab("what");
 

@@ -511,23 +511,36 @@ ul.link-list.btn-4 li {
 .touchable {
   cursor: pointer;
 }
-.time-progress {
+.timeslider {
+  background-color: #ff967f;
+}
+.timeslider .timeprogress {
+  background-color: #fe0016;
+  height: 5px;
+}
+/*
+.time-progress{
+
   background-color: #fff;
   padding-top: 10px;
   color: #fe0016;
   text-align: center;
   font-size: 1.4em;
   text-transform: uppercase;
+
+  .time-progress-bar{
+
+    background-color: #ff967f;
+    margin-top: 10px;
+
+    .time-progress-filled{
+      background-color: #fe0016;
+      width: 50%;
+      height: 10px;
+    }
+  }
 }
-.time-progress .time-progress-bar {
-  background-color: #ff967f;
-  margin-top: 10px;
-}
-.time-progress .time-progress-bar .time-progress-filled {
-  background-color: #fe0016;
-  width: 50%;
-  height: 10px;
-}
+*/
 .box {
   position: relative;
   display: block;

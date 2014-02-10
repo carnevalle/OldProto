@@ -45,7 +45,7 @@ function program3(depth0,data) {
   buffer += "\n			</ul>\n\n		</div>\n	</div>\n\n	<div class=\"col-md-4\">\n		<div id=\"r-matches\" class=\"box fnIntroTransition\">\n			<h1>BetterTeam <strong>Kampe</strong></h1>\n\n			";
   stack1 = helpers.each.call(depth0, depth0.matches, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n			<a class=\"btn-event btn-alt\" href=\"#\"><span>Opret Kamp</span></a>\n		</div>\n	</div>\n\n</div>";
+  buffer += "\n\n			<div id=\"create-match-form\" class=\"hidden\">\n				<form role=\"form\">\n					<table class=\"table\">\n						<tr>\n							<td>\n							  <div class=\"form-group\">\n							    <label for=\"hometeam\">Email address</label>\n							    <input type=\"text\" class=\"form-control\" id=\"hometeam\" placeholder=\"Hjemmehold\">\n							  </div>			\n							</td>\n							<td>\n							  <div class=\"form-group\">\n							    <label for=\"awayteam\">Email address</label>\n							    <input type=\"text\" class=\"form-control\" id=\"awayteam\" placeholder=\"Udehold\">\n							  </div>			\n							</td>\n						</tr>\n\n					</table>\n				</form>\n			</div>\n\n			<a class=\"btn-event btn-alt\" id=\"btn-create-match\"><span>Opret Kamp</span></a>\n		</div>\n	</div>\n\n</div>";
   return buffer;
   })
 
