@@ -15,6 +15,7 @@ define([
         value: 0,
         minValue: 0,
         maxValue: 90,
+        isOpen: false,
 
 		initialize: function(options){
             if(options){
@@ -26,7 +27,25 @@ define([
 		},
 
         hammerEvents: {
+            'tap .timeslider' : 'toggle'
+        },
 
+        toggle: function(){
+            if(this.isOpen){
+                this.close();
+            }else{
+                this.open();
+            }
+        },
+
+        open: function(){
+            TweenLite.to(this.$el.find('.timeprogress'), 0.25, {height: "20px", ease: "Power2.easeOut"});
+            this.isOpen = true;
+        },
+
+        close: function(){
+            TweenLite.to(this.$el.find('.timeprogress'), 0.25, {height: "5px", ease: "Power2.easeOut"});
+            this.isOpen = false;
         },
 
         setValue: function(value){
