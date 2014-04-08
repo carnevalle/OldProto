@@ -36,7 +36,8 @@ define([
     Matches,
     Player,
     Players,
-    MatchEventTypes
+    MatchEventTypes,
+    NProgress
 ) {
 
     'use strict';
@@ -51,11 +52,11 @@ define([
 			}else{
 				App.router.navigate('dashboard', true);
 			}
-			
+
 		},
 
 		showDashboard: function(){
-			
+
 			NProgress.start();
 
 			var dashboard = new Dashboard();
@@ -91,7 +92,7 @@ define([
 
 			$.when(match.fetch(), matcheventtypes.fetch(), players.fetch())
 			.done(function(){
-                
+
 				App.getRegion("main").show(new MatchMain({
 					model: match,
 					matchEventTypes: matcheventtypes.toJSON(),
@@ -120,7 +121,7 @@ define([
 
 			    NProgress.done();
 			});
-		},		
+		},
 
 		showMatches: function(){
 			console.log('ShowMatches');
@@ -143,7 +144,7 @@ define([
 
             team.fetch({
                 success: function(){
-                	
+
                 	NProgress.done();
                 	App.getRegion("main").show(new TeamView({
                 		model: team
@@ -167,13 +168,13 @@ define([
 
             player.fetch({
                 success: function(){
-                	
+
                 	NProgress.done();
                 	App.getRegion("main").show(new PlayerView({
                 		model: player
                 	}));
                 }
-            })			
+            })
 		},
 
 		showPlayers: function(){

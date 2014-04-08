@@ -16,7 +16,8 @@ require.config({
         'nouislider': '../bower_components/nouislider/jquery.nouislider',
         'swipe': '../bower_components/Swipe/swipe',
         'hammer.core': '../bower_components/hammerjs/dist/hammer',
-        'hammer': '../bower_components/hammerjs/dist/jquery.hammer',
+        //'hammer': '../bower_components/hammerjs/dist/jquery.hammer',
+        'hammerjs': '../bower_components/hammerjs/dist/jquery.hammer',
         'kineticjs': 'vendors/kinetic-v4.7.4.min',
         'howler': 'vendors/howler',
         'timelinelite': '../bower_components/greensock/src/uncompressed/TimelineLite',
@@ -65,7 +66,7 @@ require.config({
     },
     shim: {
         'main' : {
-            deps: ['hammer', 'valueselectorview']
+            deps: ['hammerjs', 'valueselectorview']
         },
         'jquery' : {
             exports : 'jQuery'
@@ -85,7 +86,7 @@ require.config({
             exports : 'Backbone'
         },
         'backbone.hammer' : {
-            deps: ['jquery','hammer']
+            deps: ['jquery','hammerjs']
         },
         'marionette' : {
             deps : ['handlebars', 'backbone.hammer'],
@@ -97,7 +98,7 @@ require.config({
         'swipe' : {
             deps: ['jquery']
         },
-        'hammer' : {
+        'hammerjs' : {
             deps: ['jquery', 'hammer.core']
         },
         'timelinelite' : {
@@ -111,9 +112,9 @@ require.config({
         },
         'gsap' : {
             deps: ['timelinelite', 'timelinemax']
-        }, 
+        },
         'nprogress' : {
             deps: ['jquery']
-        },                
+        },
     }
 });
