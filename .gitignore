@@ -1,5 +1,7 @@
-node_modules
-dist
+.DS_Store
 .tmp
-.sass-cache
-app/bower_components
+build
+Desktop.ini
+node_modules
+bower_components
+npm-debug.log

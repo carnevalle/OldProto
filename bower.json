@@ -2,38 +2,10 @@
   "name": "betterteam",
   "version": "0.0.0",
   "dependencies": {
-    "bootstrap": "~3.0.0",
-    "lodash": "*",
-    "underscore": "*",
-    "requirejs": "~2.1.4",
-    "modernizr": "~2.6.2",
-    "jquery": "~1.10.2",
-    "handlebars.js": "~1.0.0",
-    "backbone": "1.1.0",
-    "backbone.marionette": "~1.3.0",
-    "backbone.wreqr": "*",
-    "backbone.babysitter": "*",
-    "backbone.basicauth": "*",
-    "backbone.hammer":"*",
-    "fastclick": "0.6.10",
-    "backbone.localStorage": "1.1.7",
-    "json2": "*",
-    "holderjs": "*",
-    "jqueryui-touch-punch": "*",
+    "handlebars.js": "*",
+    "backbone.hammer": "*",
     "greensock": "*",
-    "Swipe": "*",
-    "nouislider": "*",
-    "hammerjs": "1.0.5",
-    "kineticjs": "*",
-    "play-audio": "*",
-    "soundmanager2": "*",
-    "jquery-hammerjs": "*",
-    "spinjs":"*",
-    "nprogress":"*",
-    "Backbone.Modal":"*"
+    "threejs": "*"
   },
-  "devDependencies": {},
-  "resolutions": {
-    "backbone": "1.1.0"
-  }
+  "devDependencies": {}
 }
