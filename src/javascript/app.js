@@ -1,4 +1,4 @@
-var Backbone = require('backbone');
+var Backbone = require('backbone.marionette');
 var router = require('./router');
 
 var App = new Backbone.Marionette.Application();
@@ -12,6 +12,10 @@ App.config = {
         }
     }()
 }
+
+App.addRegions({
+    app: '#app'
+});
 
 App.on('start', function() {
 

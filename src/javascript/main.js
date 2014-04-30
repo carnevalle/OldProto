@@ -1,15 +1,9 @@
-// We require Backbone to attach jquery to $
-var Backbone = require('backbone');
-Backbone.$ = require('jquery');
-
-// We require Backbone.Marionette to attach marionette to Backbone
-require('backbone.marionette');
+var Backbone = require("backbone.marionette");
 
 // We require Backbone.Hammer to modify Backbone.View
-require('backbone.hammer');
+//require('backbone.hammer');
 
-window.App = require('app');
-
+window.App = require('./app');
 window.App.start();
 
 /*

@@ -1,4 +1,4 @@
-Backbone = require('backbone');
+var Backbone = require('backbone.marionette');
 AppController = require('./controller');
 
 module.exports = new Backbone.Marionette.AppRouter({

@@ -7,12 +7,12 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "browser": {
-    "app":"./src/javascript/app.js",
-    "underscore":"./node_modules/underscore/underscore.js",
-    "backbone.hammer": "./bower_components/backbone.hammer/backbone.hammer.js",
-    "jquery-hammerjs": "./node_modules/jquery-hammerjs/jquery.hammer.js",
-    "jquery": "./node_modules/jquery/dist/jquery.js",
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+    "jquery": "./bower_components/jquery/dist/jquery.js",
+    "underscore": "./bower_components/underscore/underscore.js",
+    "backbone": "./bower_components/backbone/backbone.js",
+    "backbone.wreqr": "./bower_components/backbone.wreqr/lib/backbone.wreqr.js",
+    "backbone.babysitter": "./bower_components/backbone.babysitter/lib/backbone.babysitter.js",
+    "backbone.marionette": "./bower_components/marionette/lib/backbone.marionette.js"
   },
   "browserify": {
     "transform": [
@@ -23,51 +23,42 @@
   },
   "browserify-shim": {
     "jquery": "$",
-    "underscore":"_",
-    "backbone":{
-      "depends":[
-        "jquery:$",
-        "underscore:_"
-      ]
+    "underscore": "_",
+    "backbone": {
+        "exports": "Backbone",
+        "depends": [
+            "jquery:$",
+            "underscore:_"
+        ]
     },
-    "backbone.marionette":{
-      "depends":[
-        "backbone:Backbone",
-        "underscore:_",
-        "backbone.hammer"
-      ]
+    "backbone.babysitter": {
+        "exports": "Backbone.BabySitter",
+        "depends": [
+            "backbone:Backbone"
+        ]
     },
-    "backbone.hammer":{
-      "depends":[
-        "backbone:Backbone",
-        "underscore:_",
-        "jquery:$",
-        "jquery-hammerjs"
-      ]
+    "backbone.wreqr": {
+        "exports": "Backbone.Wreqr",
+        "depends": [
+            "backbone:Backbone"
+        ]
     },
-    "hammerjs": {
-      "exports": "Hammer"
-    },
-    "jquery-hammerjs": {
-      "depends": [
-        "jquery:$",
-        "hammerjs:Hammer"
-      ]
-    },
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    },
-    "three": "global:THREE",
-    "tweenlite": "global:TweenLite"
+    "backbone.marionette": {
+        "exports": "Backbone",
+        "depends": [
+            "backbone:Backbone",
+            "backbone.wreqr:Backbone.Wreqr",
+            "backbone.babysitter:Backbone.BabySitter"
+        ]
+    }
   },
   "devDependencies": {
     "browserify-shim": "~3.4.1",
     "browserify": "~3.36.0",
+    "coffeeify": "~0.6.0",
     "connect": "~2.14.3",
     "gulp-changed": "~0.3.0",
+    "gulp-compass": "~1.1.8",
     "gulp-imagemin": "~0.1.5",
     "gulp-livereload": "~1.2.0",
     "gulp-notify": "~1.2.4",
@@ -75,10 +66,9 @@
     "gulp": "~3.6.0",
     "hbsfy": "~1.3.2",
     "vinyl-source-stream": "~0.1.1",
-    "gulp-concat-sourcemap": "^1.2.1",
     "gulp-clean": "^0.2.4",
-    "uglifyify": "^2.1.1",
-    "gulp-uglify": "^0.2.1"
+    "gulp-less": "^1.2.3",
+    "gulp-concat-sourcemap": "^1.2.1"
   },
   "dependencies": {
     "backbone.marionette": "^1.8.3",

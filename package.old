@@ -1,0 +1,89 @@
+{
+  "name": "gulp-starter",
+  "version": "0.1.0",
+  "description": "Gulp starter with common tasks and scenarios",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/greypants/gulp-starter.git"
+  },
+  "browser": {
+    "app":"./src/javascript/app.js",
+    "underscore":"./node_modules/underscore/underscore.js",
+    "backbone.hammer": "./bower_components/backbone.hammer/backbone.hammer.js",
+    "jquery-hammerjs": "./node_modules/jquery-hammerjs/jquery.hammer.js",
+    "jquery": "./node_modules/jquery/dist/jquery.js",
+    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      "hbsfy"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "underscore":"_",
+    "backbone":{
+      "depends":[
+        "jquery:$",
+        "underscore:_"
+      ]
+    },
+    "backbone.marionette":{
+      "depends":[
+        "backbone:Backbone",
+        "underscore:_",
+        "backbone.hammer"
+      ]
+    },
+    "backbone.hammer":{
+      "depends":[
+        "backbone:Backbone",
+        "underscore:_",
+        "jquery:$",
+        "jquery-hammerjs"
+      ]
+    },
+    "hammerjs": {
+      "exports": "Hammer"
+    },
+    "jquery-hammerjs": {
+      "depends": [
+        "jquery:$",
+        "hammerjs:Hammer"
+      ]
+    },
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    },
+    "three": "global:THREE",
+    "tweenlite": "global:TweenLite"
+  },
+  "devDependencies": {
+    "browserify-shim": "~3.4.1",
+    "browserify": "~3.36.0",
+    "connect": "~2.14.3",
+    "gulp-changed": "~0.3.0",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-livereload": "~1.2.0",
+    "gulp-notify": "~1.2.4",
+    "gulp-open": "~0.2.8",
+    "gulp": "~3.6.0",
+    "hbsfy": "~1.3.2",
+    "vinyl-source-stream": "~0.1.1",
+    "gulp-concat-sourcemap": "^1.2.1",
+    "gulp-clean": "^0.2.4",
+    "gulp-uglify": "^0.2.1"
+  },
+  "dependencies": {
+    "backbone.marionette": "^1.8.3",
+    "backbone": "^1.1.2",
+    "underscore": "^1.6.0",
+    "jquery": "^2.1.0",
+    "hammerjs": "^1.1.2",
+    "jquery-hammerjs": "^1.1.2"
+  }
+}
