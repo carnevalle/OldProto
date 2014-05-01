@@ -5,14 +5,14 @@
         <h2>Spillere</h2>
 
         {{#each players}}
-            <a href="/#/p/{{id}}" class="btn btn-block btn-large">{{name}}</a>
+            <a href="{{url url}}" class="btn btn-block btn-large">{{name}}</a>
         {{/each}}
     </div>
     <div class="col-sm-6">
         <h2>Kampe</h2>
 
         {{#each matches}}
-            <a href="/#/m/{{id}}" class="btn btn-block btn-large">{{hometeam}}-{{awayteam}}</a>
+            <a href="{{url url}}" class="btn btn-block btn-large">{{hometeam}}-{{awayteam}}</a>
         {{/each}}
     </div>
 </div>
