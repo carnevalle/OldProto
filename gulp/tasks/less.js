@@ -7,6 +7,7 @@ var handleErrors = require('../util/handleErrors');
 gulp.task('less', function() {
     return gulp.src('./src/less/style.less')
         .pipe(less({ compress: true }))
+        .on('error', handleErrors)
         .pipe(gulp.dest('./build/css'))
         .pipe(livereload());
 });

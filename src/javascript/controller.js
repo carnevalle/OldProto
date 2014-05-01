@@ -24,9 +24,10 @@ module.exports = Backbone.Marionette.Controller.extend({
 
         $.when(teams.fetch())
         .done(function(teamCol){
-            console.log(teamCol);
 
-            App.getRegion("app").show(new TeamsIndexView({
+            console.log(App.layout);
+
+            App.layout.main.show(new TeamsIndexView({
                 collection: teams
             }));
         });
@@ -50,9 +51,13 @@ module.exports = Backbone.Marionette.Controller.extend({
             id: id
         })
 
+        var TeamShowView = require('./views/team.show');
+
         team.fetch({
             success: function(data){
-                console.log(data.toJSON());
+                App.layout.main.show(new TeamShowView({
+                    model: team
+                }));
             }
         })
     },
@@ -63,9 +68,13 @@ module.exports = Backbone.Marionette.Controller.extend({
             id: id
         });
 
+        var MatchShowView = require('./views/match.show');
+
         match.fetch({
             success: function(data){
-                console.log(data.toJSON());
+                App.layout.main.show(new MatchShowView({
+                    model: match
+                }));
             }
         })
     },
@@ -76,9 +85,13 @@ module.exports = Backbone.Marionette.Controller.extend({
             id:id
         });
 
+        var PlayerShowView = require('./views/player.show');
+
         player.fetch({
             success: function(data){
-                console.log(data.toJSON());
+                App.layout.main.show(new PlayerShowView({
+                    model: player
+                }));
             }
         })
     },

@@ -3,6 +3,7 @@ var Marionette = require('backbone.marionette')
 
 var ItemView = Backbone.Marionette.ItemView.extend({
     template: require('../templates/teams.index.item'),
+    tagName: "li",
 
     initialize: function () {
         console.log("initialize teams item view");

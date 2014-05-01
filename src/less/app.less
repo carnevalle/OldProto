@@ -1,0 +1,44 @@
+body{
+    background-color: @backgroundcolor;
+    background-image: url('../images/backgrounds/az-subtle.png');
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.btn{
+    .clickable;
+    background-color: @buttondefault;
+    color: @buttontext;
+    padding: 10px;
+
+    &:hover{
+        color: @buttontext;
+        background-color: @buttonhover;
+    }
+}
+
+.btn-large{
+    font-size: 22px;
+}
+
+.btn-block{
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.header{
+    background-color: @headercolor;
+    padding: 10px;
+
+    .brand{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .browse-back-btn{
+        width: 40px;
+    }
+}

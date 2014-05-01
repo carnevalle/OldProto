@@ -6,7 +6,8 @@
     "backbone.hammer": "*",
     "greensock": "*",
     "threejs": "*",
-    "marionette": "~1.8.3"
+    "marionette": "~1.8.3",
+    "pace": "~0.5.1"
   },
   "devDependencies": {}
 }

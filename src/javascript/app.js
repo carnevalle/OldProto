@@ -1,4 +1,5 @@
 var Backbone = require('backbone.marionette');
+var Pace = require('pace');
 var router = require('./router');
 
 var App = new Backbone.Marionette.Application();
@@ -18,14 +19,16 @@ App.addRegions({
 });
 
 App.on('start', function() {
-
-    console.log("App Start");
-
     Backbone.history.start({
         //pushState: true
     });
 });
 
 App.router = router;
+
+App.router.on('route', function(name,args){
+    console.log("On Route");
+    Pace.restart();
+});
 
 module.exports = App;
