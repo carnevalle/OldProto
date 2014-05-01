@@ -12,10 +12,8 @@ var HeaderView = require('./views/header');
 var LayoutDefault = require('./views/layout.default');
 
 App.on('start', function() {
-    console.log("Starting App");
 
     App.layout = new LayoutDefault();
-
     App.getRegion('app').show(App.layout);
     App.layout.header.show(new HeaderView());
 });
