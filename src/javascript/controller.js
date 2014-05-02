@@ -31,15 +31,6 @@ module.exports = Backbone.Marionette.Controller.extend({
                 collection: teams
             }));
         });
-
-
-
-        /*
-        $.when(teams.fetch())
-        .done(function(teamCol){
-            console.log(teamCol);
-        });
-        */
     },
     showIndex: function(){
         console.log('showIndex');
@@ -73,6 +64,23 @@ module.exports = Backbone.Marionette.Controller.extend({
         match.fetch({
             success: function(data){
                 App.layout.main.show(new MatchShowView({
+                    model: match
+                }));
+            }
+        })
+    },
+    scoutMatch: function(id){
+        console.log("scout match!");
+
+        var match = new Match({
+            id: id
+        });
+
+        var MatchScoutView = require("./views/match.scout");
+
+        match.fetch({
+            success: function(data){
+                App.layout.main.show(new MatchScoutView({
                     model: match
                 }));
             }

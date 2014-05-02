@@ -7,6 +7,7 @@ module.exports = new Backbone.Marionette.AppRouter({
         '': 'showRoot',
         't/:id':'showTeam',
         'm/:id':'showMatch',
+        'm/:id/scout':'scoutMatch',
         'p/:id':'showPlayer',
         '*notFound': 'notFound'
     }
