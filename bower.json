@@ -4,6 +4,7 @@
   "dependencies": {
     "handlebars.js": "*",
     "backbone.hammer": "*",
+    "jquery-hammerjs":"*",
     "greensock": "*",
     "threejs": "*",
     "marionette": "~1.8.3",
