@@ -55,22 +55,6 @@ define([
 
     })
 
-	Marionette.Region.prototype.open = function(view){
-
-        this.$el.html(view.el);
-
-        /*
-        this.$el.find(".fnIntroTransition").each(function( index ) {
-          if(index == 0){
-            App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, delay: 0.05, ease: "Power2.easeOut"});
-          }else{
-            App.tl.from(this, 0.3, {top:'+=10px', opacity: 0, ease: "Power2.easeOut"}, "-=0.2");
-          }
-        });
-        */
-
-	}
-
     App.isLoaded = false;
 
     return App;

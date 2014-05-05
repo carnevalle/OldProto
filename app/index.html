@@ -37,14 +37,19 @@
 
     <!-- build:js js/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+    <!-- /build -->
 
-    <!-- build:css css/vendor/bootstrap.css -->
-    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
-    <!-- endbuild -->
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- build:remove -->
+    <p>This is the html file without being processed</p>
+    <!-- /build -->
 
     <div id="app">
         <div id="header"></div>
@@ -52,14 +57,9 @@
         <div id="footer"></div>
     </div>
 
-    <!--[if lt IE 7]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- build:js js/app.js -->
+    <!-- build:js js/app.min.js -->
     <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
     <script src="js/requirejs.config.js"></script>
-    <!-- endbuild -->
-
+    <!-- /build -->
 </body>
 </html>

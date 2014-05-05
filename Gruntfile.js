@@ -29,18 +29,6 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
         // TODO: Make this conditional
         watch: {
-            // coffee: {
-            //     files: ['<%= yeoman.app %>/js/{,*/}*.coffee'],
-            //     tasks: ['coffee:dist']
-            // },
-            // coffeeTest: {
-            //     files: ['test/spec/{,*/}*.coffee'],
-            //     tasks: ['coffee:test']
-            // },
-            // compass: {
-            //     files: ['<%= yeoman.app %>/css/{,*/}*.{scss,sass}'],
-            //     tasks: ['compass:server']
-            // },
             less:{
                 files: ['<%= yeoman.app %>/less/**/*.less'],
                 tasks: ['less:server']
@@ -147,8 +135,8 @@ module.exports = function (grunt) {
                     baseUrl: yeomanConfig.app + '/js',
                     mainConfigFile: yeomanConfig.app + '/js/requirejs.config.js',
                     name: "main",
-                    out: yeomanConfig.dist+"/js/app.js",
-                    optimize: 'none'
+                    out: yeomanConfig.dist+"/js/app.min.js",
+                    optimize: 'uglify'
                 }
             }
         },
@@ -187,6 +175,25 @@ module.exports = function (grunt) {
           }
         },
 
+        processhtml: {
+            options: {
+              data: {
+                message: 'Hello world!'
+              }
+            },
+            dist: {
+              files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>',
+                    dest: '<%= yeoman.dist %>',
+                    src: [
+                        'index.html'
+                    ]
+                }]
+            }
+        },
+
         // Put files not handled in other tasks here
         copy: {
             dist: {
@@ -197,7 +204,6 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.dist %>',
                     src: [
                         '*.{ico,png,txt}',
-                        'index.html',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
                         'css/fonts/*',
@@ -281,6 +287,7 @@ module.exports = function (grunt) {
         //'concat',
         //'uglify',
         'copy',
+        'processhtml'
     ]);
 
     grunt.registerTask('default', [
