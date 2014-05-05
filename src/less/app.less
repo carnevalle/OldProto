@@ -3,8 +3,38 @@ body{
     background-image: url('../images/backgrounds/az-subtle.png');
 }
 
+// Table Classes
+// -------------------------
+
+.table{
+    display: table;
+    border-collapse:collapse;
+    width: 100%;
+}
+
+.tr{
+    display: table-row;
+}
+
+.td{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+// --------------------------
+
 .clickable{
     cursor: pointer;
+}
+
+.unselectable{
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
 }
 
 .scrollable{
@@ -23,8 +53,10 @@ body{
     box-shadow:         1px 1px 0px 0px @buttonshadow;
 
     &:hover{
-        color: @buttontext;
         background-color: @buttonhover;
+    }
+    &:active{
+        background-color: @buttonactive;
     }
 }
 
@@ -33,7 +65,8 @@ body{
 }
 
 .btn-square{
-    width: 100px;
+    width: 160px;
+    font-size: 16px;
     height: 100px;
     line-height: 80px;
     margin: 5px 5px 5px 0;
@@ -66,6 +99,9 @@ body{
     &.scout{
 
         .events{
+
+            min-height: 100px;
+
             &:after{
                 content: "";
                 display: table;
@@ -78,6 +114,43 @@ body{
             height: 400px;
             overflow-x: hidden;
             overflow-y: scroll;
+        }
+    }
+}
+
+// Pitch
+// -------------------------
+
+.pitch{
+
+    background-color: @headercolor;
+    position: relative;
+    height: 400px;
+
+    .table{
+        border-collapse: separate;
+        border-spacing: 5px;
+        height: 100%;
+    }
+
+    &.zones{
+        .zone{
+            .unselectable;
+            .clickable;
+            //margin: 0 5px 5px 0;
+            text-align: center;
+            vertical-align: middle;
+            padding: 5px;
+            background-color: rgba(63,190,91, 0.9);//@buttondefault;
+
+
+            &:hover{
+                background-color: @buttonhover;
+            }
+
+            &:active{
+                background-color: @buttonactive;
+            }
         }
     }
 }

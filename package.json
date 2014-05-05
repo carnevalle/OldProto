@@ -13,8 +13,13 @@
     "backbone.wreqr": "./bower_components/backbone.wreqr/lib/backbone.wreqr.js",
     "backbone.babysitter": "./bower_components/backbone.babysitter/lib/backbone.babysitter.js",
     "backbone.marionette": "./bower_components/marionette/lib/backbone.marionette.js",
+    "backbone.hammer": "./bower_components/backbone.hammer/backbone.hammer.js",
+    "hammerjs": "./bower_components/hammerjs/hammer.js",
+    "jquery-hammerjs": "./bower_components/jquery-hammerjs/jquery.hammer.js",
     "pace": "./bower_components/pace/pace.js",
-    "handlebars.helpers":"./src/javascript/utils/handlebars.helpers.js"
+    "handlebars.helpers": "./src/javascript/utils/handlebars.helpers.js",
+    "modernizr":"./src/javascript/vendor/modernizr.custom.js",
+    "fastclick":"./bower_components/fastclick/lib/fastclick.js"
   },
   "browserify": {
     "transform": [
@@ -27,33 +32,49 @@
     "jquery": "$",
     "underscore": "_",
     "backbone": {
-        "exports": "Backbone",
-        "depends": [
-            "jquery:$",
-            "underscore:_",
-            "handlebars.helpers"
-        ]
+      "exports": "Backbone",
+      "depends": [
+        "jquery:$",
+        "underscore:_",
+        "handlebars.helpers"
+      ]
     },
     "backbone.babysitter": {
-        "exports": "Backbone.BabySitter",
-        "depends": [
-            "backbone:Backbone"
-        ]
+      "exports": "Backbone.BabySitter",
+      "depends": [
+        "backbone:Backbone"
+      ]
     },
     "backbone.wreqr": {
-        "exports": "Backbone.Wreqr",
-        "depends": [
-            "backbone:Backbone"
-        ]
+      "exports": "Backbone.Wreqr",
+      "depends": [
+        "backbone:Backbone"
+      ]
     },
     "backbone.marionette": {
-        "exports": "Backbone",
-        "depends": [
-            "backbone:Backbone",
-            "backbone.wreqr:Backbone.Wreqr",
-            "backbone.babysitter:Backbone.BabySitter"
+      "exports": "Backbone",
+      "depends": [
+        "backbone:Backbone",
+        "backbone.wreqr:Backbone.Wreqr",
+        "backbone.babysitter:Backbone.BabySitter",
+        "backbone.hammer"
+      ]
+    },
+    "backbone.hammer": {
+      "depends": [
+        "backbone:Backbone",
+        "jquery-hammerjs"
+      ]
+    },
+    "jquery-hammerjs":{
+        "depends":[
+            "hammerjs:Hammer"
         ]
-    }
+    },
+    "hammerjs":{
+        "exports":"Hammer"
+    },
+    "tweenlite": "global:TweenLite"
   },
   "devDependencies": {
     "browserify-shim": "~3.4.1",
@@ -71,7 +92,8 @@
     "vinyl-source-stream": "~0.1.1",
     "gulp-clean": "^0.2.4",
     "gulp-less": "^1.2.3",
-    "gulp-concat-sourcemap": "^1.2.1"
+    "gulp-concat-sourcemap": "^1.2.1",
+    "browsernizr": "^1.0.2"
   },
   "dependencies": {
     "backbone.marionette": "^1.8.3",

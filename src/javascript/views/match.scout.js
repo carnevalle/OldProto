@@ -5,6 +5,7 @@ module.exports = Backbone.Marionette.Layout.extend({
     className: "match scout",
 
     regions: {
+        time: "#match-time",
         top: "#match-top",
         left: "#match-left",
         right: "#match-right"
@@ -16,8 +17,9 @@ module.exports = Backbone.Marionette.Layout.extend({
     },
 
     onRender: function(){
-        console.log(this);
 
+        var MatchScoutTimeSliderView = require('../views/match.scout.timeslider');
+        var MatchScoutPitchZonesView = require('../views/match.scout.pitch.zones');
         var MatchScoutPlayersView = require('../views/match.scout.players');
         var MatchScoutEventsView = require('../views/match.scout.events');
         var PlayersCollection = require('../collections/Players');
@@ -28,12 +30,16 @@ module.exports = Backbone.Marionette.Layout.extend({
         players.fetch();
         matchEventTypes.fetch();
 
-        this.left.show(new MatchScoutPlayersView({
-            collection: players
-        }));
+        this.time.show(new MatchScoutTimeSliderView());
 
         this.top.show(new MatchScoutEventsView({
             collection: matchEventTypes
         }));
+
+        this.left.show(new MatchScoutPlayersView({
+            collection: players
+        }));
+
+        this.right.show(new MatchScoutPitchZonesView());
     }
 });

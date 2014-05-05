@@ -1,3 +1,9 @@
+require('browsernizr/test/css/transforms3d');
+var Modernizr = require('browsernizr');
+
+var attachFastClick = require('fastclick');
+attachFastClick(document.body);
+
 var pace = require('pace');
 pace.start();
 

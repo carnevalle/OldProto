@@ -27,7 +27,7 @@ App.on('start', function() {
 App.router = router;
 
 App.router.on('route', function(name,args){
-    Pace.restart();
+    //Pace.restart();
 });
 
 module.exports = App;
