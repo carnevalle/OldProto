@@ -1,40 +1,18 @@
-<div class="pitch zones">
+<div class="col-sm-12">
+    <div class="pitch zones">
+        <div class="table">
 
-    <div class="table">
-        <div class="tr">
-            <div class="td zone">
-                Zone 7
-            </div>
-            <div class="td zone">
-                Zone 8
-            </div>
-            <div class="td zone">
-                Zone 9
-            </div>
-        </div>
+            {{#zones}}
+                <div class="tr">
+                    {{#this}}
+                        <div class="td zone fnPitchZone fnSelectable fnTap" data-value="{{id}}" data-name="{{name}}">
+                            {{name}}
+                        </div>
+                    {{/this}}
+                </div>
 
-        <div class="tr">
-            <div class="td zone">
-                Zone 4
-            </div>
-            <div class="td zone">
-                Zone 5
-            </div>
-            <div class="td zone">
-                Zone 6
-            </div>
-        </div>
-        <div class="tr">
-            <div class="td zone">
-                Zone 1
-            </div>
-            <div class="td zone">
-                Zone 2
-            </div>
-            <div class="td zone">
-                Zone 3
-            </div>
+            {{/zones}}
+
         </div>
     </div>
-
 </div>

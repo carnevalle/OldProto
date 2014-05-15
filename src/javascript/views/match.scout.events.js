@@ -6,5 +6,14 @@ var ItemView = Backbone.Marionette.ItemView.extend({
 
 module.exports = Backbone.Marionette.CollectionView.extend({
     itemView: ItemView,
-    className: "events"
+    className: "events",
+
+    onAfterItemAdded: function(itemView){
+
+        if(itemView.el.dataset.value){
+
+        }
+
+        console.log(itemView.el);
+    }
 });

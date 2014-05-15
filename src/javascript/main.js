@@ -1,5 +1,8 @@
 require('browsernizr/test/css/transforms3d');
+require('browsernizr/test/touchevents');
 var Modernizr = require('browsernizr');
+
+console.log(Modernizr);
 
 var attachFastClick = require('fastclick');
 attachFastClick(document.body);

@@ -10,6 +10,27 @@ body{
     display: table;
     border-collapse:collapse;
     width: 100%;
+
+    &.two{
+        .td{
+            width: 50%;
+        }
+    }
+    &.three{
+        .td{
+            width: 33%;
+        }
+    }
+    &.four{
+        .td{
+            width: 25%;
+        }
+    }
+    &.five{
+        .td{
+            width: 20%;
+        }
+    }
 }
 
 .tr{
@@ -53,11 +74,13 @@ body{
     -moz-box-shadow:    1px 1px 0px 0px @buttonshadow;
     box-shadow:         1px 1px 0px 0px @buttonshadow;
 
-    &:hover{
+    &.active{
         background-color: @buttonhover;
-    }
-    &:active{
-        background-color: @buttonactive;
+        -webkit-transition: background-color 1000ms linear;
+        -moz-transition: background-color 1000ms linear;
+        -o-transition: background-color 1000ms linear;
+        -ms-transition: background-color 1000ms linear;
+        transition: background-color 1000ms linear;
     }
 }
 
@@ -65,14 +88,15 @@ body{
     font-size: 22px;
 }
 
+.btn-medium{
+    font-size: 18px;
+}
+
 .btn-square{
-    width: 160px;
-    font-size: 16px;
-    height: 100px;
-    line-height: 80px;
-    margin: 5px 5px 5px 0;
+    //width: 160px;
+    padding: 20px 0;
     text-align: center;
-    float: left;
+    //float: left;
     overflow: hidden;
 }
 
@@ -112,11 +136,18 @@ body{
 
         .players{
             .scrollable;
-            height: 400px;
             overflow-x: hidden;
             overflow-y: scroll;
         }
     }
+}
+
+// Event Select Data
+// -------------------------
+
+.event-select-data{
+
+
 }
 
 // Pitch
@@ -132,6 +163,11 @@ body{
         border-collapse: separate;
         border-spacing: 5px;
         height: 100%;
+        table-layout: fixed;
+
+        td{
+            width: 20%;
+        }
     }
 
     &.zones{
@@ -139,18 +175,19 @@ body{
             .unselectable;
             .clickable;
             //margin: 0 5px 5px 0;
+            font-size: 18px;
             text-align: center;
             vertical-align: middle;
             padding: 5px;
-            background-color: rgba(63,190,91, 0.9);//@buttondefault;
+            background-color: rgba(63,190,91, 0.9);
 
-
-            &:hover{
+            &.active{
                 background-color: @buttonhover;
-            }
-
-            &:active{
-                background-color: @buttonactive;
+                -webkit-transition: background-color 1000ms linear;
+                -moz-transition: background-color 1000ms linear;
+                -o-transition: background-color 1000ms linear;
+                -ms-transition: background-color 1000ms linear;
+                transition: background-color 1000ms linear;
             }
         }
     }
