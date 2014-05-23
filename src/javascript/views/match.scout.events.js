@@ -10,10 +10,10 @@ module.exports = Backbone.Marionette.CollectionView.extend({
 
     onAfterItemAdded: function(itemView){
 
-        if(itemView.el.dataset.value){
+    	var $el = itemView.$el.find(".fnSelectValue");
 
+        if($el[0].dataset.value == this.options.selectedValue){
+        	$el.addClass("active");
         }
-
-        console.log(itemView.el);
     }
 });

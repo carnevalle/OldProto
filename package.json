@@ -19,7 +19,8 @@
     "pace": "./bower_components/pace/pace.js",
     "handlebars.helpers": "./src/javascript/utils/handlebars.helpers.js",
     "modernizr":"./src/javascript/vendor/modernizr.custom.js",
-    "fastclick":"./bower_components/fastclick/lib/fastclick.js"
+    "fastclick":"./bower_components/fastclick/lib/fastclick.js",
+    "classie":"./bower_components/classie/classie.js"
   },
   "browserify": {
     "transform": [

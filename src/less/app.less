@@ -74,6 +74,10 @@ body{
     -moz-box-shadow:    1px 1px 0px 0px @buttonshadow;
     box-shadow:         1px 1px 0px 0px @buttonshadow;
 
+    &.dark{
+        background-color: darken(@buttondefault, 15%);
+    }
+
     &.active{
         background-color: @buttonhover;
         -webkit-transition: background-color 1000ms linear;
@@ -104,7 +108,6 @@ body{
     display: block;
 }
 
-
 .header{
     background-color: @headercolor;
     padding: 10px;
@@ -123,6 +126,8 @@ body{
 .match{
     &.scout{
 
+        padding-bottom: 75px;
+
         .events{
 
             min-height: 100px;
@@ -139,6 +144,16 @@ body{
             overflow-x: hidden;
             overflow-y: scroll;
         }
+
+        .footer{
+            background-color: @headercolor;
+            -webkit-transform: translateZ(0);
+            padding-top: 5px;
+            padding-bottom: 5px;
+            bottom:0;
+            position:fixed;
+            width: 100%
+        }
     }
 }
 
@@ -149,6 +164,10 @@ body{
 
 
 }
+
+// Scouting
+// -------------------------
+
 
 // Pitch
 // -------------------------

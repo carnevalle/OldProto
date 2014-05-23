@@ -1,5 +1,8 @@
 require('browsernizr/test/css/transforms3d');
+require('browsernizr/test/css/transitions');
 require('browsernizr/test/touchevents');
+require('browsernizr/lib/addTest.js');
+require('browsernizr/lib/prefixed.js');
 var Modernizr = require('browsernizr');
 
 console.log(Modernizr);
