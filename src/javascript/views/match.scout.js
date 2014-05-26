@@ -1,5 +1,8 @@
 var Backbone = require('backbone.marionette');
 
+var MatchScoutInputView = require('../views/match.scout.input');
+var MatchScoutInputOptionsView = require('../views/match.scout.input.options');
+
 var MatchScoutPlayersView = require('../views/match.scout.players');
 var PlayersCollection = require('../collections/Players');
 var MatchEventsCollection = require('../collections/MatchEvents');
@@ -29,6 +32,7 @@ module.exports = Backbone.Marionette.Layout.extend({
     },
 
     hammerEvents: {
+        'tap .btn-select':'onBtnClick',
         'tap #fnWhat':'doSelectEvent',
         'tap #fnWho':'doSelectPlayer',
         //'tap .fnEventType':'onSelectEvent',
@@ -48,12 +52,16 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         this.matchevent = new MatchEventModel({match_id: this.model.get("id")});
         this.matchevents = new MatchEventsCollection({}, {match_id: this.model.get("id")});
-
         this.matchevents.fetch();
-
         this.matchevents.on("add", function(matchevent) {
             //console.log("Adding Event: ", matchevent);
         });
+    },
+
+    onBtnClick: function(e){
+
+        $(e.currentTarget).toggleClass("active");
+
     },
 
     doSelectPlayer: function(e){
@@ -102,6 +110,35 @@ module.exports = Backbone.Marionette.Layout.extend({
     },
 
     showNextOption: function(){
+        /*
+        var view = new MatchScoutInputOptionsView();
+
+        view.on("value:selected", function(vars){
+            console.log("VARS: ", vars);
+        })
+        */
+
+        if(this.selector.currentView){
+            this.selector.currentView.off("value:selected");
+        }
+
+        /*
+        this.selector.show(new MatchScoutInputOptionsView({
+            collection: players,
+            inputType: 'player'
+        }));
+        */
+
+        this.selector.show(new MatchScoutInputOptionsView({
+            collection: matchEventTypes,
+            inputType: 'matcheventtype'
+        }));
+
+        this.selector.currentView.on("value:selected", function(vars){
+            console.log("VARS: ", vars);
+        })
+
+        /*
         if(this.values.match_event_type_id === undefined){
             this.doSelectEvent();
         }else if(this.values.player_id === undefined){
@@ -109,6 +146,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         }else{
             this.selector.show(new MatchScoutPitchZonesView());
         }
+        */
     },
 
     /*

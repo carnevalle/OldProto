@@ -1,0 +1,105 @@
+.match.scout{
+
+	.events{
+
+		>div{
+			//padding: 5px 0 5px 5px;
+		}
+
+		.time{
+			width: 100px;
+			float: left;
+		}
+
+		.eventtype{
+			width: 200px;
+			float: left;
+		}
+
+		.eventinput{
+			overflow:hidden;
+			
+			.inputcontainer{
+				white-space:nowrap;
+				overflow-x: scroll;
+				font-size: 0;	
+
+				.block{
+					font-size: 14px;
+					display: inline-block;
+					width: 200px;
+					
+					/*
+					&:not(:first-child) {
+					    margin-left: -4px;
+					}
+					*/
+				}
+			}
+		}
+
+		.btn-select{
+			height: 52px;
+			padding: 5px;
+			background-color: #2f8837;
+			border: 1px solid darken(#2f8837, 5%);
+			cursor: pointer;
+			position: relative;
+			
+			//border-radius: 4px;
+			//margin: 5px 0 5px 5px;
+
+			.fa{
+				//display: none;
+				position: absolute;
+				right: 10px;
+				top: 12px;
+			}
+
+			.title{
+				text-transform: uppercase;
+				display: block;
+				color: lighten(#2f8837, 30%);
+				font-size: 12px;
+			}
+			.name{
+				font-size: 16px;
+			}
+
+			&.current{
+				background-color: darken(#2f8837, 10%);
+				border: 1px solid darken(#2f8837, 15%);
+			}
+
+			&.completed{
+
+				//background-color: darken(#2f8837, 5%);
+				//border: 1px solid darken(#2f8837, 10%);
+
+				.title{
+					//color: lighten(#236229, 20%);
+				}
+			}
+
+			&.active{
+				background-color: lighten(#2f8837,5%);
+				border: 1px solid darken(lighten(#2f8837,5%), 5%);
+			}
+
+			&.pending{
+				background-color: #2f8837;
+				border: 1px solid darken(#2f8837, 5%);
+				opacity: 0.5;
+
+				.title{
+					color: lighten(#2f8837, 30%);
+				}
+			}			
+		}
+	}
+
+	.userinput{
+		background-color: @light;
+		padding: 40px 20px;
+	}
+}

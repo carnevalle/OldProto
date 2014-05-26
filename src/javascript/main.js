@@ -23,10 +23,10 @@ window.App = require('./app');
 var HeaderView = require('./views/header');
 var LayoutDefault = require('./views/layout.default');
 
-App.on('start', function() {
+App.layout = new LayoutDefault();
+App.getRegion('app').show(App.layout);
 
-    App.layout = new LayoutDefault();
-    App.getRegion('app').show(App.layout);
+App.on('start', function() {
     App.layout.header.show(new HeaderView());
 });
 
