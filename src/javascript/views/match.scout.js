@@ -1,7 +1,8 @@
 var Backbone = require('backbone.marionette');
 
-var MatchScoutInputView = require('../views/match.scout.input');
 var MatchScoutInputOptionsView = require('../views/match.scout.input.options');
+
+var MatchScoutInputTypesView = require('../views/match.scout.input.types');
 
 var MatchScoutPlayersView = require('../views/match.scout.players');
 var PlayersCollection = require('../collections/Players');
@@ -28,17 +29,15 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     regions: {
         time: "#match-time",
-        selector: "#match-selector"
+        selector: "#match-selector",
+        inputtypes: "#match-inputtypes"
     },
 
     hammerEvents: {
-        'tap .btn-select':'onBtnClick',
-        'tap #fnWhat':'doSelectEvent',
-        'tap #fnWho':'doSelectPlayer',
-        //'tap .fnEventType':'onSelectEvent',
-        //'tap .fnPlayer':'onSelectPlayer',
-        'tap .fnSelectValue':'onSelectValue',
-        'tap .fnPitchZone':'onSelectZone'
+        'tap .fnSelectEventType' : 'doSelectEventType',
+        'tap #btn-save' : 'doSaveMatchEvent',
+        'tap #btn-skip' : 'doSkipInputType',
+        'tap #btn-reset' : 'doReset'
     },
 
     initialize: function(options){
@@ -50,6 +49,19 @@ module.exports = Backbone.Marionette.Layout.extend({
             match_event_type_id: undefined
         }
 
+        this.inputTypes = [{
+            id: 'player_owner',
+            name: 'Spiller Afsender'
+        },
+        {
+            id: 'pitch_position',
+            name: 'Position'
+        },{
+            id: 'player_target',
+            name: 'Spiller Modtager'
+        }];
+        this.inputIndex = 0;
+
         this.matchevent = new MatchEventModel({match_id: this.model.get("id")});
         this.matchevents = new MatchEventsCollection({}, {match_id: this.model.get("id")});
         this.matchevents.fetch();
@@ -58,33 +70,42 @@ module.exports = Backbone.Marionette.Layout.extend({
         });
     },
 
-    onBtnClick: function(e){
-
-        $(e.currentTarget).toggleClass("active");
-
+    doSaveMatchEvent: function(){
+        console.log("doSaveMatchEvent");
+        this.saveMatchEvent();
+        this.reset();
     },
 
-    doSelectPlayer: function(e){
+    doSkipInputType: function(){
+        console.log("doSkipInputType");
 
-        //this.$el.find(".fnSelectable").removeClass("active");
-        $("#fnWho").addClass("active");
-
-        this.selector.show(new MatchScoutPlayersView({
-            collection: players,
-            selectedValue: this.values.player_id
-        }));
+        if(this.inputIndex == this.inputTypes.length){
+            this.doSaveMatchEvent();
+        }else{
+            this.showNextOption();
+        }
     },
 
-    doSelectEvent: function(e){
+    doReset: function(){
+        console.log("doReset");
+        this.reset();
+    },
 
-        //this.$el.find(".fnSelectable").removeClass("active");
-        $("#fnWhat").addClass("active");
-        console.log("Do Selct Eevent");
-
-        this.selector.show(new MatchScoutEventsView({
+    doSelectEventType: function(e){
+        console.log("doSelectEventType");
+        this.showInputView(new MatchScoutInputOptionsView({
             collection: matchEventTypes,
+            inputType: 'matcheventtype',
             selectedValue: this.values.match_event_type_id
         }));
+    },
+
+    onEventTypeSelect: function(id, name){
+        this.values.match_event_type_id = id;
+
+        this.$el.find('.eventtype .name').text(name);
+
+        this.reset();
     },
 
     onSelectValue: function(e){
@@ -109,7 +130,62 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.showNextOption();
     },
 
+    onValueSelect: function(value){
+        console.log("Value: ", value);
+
+        if(value.type === "matcheventtype"){
+            this.onEventTypeSelect(value.id, value.name);
+        }else{
+
+            this.inputtypes.currentView.setValue(value.type, value.name);
+
+            this.showNextOption();
+        }
+    },
+
+    reset: function(){
+        console.log("I want to reset");
+
+        this.inputIndex = 0;
+        this.inputtypes.currentView.reset();
+        this.showNextOption();
+    },
+
     showNextOption: function(){
+
+        var inputType = this.inputTypes[this.inputIndex];
+
+        console.log('showNextOption: ', inputType, this.inputIndex);
+        console.log(this.inputIndex, this.inputTypes.length);
+
+        if(this.inputIndex == this.inputTypes.length){
+            console.log("I want to save Match Event");
+            this.doSaveMatchEvent();
+            return;
+        }
+
+        if(inputType.id == 'player_owner'){
+
+            this.showInputView(new MatchScoutInputOptionsView({
+                collection: players,
+                inputType: inputType.id,
+                selectedValue: this.values.player_id
+            }));
+
+        }else if(inputType.id == 'player_target'){
+            this.showInputView(new MatchScoutInputOptionsView({
+                collection: players,
+                inputType: inputType.id,
+                selectedValue: this.values.player_id
+            }));
+        }else if(inputType.id == 'pitch_position'){
+            this.showInputView(new MatchScoutPitchZonesView({
+                inputType: inputType.id
+            }));
+        }
+
+        this.inputIndex++;
+
         /*
         var view = new MatchScoutInputOptionsView();
 
@@ -118,25 +194,12 @@ module.exports = Backbone.Marionette.Layout.extend({
         })
         */
 
-        if(this.selector.currentView){
-            this.selector.currentView.off("value:selected");
-        }
-
         /*
         this.selector.show(new MatchScoutInputOptionsView({
             collection: players,
             inputType: 'player'
         }));
         */
-
-        this.selector.show(new MatchScoutInputOptionsView({
-            collection: matchEventTypes,
-            inputType: 'matcheventtype'
-        }));
-
-        this.selector.currentView.on("value:selected", function(vars){
-            console.log("VARS: ", vars);
-        })
 
         /*
         if(this.values.match_event_type_id === undefined){
@@ -149,42 +212,15 @@ module.exports = Backbone.Marionette.Layout.extend({
         */
     },
 
-    /*
-    onSelectEvent: function(e){
-        e.preventDefault();
-        e.gesture.preventDefault();
+    showInputView: function(view){
+        if(this.selector.currentView){
+            this.selector.currentView.off("value:selected");
+        }
 
-        this.$el.find(".fnSelectable").removeClass("active");
+        this.selector.show(view);
 
-        var id = e.currentTarget.dataset.value;
-        this.values.match_event_type_id = id;
-
-        this.$el.find("#fnWhat").text(e.currentTarget.dataset.name);
-
-        this.selector.show(new MatchScoutPitchZonesView());
+        this.selector.currentView.on("value:selected", _.bind(this.onValueSelect,this));
     },
-
-    onSelectPlayer: function(e){
-        e.preventDefault();
-        e.gesture.preventDefault();
-
-        this.$el.find(".fnSelectable").removeClass("active");
-
-        var id = e.currentTarget.dataset.value;
-        this.values.player_id = id;
-
-        
-        // this.matchevent.set("player_id", value.id);
-        // this.matchevent.set("match_event_type_id", value.id);
-        // this.matchevent.set("position_x", value.x);
-        // this.matchevent.set("position_y", value.y);
-        
-
-        this.$el.find("#fnWho").text(e.currentTarget.dataset.name);
-
-        this.selector.show(new MatchScoutPitchZonesView());
-    },
-    */
 
     onSelectZone: function(e){
         e.preventDefault();
@@ -201,14 +237,10 @@ module.exports = Backbone.Marionette.Layout.extend({
     },
 
     saveMatchEvent: function(){
-
-
-        console.log("SAVING EVENT");
         
 
         this.matchevent.set("player_id", this.values.player_id);
         this.matchevent.set("match_event_type_id", this.values.match_event_type_id);
-
         this.matchevent.set("time", 30);
 
         console.log(this.matchevent.toJSON());
@@ -235,6 +267,7 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     onRender: function(){
 
+        /*
         this.$el.find( ".progress-button" ).each(function() {
             console.log(this);
             new ProgressButton( this, {
@@ -253,10 +286,18 @@ module.exports = Backbone.Marionette.Layout.extend({
                 }
             } );
         });
+        */
 
         //this.time.show(new MatchScoutTimeSliderView());
 
         //this.selector.show(new MatchScoutPitchZonesView());
-        this.showNextOption();
+        //this.showNextOption();
+        console.log("On Render!");
+
+
+        this.inputtypes.show(new MatchScoutInputTypesView({
+            collection: new Backbone.Collection(this.inputTypes)
+        }));
+        this.doSelectEventType();
     }
 });

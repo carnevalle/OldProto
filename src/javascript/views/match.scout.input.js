@@ -13,7 +13,6 @@ module.exports = Backbone.Marionette.ItemView.extend({
     },
 
     setValue: function(value){
-        console.log("Setting Value");
     	this.value = value;
 
     	if(this.inputType){

@@ -2,32 +2,31 @@
     <div class="time">
         <div class="btn-select">
             {{!-- <i class="fa fa-clock-o fa-2x"></i> --}}
-            <span class="title">Tidspunkt</span>
-            <span class="name">46'</span>
+            <div class="title">Tidspunkt</div>
+            <div class="name">46'</div>
         </div>
     </div>
     <div class="eventtype">
-        <div class="btn-select">
-            <span class="title">Hvad</span>
-            <span class="name">Boldberøring</span>
+        <div class="btn-select fnSelectEventType">
+            <div class="title">Hvad</div>
+            <div class="name"></div>
         </div>
     </div>
-    <div class="eventinput">
+    <div id="match-inputtypes" class="eventinput">
         <div class="inputcontainer">
 
+            {{!--
             <div class="block">
-                <div class="btn-select completed">
-                    <i class="fa fa-chevron-circle-down fa-2x"></i>
-                    <span class="title">Hvem</span>
-                    <span class="name">Michael Laudrup</span>
+                <div class="btn-select pending">
+                    <div class="title">Hvem</div>
+                    <div class="name">&nbsp;</div>
                 </div>
             </div>
 
             <div class="block">
-                <div class="btn-select current">
-                    <div class="arrow"></div>
+                <div class="btn-select pending">
                     <div class="title">Hvor</div>
-                    <div class="name">Zone 5</div>
+                    <div class="name">&nbsp;</div>
                 </div>
             </div>
 
@@ -51,6 +50,7 @@
                     <div class="name">&nbsp;</div>
                 </div>
             </div>
+            --}}
         </div>
     </div>
 </div>
@@ -61,13 +61,13 @@
 
 <div class="row footer">
     <div class="col-sm-4">
-        <button class="progress-button full" data-style="move-up" data-horizontal>Gem</button>
+        <button id="btn-reset" class="progress-button full" data-style="move-up" data-horizontal>Fortryd</button>
     </div>
     <div class="col-sm-4">
-        <button class="progress-button full" data-style="shrink" data-horizontal>Gem</button>
+        <button id="btn-save" class="progress-button full" data-style="shrink" data-horizontal>Gem</button>
     </div>
     <div class="col-sm-4">
-        <button class="progress-button full" data-style="fill" data-horizontal>Gem</button>
+        <button id="btn-skip" class="progress-button full" data-style="fill" data-horizontal>Næste</button>
     </div>
 </div>
 

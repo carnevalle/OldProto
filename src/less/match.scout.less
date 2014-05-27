@@ -21,8 +21,10 @@
 			
 			.inputcontainer{
 				white-space:nowrap;
+				-webkit-overflow-scrolling: touch;
 				overflow-x: scroll;
-				font-size: 0;	
+				font-size: 0;
+				height: 52px;
 
 				.block{
 					font-size: 14px;
@@ -48,6 +50,18 @@
 			
 			//border-radius: 4px;
 			//margin: 5px 0 5px 5px;
+
+			.arrow{
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 10px 0 10px 10px;
+				border-color: transparent transparent transparent darken(#2f8837, 5%);
+				position: absolute;
+				right: -11px;
+				z-index: 500;
+				top: 17px;
+			}
 
 			.fa{
 				//display: none;

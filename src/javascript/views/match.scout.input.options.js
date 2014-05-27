@@ -11,31 +11,27 @@ module.exports = InputView.extend({
     },
 
     onValueSelect: function(e){
-    	console.log('on value select!');
-
 		e.preventDefault();
         e.gesture.preventDefault();
 
         var id = e.currentTarget.dataset.value;
         var name = e.currentTarget.dataset.name;
 
-        console.log(id, name);
-
         this.$el.find(".fnValueSelect").removeClass("active");
         $(e.currentTarget).addClass("active");
 
         this.setValue({
-        	value: id,
-        	title: name,
+        	id: id,
+        	name: name,
         	type: this.inputType
         });
     },
 
-    onAfterItemAdded: function(itemView){
+    onRender: function(){
+
+    	this.$el.find('*[data-value="'+this.options.selectedValue+'"]').addClass("active");
 
     	/*
-    	var $el = itemView.$el.find(".fnSelectValue");
-
         if($el[0].dataset.value == this.options.selectedValue){
         	$el.addClass("active");
         }

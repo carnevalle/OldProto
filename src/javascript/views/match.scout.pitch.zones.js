@@ -1,7 +1,30 @@
 var Backbone = require('backbone.marionette')
 
-module.exports = Backbone.Marionette.ItemView.extend({
+var InputView = require('../views/match.scout.input');
+
+module.exports = InputView.extend({
     template: require('../templates/match.scout.pitch.zones'),
+
+    hammerEvents: {
+        'tap .fnValueSelect':'onValueSelect'
+    },
+
+    onValueSelect: function(e){
+        e.preventDefault();
+        e.gesture.preventDefault();
+
+        var id = e.currentTarget.dataset.value;
+        var name = e.currentTarget.dataset.name;
+
+        this.$el.find(".fnValueSelect").removeClass("active");
+        $(e.currentTarget).addClass("active");
+
+        this.setValue({
+            id: id,
+            name: name,
+            type: this.inputType
+        });
+    },
 
     render: function(){
         var zones = this.buildZones();
