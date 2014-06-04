@@ -48,6 +48,10 @@ body{
     cursor: pointer;
 }
 
+.unclickable{
+    cursor: default;
+}
+
 .unselectable{
     -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
@@ -80,6 +84,11 @@ body{
 
     &.active{
         background-color: @buttonhover;
+    }
+
+    &.inactive{
+        background-color: @grey;
+        .unclickable;
     }
 }
 
@@ -122,7 +131,7 @@ body{
 .match{
     &.scout{
 
-        
+
         padding-bottom: 75px;
 
         /*

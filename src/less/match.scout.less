@@ -18,11 +18,11 @@
 
 		.eventinput{
 			overflow:hidden;
-			
+
 			.inputcontainer{
 				white-space:nowrap;
 				-webkit-overflow-scrolling: touch;
-				overflow-x: scroll;
+				//overflow-x: scroll;
 				font-size: 0;
 				height: 52px;
 
@@ -30,7 +30,7 @@
 					font-size: 14px;
 					display: inline-block;
 					width: 200px;
-					
+
 					/*
 					&:not(:first-child) {
 					    margin-left: -4px;
@@ -47,7 +47,7 @@
 			border: 1px solid darken(#2f8837, 5%);
 			cursor: pointer;
 			position: relative;
-			
+
 			//border-radius: 4px;
 			//margin: 5px 0 5px 5px;
 
@@ -81,8 +81,12 @@
 			}
 
 			&.current{
-				background-color: darken(#2f8837, 10%);
-				border: 1px solid darken(#2f8837, 15%);
+				background-color: lighten(#2f8837, 10%);
+				border-bottom: 5px solid lighten(yellow, 5%);
+
+                .title{
+                    color: lighten(yellow, 35%);
+                }
 			}
 
 			&.completed{
@@ -108,7 +112,7 @@
 				.title{
 					color: lighten(#2f8837, 30%);
 				}
-			}			
+			}
 		}
 	}
 

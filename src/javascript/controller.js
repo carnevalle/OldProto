@@ -10,6 +10,7 @@ var TeamCollection = require('./collections/Teams');
 var PlayerCollection = require('./collections/Players');
 var MatchCollection = require('./collections/Matches');
 var MatchEventCollection = require('./collections/MatchEvents');
+var MatchEventTypeCollection = require('./collections/MatchEventTypes');
 
 
 console.log(Backbone);
@@ -76,8 +77,26 @@ module.exports = Backbone.Marionette.Controller.extend({
             id: id
         });
 
+        var players = new PlayerCollection();
+        var matchEventTypes = new MatchEventTypeCollection();
+
+        //players.fetch();
+        //matchEventTypes.fetch();
+
         var MatchScoutView = require("./views/match.scout");
 
+        $.when(match.fetch(), matchEventTypes.fetch(), players.fetch())
+        .done(function(){
+
+            App.layout.main.show(new MatchScoutView({
+                model: match,
+                players: players,
+                matchEventTypes: matchEventTypes
+            }));
+
+        });
+
+        /*
         match.fetch({
             success: function(data){
                 App.layout.main.show(new MatchScoutView({
@@ -85,6 +104,7 @@ module.exports = Backbone.Marionette.Controller.extend({
                 }));
             }
         })
+        */
     },
     showPlayer: function(id){
         console.log('showPlayer: ', id);

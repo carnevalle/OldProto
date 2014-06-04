@@ -2,8 +2,9 @@ var gulp       = require('gulp');
 var livereload = require('gulp-livereload');
 
 gulp.task('watch', function(){
-	gulp.watch('src/javascript/**', ['browserify']);
-	gulp.watch('src/less/**', ['less']);
-	gulp.watch('src/images/**', ['images']);
-	livereload();
+    livereload.listen();
+	gulp.watch('src/javascript/**', ['browserify']).on('change', livereload.changed);
+	gulp.watch('src/less/**', ['less']).on('change', livereload.changed);
+	gulp.watch('src/images/**', ['images']).on('change', livereload.changed);
+	//livereload();
 });

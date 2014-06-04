@@ -13,6 +13,6 @@ gulp.task('browserify', function(){
 		.bundle({debug: true})
 		.on('error', handleErrors)
 		.pipe(source('app.js'))
-		.pipe(gulp.dest('./build/'))
-		.pipe(livereload());
+		.pipe(gulp.dest('./build/'));
+		//.pipe(livereload());
 });

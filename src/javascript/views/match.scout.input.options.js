@@ -29,20 +29,8 @@ module.exports = InputView.extend({
 
     onRender: function(){
 
-    	this.$el.find('*[data-value="'+this.options.selectedValue+'"]').addClass("active");
+        this.$el.find('*[data-value="'+this.options.selectedValue+'"]').addClass("active");
+    	this.$el.find('*[data-value="'+this.options.deactivateValue+'"]').addClass("inactive").removeClass("fnValueSelect");
 
-    	/*
-        if($el[0].dataset.value == this.options.selectedValue){
-        	$el.addClass("active");
-        }
-        */
-    }/*,
-
-    serializeData: function(){
-        return {
-            title: this.options.title,
-            options: this.options.options
-        };
     }
-    */
 });

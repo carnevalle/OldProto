@@ -9,4 +9,7 @@ gulp.task('copy', function(){
   // preserving the folder structure
   gulp.src(filesToMove, { base: 'src/' })
   .pipe(gulp.dest('build'));
+
+  gulp.src('index.html')
+  .pipe(gulp.dest('build'));
 });

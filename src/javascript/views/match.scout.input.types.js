@@ -4,6 +4,19 @@ module.exports = Backbone.Marionette.ItemView.extend({
     template: require('../templates/match.scout.input.types'),
     className: "inputcontainer",
 
+    setCurrent: function(id){
+        console.log('Setting Current To ', id);
+        this.$el.find('.current').removeClass('current');
+        var el = this.$el.find('#input-'+id);
+        el.removeClass('pending');
+        el.addClass('current');
+    },
+
+    clearCurrent: function(){
+
+        this.$el.find('.current').removeClass('current');
+    },
+
     setValue: function(id, value){
         var el = this.$el.find('#input-'+id);
         el.removeClass('pending');
