@@ -20,7 +20,7 @@ module.exports = InputView.extend({
         $(e.currentTarget).addClass("active");
 
         this.setValue({
-            id: id,
+            value: id,
             name: name,
             type: this.inputType
         });

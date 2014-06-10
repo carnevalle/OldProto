@@ -11,6 +11,8 @@ module.exports = InputView.extend({
     },
 
     onValueSelect: function(e){
+        console.log("ON VALUE SELECT");
+
 		e.preventDefault();
         e.gesture.preventDefault();
 
@@ -21,7 +23,7 @@ module.exports = InputView.extend({
         $(e.currentTarget).addClass("active");
 
         this.setValue({
-        	id: id,
+        	value: id,
         	name: name,
         	type: this.inputType
         });

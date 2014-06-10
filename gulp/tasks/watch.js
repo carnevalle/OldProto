@@ -3,8 +3,8 @@ var livereload = require('gulp-livereload');
 
 gulp.task('watch', function(){
     livereload.listen();
-	gulp.watch('src/javascript/**', ['browserify']).on('change', livereload.changed);
-	gulp.watch('src/less/**', ['less']).on('change', livereload.changed);
-	gulp.watch('src/images/**', ['images']).on('change', livereload.changed);
-	//livereload();
+	gulp.watch('src/javascript/**', ['browserify']);
+	gulp.watch('src/less/**', ['less']);
+	gulp.watch('src/images/**', ['images']);
+    gulp.watch('build/**').on('change', livereload.changed);
 });

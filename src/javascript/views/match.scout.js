@@ -10,7 +10,8 @@ var MatchEventsCollection = require('../collections/MatchEvents');
 var MatchEventModel = require('../models/MatchEvent');
 
 var MatchScoutTimeSliderView = require('../views/match.scout.timeslider');
-var MatchScoutPitchZonesView = require('../views/match.scout.pitch.zones');
+var MatchScoutPitchZonesView = require('../views/match.scout.input.pitch.zones');
+var MatchScoutPitchView = require('../views/match.scout.input.pitch');
 
 var ProgressButton = require('../components/progressButton.js');
 //var WallopSlider = require('wallop.slider');
@@ -59,6 +60,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         }
         ];
         this.inputIndex = 0;
+        this.currentIndex = 0;
 
         this.matcheventtype = undefined;
 
@@ -79,7 +81,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         if(this.inputIndex == this.inputTypes.length){
             this.doSaveMatchEvent();
         }else{
-            this.showNextOption();
+            this.showOption();
         }
     },
 
@@ -101,13 +103,19 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     onEventTypeSelect: function(id, name){
 
-
         this.matcheventtype = this.matchEventTypes.get(id);
         this.inputTypes = this.matcheventtype.get('input');
 
-        this.inputnavigation.show(new MatchScoutInputTypesView({
+        var view = new MatchScoutInputTypesView({
             collection: new Backbone.Collection(this.inputTypes)
-        }));
+        })
+
+        view.on('inputtype:navigate', _.bind(function(index){
+            console.log("Navigate To: ",index);
+            this.showOption(index);
+        },this))
+
+        this.inputnavigation.show(view);
 
         this.reset();
 
@@ -135,24 +143,26 @@ module.exports = Backbone.Marionette.Layout.extend({
             this.$el.find("#fnWhat").text(name);
         }
 
-        this.showNextOption();
+        this.showOption();
     },
 
     onValueSelect: function(value){
 
+        console.log("VALUE: ", value);
+
         if(value.type === "matcheventtype"){
-            this.onEventTypeSelect(value.id, value.name);
+            this.onEventTypeSelect(value.value, value.name);
         }else{
 
             this.inputnavigation.currentView.setValue(value.type, value.name);
 
-            this.values[value.type] = value.id;
-
             if(value.type === "player_owner"){
-                this.values.player_id = value.id;
+                this.values.player_id = value.value;
+            }else{
+                this.values[value.type] = value.value;
             }
 
-            this.showNextOption();
+            this.showOption();
         }
     },
 
@@ -164,25 +174,31 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         this.inputIndex = 0;
         this.inputnavigation.currentView.reset();
-        this.showNextOption();
+        this.showOption();
     },
 
-    showNextOption: function(){
+    showOption: function(index){
 
-        var inputType = this.inputTypes[this.inputIndex];
+        if(typeof index === 'undefined'){
+            this.currentIndex = this.inputIndex;
+        }else{
+            this.currentIndex = index;
+        }
+
+        var inputType = this.inputTypes[this.currentIndex];
+        console.log(inputType, this.currentIndex);
 
         if(this.inputTypes.length === 0){
             console.error("Match Event Type has no input types");
             return;
         }
 
-        if(this.inputIndex == this.inputTypes.length){
+        if(this.currentIndex == this.inputTypes.length){
             this.doSaveMatchEvent();
             return;
         }
 
         this.inputnavigation.currentView.setCurrent(inputType.slug);
-
 
         if(inputType.type == 'players'){
 
@@ -192,39 +208,30 @@ module.exports = Backbone.Marionette.Layout.extend({
                 selectedValue: this.values.player_id
             }));
 
-        }else if(inputType.type == 'pitch_position' || inputType.type == 'pitch_line'){
+        }else if(inputType.type == 'pitch_position'){
             this.showInputView(new MatchScoutPitchZonesView({
                 inputType: inputType.slug
             }));
+        }else if(inputType.type == 'pitch_line'){
+
+            this.showInputView(new MatchScoutPitchView({
+                inputType: inputType.slug,
+                selectedValue: this.values[inputType.slug]
+            }));
+
         }else if(inputType.type == 'options'){
             this.showInputView(new MatchScoutInputOptionsView({
                 collection: new Backbone.Collection(inputType.options),
                 inputType: inputType.slug
             }));
-        }
-        /*
-        if(inputType.slug == 'player_owner'){
-
+        }else if(inputType.type == 'boolean'){
             this.showInputView(new MatchScoutInputOptionsView({
-                collection: players,
                 inputType: inputType.slug,
-                selectedValue: this.values.player_id
-            }));
-
-        }else if(inputType.slug == 'player_target'){
-            this.showInputView(new MatchScoutInputOptionsView({
-                collection: players,
-                inputType: inputType.slug,
-                deactivateValue: this.values.player_id
-            }));
-        }else if(inputType.slug == 'position'){
-            this.showInputView(new MatchScoutPitchZonesView({
-                inputType: inputType.slug
+                template: require('../templates/match.scout.input.boolean')
             }));
         }
-        */
 
-        this.inputIndex++;
+        this.inputIndex = this.currentIndex + 1;
     },
 
     showInputView: function(view){
@@ -311,7 +318,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         //this.time.show(new MatchScoutTimeSliderView());
 
         //this.selector.show(new MatchScoutPitchZonesView());
-        //this.showNextOption();
+        //this.showOption();
 
         this.inputnavigation.show(new MatchScoutInputTypesView({
             collection: new Backbone.Collection()

@@ -4,6 +4,18 @@ module.exports = Backbone.Marionette.ItemView.extend({
     template: require('../templates/match.scout.input.types'),
     className: "inputcontainer",
 
+    events:{
+        'tap .btn-select':'onClick'
+    },
+
+    onClick: function(e){
+        console.log(e);
+
+        var index = e.currentTarget.dataset.index;
+
+        this.trigger('inputtype:navigate', parseInt(index));
+    },
+
     setCurrent: function(id){
         console.log('Setting Current To ', id);
         this.$el.find('.current').removeClass('current');
@@ -13,7 +25,6 @@ module.exports = Backbone.Marionette.ItemView.extend({
     },
 
     clearCurrent: function(){
-
         this.$el.find('.current').removeClass('current');
     },
 
