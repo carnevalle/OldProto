@@ -5,10 +5,12 @@ module.exports = new Backbone.Marionette.AppRouter({
     controller: new AppController(),
     appRoutes: {
         '': 'showRoot',
-        't/:id':'showTeam',
-        'm/:id':'showMatch',
-        'm/:id/scout':'scoutMatch',
-        'p/:id':'showPlayer',
+        't/:id(/)':'showTeam',
+        'm/:id(/)':'showMatch',
+        'create/match(/)':'createMatch',
+        'create/player(/)':'createPlayer',
+        'm/:id/scout(/)':'scoutMatch',
+        'p/:id(/)':'showPlayer',
         '*notFound': 'notFound'
     }
 });

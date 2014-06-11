@@ -7,7 +7,10 @@ module.exports = Backbone.Model.extend({
     },
 
     initialize: function(attributes, options){
-        this.set(this.parse(attributes));
+        console.log(attributes);
+        if(typeof attributes != "undefined"){
+            this.set(this.parse(attributes));
+        }
     },
 
     parse: function(response, options){

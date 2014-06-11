@@ -23,7 +23,7 @@ module.exports = InputView.extend({
         $(e.currentTarget).addClass("active");
 
         this.setValue({
-        	value: id,
+        	value: parseInt(id),
         	name: name,
         	type: this.inputType
         });

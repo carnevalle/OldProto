@@ -9,6 +9,10 @@ module.exports =  Backbone.Collection.extend({
     },
 
     url: function(){
+        console.log("*************************************************");
+
+        console.log(App.config.apiroot+"/matches/"+this.matchid+"/events");
+
         return App.config.apiroot+"/matches/"+this.matchid+"/events";
     }
 });

@@ -1,5 +1,4 @@
 var Backbone = require('backbone.marionette')
-
 var InputView = require('../views/match.scout.input');
 
 module.exports = InputView.extend({
@@ -9,6 +8,12 @@ module.exports = InputView.extend({
         'tap .fnValueSelect':'onValueSelect'
     },
 
+    initialize: function(options){
+
+        this.rows = 3;
+        this.columns = 5;
+    },
+
     onValueSelect: function(e){
         e.preventDefault();
         e.gesture.preventDefault();
@@ -16,11 +21,23 @@ module.exports = InputView.extend({
         var id = e.currentTarget.dataset.value;
         var name = e.currentTarget.dataset.name;
 
+        var row = e.currentTarget.dataset.row;
+        var column = e.currentTarget.dataset.column;
+
         this.$el.find(".fnValueSelect").removeClass("active");
         $(e.currentTarget).addClass("active");
 
+        var x = ((parseInt(column) + 0.5)/this.columns)*100;
+        var y = ((parseInt(row) + 0.5)/this.rows)*100;
+
+        // console.log( ((x-0.5)/this.columns) * 100, ((y-0.5)/this.rows)*100);
+        console.log(x,y);
+
         this.setValue({
-            value: id,
+            value: {
+                position_start_x: x,
+                position_start_y: y
+            },
             name: name,
             type: this.inputType
         });
@@ -28,8 +45,6 @@ module.exports = InputView.extend({
 
     render: function(){
         var zones = this.buildZones();
-
-        console.log("Zones: ",zones);
 
         this.$el.html(this.template({zones: zones}));
     },
@@ -39,9 +54,9 @@ module.exports = InputView.extend({
         var zoneCounter = 1;
         var zones = [];
 
-        for(var c = 0; c < 5; c++){
+        for(var c = 0; c < this.columns; c++){
             //var cols = [];
-            for(var r = 0; r < 3; r++){
+            for(var r = 0; r < this.rows; r++){
 
                 if(zones[r] === undefined){
                     zones[r] = [];
@@ -49,7 +64,9 @@ module.exports = InputView.extend({
 
                 zones[r].push({
                     name: "Zone "+zoneCounter,
-                    id: zoneCounter
+                    id: zoneCounter,
+                    row: r,
+                    column: c
                 });
                 zoneCounter++;
             }

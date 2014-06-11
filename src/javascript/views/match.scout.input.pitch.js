@@ -14,19 +14,7 @@ module.exports = InputView.extend({
 
     initialize: function(options){
 
-        console.log("initialize");
 
-        console.log(options);
-
-
-        if(typeof options.selectedValue != 'undefined'){
-            this.startpos = options.selectedValue.startpos;
-            this.endpos = options.selectedValue.endpos;
-            this.drawOnShow = true;
-        }else{
-            this.startpos = this.getPosition(0,0);
-            this.endpos = this.getPosition(0,0);
-        }
     },
 
     onTap: function(e){
@@ -38,14 +26,6 @@ module.exports = InputView.extend({
         if(e.type === "touch"){
 
             this.startpos = pos;
-
-            /*
-            if(typeof this.startpos === 'undefined'){
-                this.startpos = pos;
-            }else{
-                this.endpos = pos;
-            }
-            */
 
         }else if(e.type === "drag"){
 
@@ -66,8 +46,10 @@ module.exports = InputView.extend({
                 this.setValue({
                     name: normalizedStartPos.x+","+normalizedStartPos.y+" => "+normalizedSEndPos.x+","+normalizedSEndPos.y,
                     value:{
-                        startpos: this.startpos,
-                        endpos: this.endpos
+                        position_start_x: this.startpos.x,
+                        position_start_y: this.startpos.y,
+                        position_end_x: this.endpos.x,
+                        position_end_y: this.endpos.y
                     },
                     type: this.inputType
                 });
@@ -86,7 +68,7 @@ module.exports = InputView.extend({
     },
 
     draw: function(){
-        this.layer.clear();
+        this.layer.removeChildren();
 
         this.line = new Kinetic.Line({
             points: [this.startpos.x,this.startpos.y,this.endpos.x,this.endpos.y],
@@ -120,13 +102,25 @@ module.exports = InputView.extend({
     },
 
     onShow: function(){
+
+        this.width = this.$el.width();
+        this.height = 400;
+
+        if(typeof this.options.selectedValue != 'undefined'){
+            this.startpos = this.convertNormalizedPosition(this.options.selectedValue.position_start_x, this.options.selectedValue.position_start_y);
+            this.endpos = this.convertNormalizedPosition(this.options.selectedValue.position_end_x, this.options.selectedValue.position_end_y);
+            this.drawOnShow = true;
+        }else{
+            this.startpos = this.getPosition(0,0);
+            this.endpos = this.getPosition(0,0);
+        }
+
         this.stage = new Kinetic.Stage({
             // container: this.el,
             container: this.$el.find('#pitchcanvas')[0],
-            width: this.$el.width(),
-            height: 400
+            width: this.width,
+            height: this.height
         });
-
 
         this.layer = new Kinetic.Layer();
         this.stage.add(this.layer);
@@ -145,6 +139,13 @@ module.exports = InputView.extend({
         return {
             x: x,
             y: y
+        }
+    },
+
+    convertNormalizedPosition: function(x, y){
+        return {
+            x: this.width * x / 100,
+            y: this.height * y / 100
         }
     },
 

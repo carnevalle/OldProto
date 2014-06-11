@@ -16,7 +16,7 @@ pace.start();
 var Backbone = require("backbone.marionette");
 
 Backbone.hammerOptions = {
-  preventDefault: true,
+  //preventDefault: true,
   dragBlockVertical: true
 };
 

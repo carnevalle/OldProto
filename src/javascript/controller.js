@@ -53,6 +53,16 @@ module.exports = Backbone.Marionette.Controller.extend({
             }
         })
     },
+
+    createMatch: function(){
+        var MatchCreateView = require('./views/match.create');
+
+        App.layout.main.show(new MatchCreateView({
+            model: new Match()
+        }));
+
+    },
+
     showMatch: function(id){
         console.log('showMatch: ', id);
 
@@ -106,6 +116,11 @@ module.exports = Backbone.Marionette.Controller.extend({
         })
         */
     },
+
+    createPlayer: function(){
+        console.log("Create Player");
+    },
+
     showPlayer: function(id){
         console.log('showPlayer: ', id);
 

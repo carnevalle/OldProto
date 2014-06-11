@@ -1,3 +1,5 @@
+<h2 id="input-title" style="text-align: center; color: black"></h2>
+
 <div class="col-sm-12">
     <div class="pitch zones">
         <div class="table">
@@ -5,7 +7,7 @@
             {{#zones}}
                 <div class="tr">
                     {{#this}}
-                        <div class="td zone fnValueSelect" data-value="{{id}}" data-name="{{name}}">
+                        <div class="td zone fnValueSelect" data-value="{{id}}" data-row="{{row}}" data-column="{{column}}" data-name="{{name}}">
                             {{name}}
                         </div>
                     {{/this}}

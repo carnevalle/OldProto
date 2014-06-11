@@ -40,10 +40,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.players = options.players;
         this.matchEventTypes = options.matchEventTypes;
 
-        this.values = {
-            player_id: undefined,
-            match_event_type_id: undefined
-        }
+        this.values = {};
 
         this.inputTypes = [
         {
@@ -64,11 +61,10 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         this.matcheventtype = undefined;
 
-        this.matchevent = new MatchEventModel({match_id: this.model.get("id")});
         this.matchevents = new MatchEventsCollection({}, {match_id: this.model.get("id")});
         this.matchevents.fetch();
         this.matchevents.on("add", function(matchevent) {
-            //console.log("Adding Event: ", matchevent);
+            console.log("Adding Event: ", matchevent);
         });
     },
 
@@ -118,32 +114,11 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.inputnavigation.show(view);
 
         this.reset();
+        this.showOption();
 
         this.$el.find('.fnSelectEventType').removeClass('current');
         this.$el.find('.eventtype .name').text(name);
 
-    },
-
-    onSelectValue: function(e){
-        e.preventDefault();
-        e.gesture.preventDefault();
-
-        var type = e.currentTarget.dataset.type;
-        var id = e.currentTarget.dataset.value;
-        var name = e.currentTarget.dataset.name;
-
-        this.values[type] = id;
-
-        this.$el.find(".fnSelectable").removeClass("active");
-        $(e.currentTarget).addClass("active");
-
-        if(type === "player_id"){
-            this.$el.find("#fnWho").text(name);
-        }else if(type === "match_event_type_id"){
-            this.$el.find("#fnWhat").text(name);
-        }
-
-        this.showOption();
     },
 
     onValueSelect: function(value){
@@ -155,12 +130,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         }else{
 
             this.inputnavigation.currentView.setValue(value.type, value.name);
-
-            if(value.type === "player_owner"){
-                this.values.player_id = value.value;
-            }else{
-                this.values[value.type] = value.value;
-            }
+            this.values[value.type] = value.value;
 
             this.showOption();
         }
@@ -168,13 +138,12 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     reset: function(){
 
-        this.values = {
-            player_id: undefined
-        }
+        this.values = {};
 
         this.inputIndex = 0;
         this.inputnavigation.currentView.reset();
-        this.showOption();
+        //this.showOption();
+
     },
 
     showOption: function(index){
@@ -186,7 +155,6 @@ module.exports = Backbone.Marionette.Layout.extend({
         }
 
         var inputType = this.inputTypes[this.currentIndex];
-        console.log(inputType, this.currentIndex);
 
         if(this.inputTypes.length === 0){
             console.error("Match Event Type has no input types");
@@ -205,31 +173,38 @@ module.exports = Backbone.Marionette.Layout.extend({
             this.showInputView(new MatchScoutInputOptionsView({
                 collection: this.players,
                 inputType: inputType.slug,
+                title: inputType.title,
                 selectedValue: this.values.player_id
             }));
 
         }else if(inputType.type == 'pitch_position'){
             this.showInputView(new MatchScoutPitchZonesView({
-                inputType: inputType.slug
+                inputType: inputType.slug,
+                title: inputType.title
             }));
         }else if(inputType.type == 'pitch_line'){
 
             this.showInputView(new MatchScoutPitchView({
                 inputType: inputType.slug,
+                title: inputType.title,
                 selectedValue: this.values[inputType.slug]
             }));
 
         }else if(inputType.type == 'options'){
             this.showInputView(new MatchScoutInputOptionsView({
                 collection: new Backbone.Collection(inputType.options),
+                title: inputType.title,
                 inputType: inputType.slug
             }));
         }else if(inputType.type == 'boolean'){
             this.showInputView(new MatchScoutInputOptionsView({
                 inputType: inputType.slug,
+                title: inputType.title,
                 template: require('../templates/match.scout.input.boolean')
             }));
         }
+
+        this.$el.find("#input-title").text(inputType.title);
 
         this.inputIndex = this.currentIndex + 1;
     },
@@ -244,29 +219,23 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.selector.currentView.on("value:selected", _.bind(this.onValueSelect,this));
     },
 
-    onSelectZone: function(e){
-        e.preventDefault();
-        e.gesture.preventDefault();
-
-        this.$el.find(".fnSelectable").removeClass("active");
-        $(e.currentTarget).addClass("active");
-
-        var id = e.currentTarget.dataset.value;
-
-        this.saveMatchEvent();
-
-        this.$el.find("#fnWhere").text(e.currentTarget.dataset.name);
-    },
-
     saveMatchEvent: function(){
 
         console.log("SAVE MATCH EVENT!");
-
-        this.matchevent.set("player_id", this.values.player_id);
-        this.matchevent.set("match_event_type_id", this.values.match_event_type_id);
-        this.matchevent.set("time", 30);
-
         console.log(this.values);
+
+        var matchevent = new MatchEventModel({match_id: this.model.get("id")});
+        matchevent.set("match_event_type_id", this.matcheventtype.id);
+
+        _(this.values).each(function(value, key){
+            if(typeof value === 'object'){
+                matchevent.set(value);
+            }else{
+                matchevent.set(key, value);
+            }
+        });
+
+        console.log(matchevent.toJSON());
 
         this.$el.find("#btn-save").addClass('state-success');
 
@@ -276,8 +245,10 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         App.trigger('save:matchevent', 'test');
 
-        /*
-        this.matchevents.create(this.matchevent,{
+        this.doSelectEventType();
+
+
+        this.matchevents.create(matchevent,{
             wait: true,
             success: function(event){
                 console.log("EVENT IS SAVED! ", event);
@@ -285,6 +256,7 @@ module.exports = Backbone.Marionette.Layout.extend({
             }
         });
 
+        /*
         this.matchevent = new MatchEventModel({match_id: this.model.get("id")});
         this.$el.find(".fnSelectable").removeClass("active");
         console.log("matchevents: ", this.matchevents.toJSON());
