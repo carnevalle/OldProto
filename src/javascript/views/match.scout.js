@@ -64,7 +64,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.matchevents = new MatchEventsCollection({}, {match_id: this.model.get("id")});
         this.matchevents.fetch();
         this.matchevents.on("add", function(matchevent) {
-            console.log("Adding Event: ", matchevent);
+            //console.log("Adding Event: ", matchevent);
         });
     },
 
@@ -95,6 +95,8 @@ module.exports = Backbone.Marionette.Layout.extend({
             inputType: 'matcheventtype',
             selectedValue: this.values.match_event_type_id
         }));
+
+        this.$el.find("#input-title").text('Hvilken event vil du registrere?');
     },
 
     onEventTypeSelect: function(id, name){
@@ -246,7 +248,6 @@ module.exports = Backbone.Marionette.Layout.extend({
         App.trigger('save:matchevent', 'test');
 
         this.doSelectEventType();
-
 
         this.matchevents.create(matchevent,{
             wait: true,

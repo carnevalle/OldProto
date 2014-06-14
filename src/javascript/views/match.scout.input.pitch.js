@@ -19,6 +19,8 @@ module.exports = InputView.extend({
 
     onTap: function(e){
 
+        e.gesture.preventDefault();
+
         var pos = this.getPosition(e.gesture.center.pageX, e.gesture.center.pageY);
 
         this.showEndPin = false;

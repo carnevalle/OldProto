@@ -36,26 +36,25 @@ module.exports = Backbone.Marionette.ItemView.extend({
             var awayteam = this.$el.find("#awayteam").val();
 
 
-            this.model.set({
-                hometeam: hometeam,
-                awayteam: awayteam
-            })
+            // this.model.set({
+            //     hometeam: hometeam,
+            //     awayteam: awayteam
+            // })
 
-            console.log(this.model.toJSON());
+            // console.log(this.model.toJSON());
 
             var _this = this;
 
-            /*
-            match.save({
+            this.model.save({
                 hometeam: hometeam,
-                awayteam: awayteam,
-                team_id: this.model.get('id')
+                awayteam: awayteam
             }, {
                 success: function(){
-                    _this.model.fetch();
+                    console.log("Model Is Saved!");
+                    App.router.navigate('#m/' + _this.model.get('id'), {trigger: true})
+                    //_this.model.fetch();
                 }
             });
-            */
 
             this.$el.find("#hometeam").val('');
             this.$el.find("#awayteam").val('');

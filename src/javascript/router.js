@@ -4,7 +4,7 @@ AppController = require('./controller');
 module.exports = new Backbone.Marionette.AppRouter({
     controller: new AppController(),
     appRoutes: {
-        '': 'showRoot',
+        '': 'showIndex',
         't/:id(/)':'showTeam',
         'm/:id(/)':'showMatch',
         'create/match(/)':'createMatch',

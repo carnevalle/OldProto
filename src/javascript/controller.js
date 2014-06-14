@@ -12,9 +12,6 @@ var MatchCollection = require('./collections/Matches');
 var MatchEventCollection = require('./collections/MatchEvents');
 var MatchEventTypeCollection = require('./collections/MatchEventTypes');
 
-
-console.log(Backbone);
-
 module.exports = Backbone.Marionette.Controller.extend({
     showRoot: function(){
         console.log("ShowRoot");
@@ -35,6 +32,19 @@ module.exports = Backbone.Marionette.Controller.extend({
     },
     showIndex: function(){
         console.log('showIndex');
+
+        var matches = new MatchCollection();
+        var IndexView = require('./views/index');
+
+        $.when(matches.fetch())
+        .done(function(){
+
+            console.log(App.layout);
+
+            App.layout.main.show(new IndexView({
+                collection: matches
+            }));
+        });
     },
     showTeam: function(id){
         console.log('showTeam: ', id);

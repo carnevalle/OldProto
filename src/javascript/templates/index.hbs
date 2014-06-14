@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Mine Kampe</h1>
+        <ul class="items list-unstyled">
+
+            {{#each items}}
+                <a href="{{url url}}" class="btn btn-block btn-large">{{hometeam}}-{{awayteam}}</a>
+            {{/each}}
+
+        </ul>
+
+        <hr>
+
+        <a href="#/create/match" class="btn btn-block btn-large">Opret kamp</a>
+    </div>
+</div>
