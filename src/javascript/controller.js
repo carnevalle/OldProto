@@ -98,6 +98,8 @@ module.exports = Backbone.Marionette.Controller.extend({
         });
 
         var players = new PlayerCollection();
+        console.log(players);
+
         var matchEventTypes = new MatchEventTypeCollection();
 
         //players.fetch();
@@ -107,6 +109,8 @@ module.exports = Backbone.Marionette.Controller.extend({
 
         $.when(match.fetch(), matchEventTypes.fetch(), players.fetch())
         .done(function(){
+
+            players = players.fromNation('England');
 
             App.layout.main.show(new MatchScoutView({
                 model: match,

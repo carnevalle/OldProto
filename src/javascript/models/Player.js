@@ -7,6 +7,8 @@ module.exports = Backbone.Model.extend({
     },
 
     parse: function(response, options){
+
+        response.number = parseInt(response.number);
         response.url = "/p/"+response.id;
         return response;
     },
