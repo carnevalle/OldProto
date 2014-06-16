@@ -20,6 +20,7 @@ Backbone.hammerOptions = {
   dragBlockVertical: true
 };
 
+
 // We require Backbone.Hammer to modify Backbone.View
 //require('backbone.hammer');
 
