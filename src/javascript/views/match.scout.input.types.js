@@ -2,10 +2,10 @@ var Backbone = require('backbone.marionette')
 
 module.exports = Backbone.Marionette.ItemView.extend({
     template: require('../templates/match.scout.input.types'),
-    className: "inputcontainer",
+    className: "inputcontainer row",
 
     events:{
-        'tap .btn-select':'onClick'
+        'tap .btn':'onClick'
     },
 
     onClick: function(e){
@@ -18,14 +18,14 @@ module.exports = Backbone.Marionette.ItemView.extend({
 
     setCurrent: function(id){
         console.log('Setting Current To ', id);
-        this.$el.find('.current').removeClass('current');
+        this.$el.find('.active').removeClass('active');
         var el = this.$el.find('#input-'+id);
         el.removeClass('pending');
-        el.addClass('current');
+        el.addClass('active');
     },
 
     clearCurrent: function(){
-        this.$el.find('.current').removeClass('current');
+        this.$el.find('.active').removeClass('active');
     },
 
     setValue: function(id, value){
@@ -36,7 +36,7 @@ module.exports = Backbone.Marionette.ItemView.extend({
     },
 
     reset: function(){
-        var el = this.$el.find('.btn-select');
+        var el = this.$el.find('.btn');
         el.addClass('pending');
         el.find('.name').html('&nbsp;');
     }

@@ -83,6 +83,7 @@
     "browsernizr": "^1.0.2",
     "coffeeify": "~0.6.0",
     "connect": "~2.14.3",
+    "d3": "^3.4.8",
     "gulp": "~3.6.0",
     "gulp-changed": "~0.3.0",
     "gulp-clean": "^0.2.4",

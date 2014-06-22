@@ -20,3 +20,24 @@
         margin-bottom: 5px;
     }
 }
+
+.clickable{
+    cursor: pointer;
+}
+
+.unclickable{
+    cursor: default;
+    pointer-events: none;
+}
+
+.unselectable{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.scrollable{
+    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+}

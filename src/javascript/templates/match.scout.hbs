@@ -1,34 +1,51 @@
-<div class="row events">
-    {{!-- <div class="time">
-        <div class="btn-select">
-            <div class="title">Tidspunkt</div>
-            <div class="name">46'</div>
-        </div>
-    </div> --}}
-    <div class="eventtype">
-        <div class="btn-select fnSelectEventType">
-            <div class="title">Hvad</div>
-            <div class="name"></div>
-        </div>
+<div class="element scoreboard">
+    <div class="table">
+        <div class="td hometeam">{{hometeam}}</div>
+        <div class="td score">0 - 0</div>
+        <div class="td awayteam">{{awayteam}}</div>
     </div>
-    <div id="match-inputtypes" class="eventinput">
-        <div class="inputcontainer">
+</div>
 
+<div class="element timeslider">
+    <div class="table">
+        <div class="td icon"><i class="fa fa-clock-o fa-2x"></i></div>
+        <div class="td slider">
+            <div class="meter">
+                <span style="width: 40%"></span>
+            </div>
+        </div>
+        <div class="td time">79&prime;</div>
+    </div>
+</div>
+
+<h2 id="input-title"></h2>
+
+<div class="row events">
+    <div class="col-xs-12">
+        <div class="eventtype">
+            <div class="btn btn-block btn-square fnSelectEventType">
+                <div class="title">Hvad</div>
+                <div class="name"></div>
+            </div>
+        </div>
+        <div id="match-inputtypes" class="eventinput">
+            <div class="inputcontainer">
+
+            </div>
         </div>
     </div>
 </div>
 
-<h2 id="input-title" style="text-align: center; color: white"></h2>
-<div id="match-selector" class="row userinput">
+<div id="match-selector" class="userinput">
 
 </div>
 
 <div class="row footer">
-    <div class="col-xs-2">
-        <button id="btn-reset" class="progress-button full" data-style="move-up" data-horizontal>Fortryd</button>
-    </div>
-    <div class="col-xs-10">
-        <button id="btn-save" class="progress-button full" data-style="fill" data-horizontal>Gem</button>
+    {{!-- <div class="col-sm-2 col-xs-4">
+        <a id="btn-reset" class="btn btn-block" data-style="move-up" data-horizontal>Fortryd</a>
+    </div> --}}
+    <div class="col-sm-12">
+        <a id="btn-save" class="btn btn-block" data-style="fill" data-horizontal>Gem</a>
     </div>
     {{!-- <div class="col-xs-2">
         <button id="btn-skip" class="progress-button full" data-style="fill" data-horizontal>Næste</button>

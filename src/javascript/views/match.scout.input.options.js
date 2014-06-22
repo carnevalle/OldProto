@@ -4,7 +4,7 @@ var InputView = require('../views/match.scout.input');
 
 module.exports = InputView.extend({
     template: require('../templates/match.scout.input.options'),
-    className: "options",
+    className: "options row",
 
     hammerEvents: {
     	'tap .fnValueSelect':'onValueSelect'

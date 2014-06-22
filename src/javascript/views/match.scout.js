@@ -42,20 +42,7 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         this.values = {};
 
-        this.inputTypes = [
-        {
-            id: 'pitch_position',
-            name: 'Position'
-        },
-        {
-            id: 'player_owner',
-            name: 'Spiller Afsender'
-        },
-        {
-            id: 'player_target',
-            name: 'Spiller Modtager'
-        }
-        ];
+        this.inputTypes = [];
         this.inputIndex = 0;
         this.currentIndex = 0;
 
@@ -87,7 +74,7 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     doSelectEventType: function(e){
 
-        this.$el.find('.fnSelectEventType').addClass('current');
+        this.$el.find('.fnSelectEventType').addClass('active');
         this.inputnavigation.currentView.clearCurrent();
 
         this.showInputView(new MatchScoutInputOptionsView({
@@ -118,7 +105,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.reset();
         this.showOption();
 
-        this.$el.find('.fnSelectEventType').removeClass('current');
+        this.$el.find('.fnSelectEventType').removeClass('active');
         this.$el.find('.eventtype .name').text(name);
 
     },
@@ -297,6 +284,12 @@ module.exports = Backbone.Marionette.Layout.extend({
             collection: new Backbone.Collection()
         }));
 
+    },
+
+    onShow: function(){
+        // this.showInputView(new MatchScoutPitchView({
+        //     title: 'L{L{L'
+        // }));
 
         this.doSelectEventType();
     }

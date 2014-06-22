@@ -17,9 +17,8 @@ var Backbone = require("backbone.marionette");
 
 Backbone.hammerOptions = {
   //preventDefault: true,
-  dragBlockVertical: true
+  //dragBlockVertical: true
 };
-
 
 // We require Backbone.Hammer to modify Backbone.View
 //require('backbone.hammer');
