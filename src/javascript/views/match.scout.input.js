@@ -3,7 +3,6 @@ var Backbone = require('backbone.marionette')
 module.exports = Backbone.Marionette.ItemView.extend({
     constructor: function(options){
 
-        console.l
     	options = options || {};
 
 		this.value = undefined;

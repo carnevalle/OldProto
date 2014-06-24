@@ -1,0 +1,42 @@
+<div class="row">
+<h2 style="margin-bottom: 0; margin-top: 5px; color: white">Målmænd</h2>
+{{#where items "position" "GK"}}
+    <div class="col-sm-4 col-xs-6">
+        <div class="btn btn-green btn-block btn-square fnValueSelect" data-value="{{id}}" data-name="{{name}}">{{#if number}}{{number}}. {{/if}}{{name}}</div>
+    </div>
+{{/where}}
+</div>
+
+<div class="row">
+<h2 style="margin-bottom: 0; margin-top: 5px; color: white">Forsvar</h2>
+{{#where items "position" "DF"}}
+    <div class="col-sm-4 col-xs-6">
+        <div class="btn btn-green btn-block btn-square fnValueSelect" data-value="{{id}}" data-name="{{name}}">{{#if number}}{{number}}. {{/if}}{{name}}</div>
+    </div>
+{{/where}}
+</div>
+
+<div class="row">
+<h2 style="margin-bottom: 0; margin-top: 5px; color: white">Midtbane</h2>
+{{#where items "position" "MF"}}
+    <div class="col-sm-4 col-xs-6">
+        <div class="btn btn-green btn-block btn-square fnValueSelect" data-value="{{id}}" data-name="{{name}}">{{#if number}}{{number}}. {{/if}}{{name}}</div>
+    </div>
+{{/where}}
+</div>
+
+<div class="row">
+<h2 style="margin-bottom: 0; margin-top: 5px; color: white">Angreb</h2>
+{{#where items "position" "FW"}}
+    <div class="col-sm-4 col-xs-6">
+        <div class="btn btn-green btn-block btn-square fnValueSelect" data-value="{{id}}" data-name="{{name}}">{{#if number}}{{number}}. {{/if}}{{name}}</div>
+    </div>
+{{/where}}
+</div>
+
+{{!-- {{#each items}}
+    <div class="col-sm-4 col-xs-6">
+        <div class="btn btn-{{position}} btn-block btn-square fnValueSelect" data-value="{{id}}" data-name="{{name}}">{{#if number}}{{number}}. {{/if}}{{name}}</div>
+    </div>
+{{/each}}
+ --}}

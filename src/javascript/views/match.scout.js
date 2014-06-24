@@ -1,6 +1,7 @@
 var Backbone = require('backbone.marionette');
 
 var MatchScoutInputOptionsView = require('../views/match.scout.input.options');
+var MatchScoutInputPlayersView = require('../views/match.scout.input.players');
 var MatchScoutInputTypesView = require('../views/match.scout.input.types');
 
 //var PlayersCollection = require('../collections/Players');
@@ -69,7 +70,9 @@ module.exports = Backbone.Marionette.Layout.extend({
     },
 
     doReset: function(){
+        console.log('DO RESET!!');
         this.reset();
+        this.doSelectEventType();
     },
 
     doSelectEventType: function(e){
@@ -90,6 +93,8 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         this.matcheventtype = this.matchEventTypes.get(id);
         this.inputTypes = this.matcheventtype.get('input');
+
+        console.log("inputTypes", this.inputTypes);
 
         var view = new MatchScoutInputTypesView({
             collection: new Backbone.Collection(this.inputTypes)
@@ -159,7 +164,7 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         if(inputType.type == 'players'){
 
-            this.showInputView(new MatchScoutInputOptionsView({
+            this.showInputView(new MatchScoutInputPlayersView({
                 collection: this.players,
                 inputType: inputType.slug,
                 title: inputType.title,
@@ -189,6 +194,7 @@ module.exports = Backbone.Marionette.Layout.extend({
             this.showInputView(new MatchScoutInputOptionsView({
                 inputType: inputType.slug,
                 title: inputType.title,
+                className: 'pitch',
                 template: require('../templates/match.scout.input.boolean')
             }));
         }
@@ -254,25 +260,9 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     onRender: function(){
 
-            new ProgressButton( this.$el.find("#btn-save")[0], {
-                statusTime: 500,
-                callback : function( instance ) {
-                    instance._stop(1);
-                    /*
-                    var progress = 0,
-                        interval = setInterval( function() {
-                            progress = Math.min( progress + Math.random() * 0.1, 1 );
-                            instance._setProgress( progress );
-
-                            if( progress === 1 ) {
-                                instance._stop(1);
-                                clearInterval( interval );
-                            }
-                        }, 30 );
-
-                    */
-                }
-            } );
+        // new ProgressButton( this.$el.find("#btn-save")[0], {
+        //     statusTime: 500
+        // } );
 
 
         //this.time.show(new MatchScoutTimeSliderView());

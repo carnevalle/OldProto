@@ -1,7 +1,6 @@
 var Backbone = require('backbone.marionette')
 
 var InputView = require('../views/match.scout.input');
-var Kinetic = require('kinetic');
 var d3 = require('d3');
 
 module.exports = InputView.extend({
@@ -93,13 +92,11 @@ module.exports = InputView.extend({
 
     onShow: function(){
 
-        console.log("OnShow!");
-        console.log(this.$toucharea.width(), this.$toucharea.innerWidth(), this.$toucharea.outerWidth(true), this.$toucharea.css( "width" ), this.$toucharea.offset());
+        // console.log("OnShow!");
+        // console.log(this.$toucharea.width(), this.$toucharea.innerWidth(), this.$toucharea.outerWidth(true), this.$toucharea.css( "width" ), this.$toucharea.offset());
 
         this.width = this.$toucharea.outerWidth();//-15;
-        this.height = this.width * 0.5;
-
-        console.log(this.width, this.height);
+        this.height = this.width * 0.65;
 
         this.$toucharea.height(this.height);
 
@@ -122,41 +119,11 @@ module.exports = InputView.extend({
             .attr("x1", 0)
             .attr("y1", 0)
             .attr("x2", 0)
-            .attr("y2", 0);
+            .attr("y2", 0)
+            .style("stroke", "white")
+            .style("stroke-dasharray", "10px")
+            .style("stroke-width", "2px");
 
-
-        // function mousedown() {
-        //     var m = d3.mouse(this);
-        //     line = vis.append("line")
-        //         .attr("x1", m[0])
-        //         .attr("y1", m[1])
-        //         .attr("x2", m[0])
-        //         .attr("y2", m[1]);
-
-        //     vis.on("mousemove", mousemove);
-        // }
-
-        // function mousemove() {
-        //     var m = d3.mouse(this);
-        //     line.attr("x2", m[0])
-        //         .attr("y2", m[1]);
-        // }
-
-        // function mouseup() {
-        //     vis.on("mousemove", null);
-        // }
-
-        /*
-        this.stage = new Kinetic.Stage({
-            // container: this.el,
-            container: this.$canvas[0],
-            width: this.width,
-            height: this.height
-        });
-
-        this.layer = new Kinetic.Layer();
-        this.stage.add(this.layer);
-        */
 
         if(this.drawOnShow){
             this.draw();

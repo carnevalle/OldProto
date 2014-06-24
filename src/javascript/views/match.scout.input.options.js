@@ -23,7 +23,7 @@ module.exports = InputView.extend({
         $(e.currentTarget).addClass("active");
 
         this.setValue({
-        	value: parseInt(id),
+            value: (isNaN(id)) ? (id === "true") : +id,
         	name: name,
         	type: this.inputType
         });
@@ -33,6 +33,13 @@ module.exports = InputView.extend({
 
         this.$el.find('*[data-value="'+this.options.selectedValue+'"]').addClass("active");
     	this.$el.find('*[data-value="'+this.options.deactivateValue+'"]').addClass("inactive").removeClass("fnValueSelect");
+        this.$toucharea = this.$el.find(".toucharea");
+    },
 
-    }
+    onShow: function(){
+
+        this.width = this.$toucharea.outerWidth();
+        this.height = this.width * 0.65;
+        this.$toucharea.height(this.height);
+    },
 });

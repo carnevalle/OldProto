@@ -5,6 +5,8 @@
 @import 'utils.less';
 @import 'font-awesome.less';
 @import 'match.less';
+@import 'progressbutton.less';
+
 /*
 @import 'typography.less';
 @import 'pace.less';
@@ -15,13 +17,26 @@
 @import 'app.less';
 */
 
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon/icomoon.eot');
+    src:url('../fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon/icomoon.woff') format('woff'),
+        url('../fonts/icomoon/icomoon.svg#icomoon') format('svg');
+}
+
 @touchheight: 52px;
 
+/*
 line {
     stroke: white;
     stroke-width: 4px;
     stroke-dasharray: 10px;
 }
+*/
 
 body{
     background-color: @background_color;
@@ -75,11 +90,11 @@ li{
 }
 
 .positive{
-    background-color: @secondary_color !important;
+    background-color: hsla(hue(@secondary_color), saturation(@secondary_color), lightness(@secondary_color), 0.7) !important;
 }
 
 .negative{
-    background-color: #d75551 !important;
+    background-color: hsla(hue(@red), saturation(@red), lightness(@red), 0.7) !important;
 }
 
 // ----------------------
@@ -102,7 +117,7 @@ li{
     vertical-align: middle;
     white-space: nowrap;
 
-    line-height: 1.42857143;
+    //line-height: 1.42857143;
     font-size: 14px;
 
     -webkit-box-shadow: 1px 1px 0px 0px darken(@element_bg_default,10%);
@@ -113,6 +128,10 @@ li{
 
     &.btn-green{
         background-color: @secondary_color;
+    }
+
+    &.btn-reset{
+        background-color: @red;
     }
 
     &:hover{

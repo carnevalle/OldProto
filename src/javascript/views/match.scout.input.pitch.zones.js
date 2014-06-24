@@ -56,7 +56,7 @@ module.exports = InputView.extend({
     onShow: function(){
 
         this.width = this.$toucharea.outerWidth();
-        this.height = this.width * 0.5;
+        this.height = this.width * 0.65;
         this.$toucharea.height(this.height);
     },
 
