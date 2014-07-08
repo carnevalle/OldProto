@@ -7,14 +7,22 @@ module.exports = Backbone.Marionette.ItemView.extend({
 
 
     onShow: function(){
-        this.width = this.$el.find(".toucharea").outerWidth();
-        this.height = this.width * 0.65;
-
-        this.$el.find(".toucharea").height(this.height);
+        this.resizePitch();
 
         this.vis = d3.select(".toucharea").append("svg");
 
         this.renderMatchEvents();
+
+        $(window).resize(_.debounce(_.bind(function(){
+            this.resizePitch();
+        },this), 150));
+    },
+
+    resizePitch: function(){
+        this.width = this.$el.find(".toucharea").outerWidth(true);
+        this.height = this.width * 0.65;
+
+        this.$el.find(".toucharea").height(this.height);
     },
 
     renderMatchEvents: function(){
@@ -31,7 +39,7 @@ module.exports = Backbone.Marionette.ItemView.extend({
         //     .style("fill", "#2c3e50");
 
         _(matchevents).each(_.bind(function(e){
-            console.log(e);
+            //console.log(e);
 
             if(!e.position_end_x && !e.position_end_y){
                 var circle = this.vis.append("circle")
@@ -74,7 +82,7 @@ module.exports = Backbone.Marionette.ItemView.extend({
                 .attr("y2", e.position_end_y+"%")
                 .attr("marker-end", "url(#arrow)")
                 .style("stroke", "#2bb673")
-                .style("stroke-width", "2px");
+                .style("stroke-width", "3px");
 
                 if(!e.success){
                     line.style("stroke", "#d75551");

@@ -14,6 +14,10 @@ module.exports = InputView.extend({
     },
 
     initialize: function(options){
+
+        $(window).resize(_.debounce(_.bind(function(){
+            this.resizePitch();
+        },this), 150));
     },
 
     onTap: function(e){
@@ -95,10 +99,7 @@ module.exports = InputView.extend({
         // console.log("OnShow!");
         // console.log(this.$toucharea.width(), this.$toucharea.innerWidth(), this.$toucharea.outerWidth(true), this.$toucharea.css( "width" ), this.$toucharea.offset());
 
-        this.width = this.$toucharea.outerWidth();//-15;
-        this.height = this.width * 0.65;
-
-        this.$toucharea.height(this.height);
+        this.resizePitch();
 
         if(typeof this.options.selectedValue != 'undefined'){
             this.startpos = this.convertNormalizedPosition(this.options.selectedValue.position_start_x, this.options.selectedValue.position_start_y);
@@ -130,6 +131,13 @@ module.exports = InputView.extend({
         }
 
 
+    },
+
+    resizePitch: function(){
+        this.width = this.$toucharea.outerWidth();//-15;
+        this.height = this.width * 0.65;
+
+        this.$toucharea.height(this.height);
     },
 
     getPosition: function(x, y){
