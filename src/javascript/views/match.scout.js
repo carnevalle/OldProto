@@ -1,6 +1,7 @@
 var Backbone = require('backbone.marionette');
 
 var MatchScoutInputOptionsView = require('../views/match.scout.input.options');
+var MatchScoutInputPlayersView = require('../views/match.scout.input.players');
 var MatchScoutInputTypesView = require('../views/match.scout.input.types');
 
 //var PlayersCollection = require('../collections/Players');
@@ -42,20 +43,7 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         this.values = {};
 
-        this.inputTypes = [
-        {
-            id: 'pitch_position',
-            name: 'Position'
-        },
-        {
-            id: 'player_owner',
-            name: 'Spiller Afsender'
-        },
-        {
-            id: 'player_target',
-            name: 'Spiller Modtager'
-        }
-        ];
+        this.inputTypes = [];
         this.inputIndex = 0;
         this.currentIndex = 0;
 
@@ -82,12 +70,14 @@ module.exports = Backbone.Marionette.Layout.extend({
     },
 
     doReset: function(){
+        console.log('DO RESET!!');
         this.reset();
+        this.doSelectEventType();
     },
 
     doSelectEventType: function(e){
 
-        this.$el.find('.fnSelectEventType').addClass('current');
+        this.$el.find('.fnSelectEventType').addClass('active');
         this.inputnavigation.currentView.clearCurrent();
 
         this.showInputView(new MatchScoutInputOptionsView({
@@ -104,6 +94,8 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.matcheventtype = this.matchEventTypes.get(id);
         this.inputTypes = this.matcheventtype.get('input');
 
+        console.log("inputTypes", this.inputTypes);
+
         var view = new MatchScoutInputTypesView({
             collection: new Backbone.Collection(this.inputTypes)
         })
@@ -118,7 +110,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         this.reset();
         this.showOption();
 
-        this.$el.find('.fnSelectEventType').removeClass('current');
+        this.$el.find('.fnSelectEventType').removeClass('active');
         this.$el.find('.eventtype .name').text(name);
 
     },
@@ -172,7 +164,7 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         if(inputType.type == 'players'){
 
-            this.showInputView(new MatchScoutInputOptionsView({
+            this.showInputView(new MatchScoutInputPlayersView({
                 collection: this.players,
                 inputType: inputType.slug,
                 title: inputType.title,
@@ -202,6 +194,7 @@ module.exports = Backbone.Marionette.Layout.extend({
             this.showInputView(new MatchScoutInputOptionsView({
                 inputType: inputType.slug,
                 title: inputType.title,
+                className: 'pitch',
                 template: require('../templates/match.scout.input.boolean')
             }));
         }
@@ -267,25 +260,9 @@ module.exports = Backbone.Marionette.Layout.extend({
 
     onRender: function(){
 
-            new ProgressButton( this.$el.find("#btn-save")[0], {
-                statusTime: 500,
-                callback : function( instance ) {
-                    instance._stop(1);
-                    /*
-                    var progress = 0,
-                        interval = setInterval( function() {
-                            progress = Math.min( progress + Math.random() * 0.1, 1 );
-                            instance._setProgress( progress );
-
-                            if( progress === 1 ) {
-                                instance._stop(1);
-                                clearInterval( interval );
-                            }
-                        }, 30 );
-
-                    */
-                }
-            } );
+        // new ProgressButton( this.$el.find("#btn-save")[0], {
+        //     statusTime: 500
+        // } );
 
 
         //this.time.show(new MatchScoutTimeSliderView());
@@ -297,6 +274,12 @@ module.exports = Backbone.Marionette.Layout.extend({
             collection: new Backbone.Collection()
         }));
 
+    },
+
+    onShow: function(){
+        // this.showInputView(new MatchScoutPitchView({
+        //     title: 'L{L{L'
+        // }));
 
         this.doSelectEventType();
     }

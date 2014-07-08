@@ -1,13 +1,176 @@
+
 @import 'bootstrap.less';
 @import 'mixins.less';
 @import 'colors.less';
 @import 'utils.less';
 @import 'font-awesome.less';
+@import 'match.less';
+@import 'progressbutton.less';
+
+/*
 @import 'typography.less';
 @import 'pace.less';
-@import 'offcanvas.less';
 @import 'notouch.less';
 @import 'progressbutton.less';
 @import 'match.scout.less';
 //@import 'wallop.less';
 @import 'app.less';
+*/
+
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon/icomoon.eot');
+    src:url('../fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon/icomoon.woff') format('woff'),
+        url('../fonts/icomoon/icomoon.svg#icomoon') format('svg');
+}
+
+@touchheight: 52px;
+
+/*
+line {
+    stroke: white;
+    stroke-width: 4px;
+    stroke-dasharray: 10px;
+}
+*/
+
+body{
+    background-color: @background_color;
+    color: @primary_color;
+    line-height: 1.42857143;
+}
+
+a{
+    color: @link_default;
+
+    &:hover{
+        color: @link_hover;
+        text-decoration: none;
+    }
+}
+
+.table{
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+
+
+}
+.tr{
+    display: table-row;
+}
+.td{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.topnav{
+    background-color: @topnav_background;
+    color: @topnav_text;
+    height: @touchheight;
+    border-bottom: 5px solid @topnav_border;
+    margin-bottom: 15px;
+
+    padding: 0 15px;
+
+    .brand{
+        img{
+            height: 20px;
+            margin: 14px 0;
+        }
+    }
+}
+
+li{
+    margin: 5px 0;
+}
+
+.positive{
+    background-color: hsla(hue(@secondary_color), saturation(@secondary_color), lightness(@secondary_color), 0.7) !important;
+}
+
+.negative{
+    background-color: hsla(hue(@red), saturation(@red), lightness(@red), 0.7) !important;
+}
+
+// ----------------------
+// Button Styles
+// ----------------------
+.btn{
+    .element;
+    .unselectable;
+    .clickable;
+
+
+    margin-bottom: 5px;
+    padding: 20px;
+
+    display: inline-block;
+    //margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    //line-height: 1.42857143;
+    font-size: 14px;
+
+    -webkit-box-shadow: 1px 1px 0px 0px darken(@element_bg_default,10%);
+    -moz-box-shadow:    1px 1px 0px 0px darken(@element_bg_default,10%);
+    box-shadow:         1px 1px 0px 0px darken(@element_bg_default,10%);
+
+    //border: 3px solid transparent;
+
+    &.btn-green{
+        background-color: @secondary_color;
+    }
+
+    &.btn-reset{
+        background-color: @red;
+    }
+
+    &:hover{
+        color: @element_text;
+    }
+
+    &.active{
+        background-color: @secondary_color;
+        -webkit-box-shadow: 0px 4px 0px 0px @primary_color;
+        -moz-box-shadow: 0px 4px 0px 0px @primary_color;
+        box-shadow: 0px 4px 0px 0px @primary_color;
+
+        //border-bottom: 3px solid @primary_color;
+    }
+
+    &.inactive{
+        .unclickable;
+    }
+}
+
+.btn-block{
+    display: block;
+    width: 100%;
+}
+
+.btn-square{
+}
+
+// ----------------------
+// Progress Bar
+// ----------------------
+
+.meter{
+    background-color: @progress_background;
+    height: 6px;
+
+    >span{
+        display: block;
+        background-color: @progress_filled;
+        height: 6px;
+    }
+}

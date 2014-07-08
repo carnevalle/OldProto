@@ -1,10 +1,21 @@
-<h1>{{hometeam}} - {{awayteam}}</h1>
+<div class="element scoreboard">
+    <div class="table">
+        <div class="td hometeam">{{hometeam}}</div>
+        <div class="td score">0 - 0</div>
+        <div class="td awayteam">{{awayteam}}</div>
+    </div>
+</div>
 
 <a href="{{url url}}/scout" class="btn btn-block btn-large">Scout Match</a>
 
-<div>
-    <h2>Registrerede events</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="pitch">
+            <div id="toucharea" class="toucharea"></div>
+        </div>
+    </div>
+    {{!-- <h2>Registrerede events</h2>
     {{#each events}}
         {{time}} - {{type.name}} - {{player.name}}<br>
-    {{/each}}
+    {{/each}} --}}
 </div>

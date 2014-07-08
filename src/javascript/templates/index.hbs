@@ -4,13 +4,15 @@
         <ul class="items list-unstyled">
 
             {{#each items}}
-                <a href="{{url url}}" class="btn btn-block btn-large">{{hometeam}}-{{awayteam}}</a>
+                <li>
+                    <a href="{{url url}}" class="btn">{{hometeam}}-{{awayteam}}</a>
+                </li>
             {{/each}}
 
         </ul>
 
         <hr>
 
-        <a href="#/create/match" class="btn btn-block btn-large">Opret kamp</a>
+        <a href="#/create/match" class="btn">Opret kamp</a>
     </div>
 </div>

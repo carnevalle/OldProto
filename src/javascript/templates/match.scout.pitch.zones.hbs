@@ -1,18 +1,16 @@
-<div class="col-sm-12">
-    <div class="pitch zones">
-        <div class="table">
 
-            {{#zones}}
-                <div class="tr">
-                    {{#this}}
-                        <div class="td zone fnValueSelect" data-value="{{id}}" data-row="{{row}}" data-column="{{column}}" data-name="{{name}}">
-                            {{name}}
-                        </div>
-                    {{/this}}
-                </div>
+<div id="toucharea" class="toucharea">
+    <div class="table">
 
-            {{/zones}}
+        {{#zones}}
+            <div class="tr">
+                {{#this}}
+                    <div class="td zone fnValueSelect" data-value="{{id}}" data-row="{{row}}" data-column="{{column}}" data-name="{{name}}">
+                        {{name}}
+                    </div>
+                {{/this}}
+            </div>
+        {{/zones}}
 
-        </div>
     </div>
 </div>

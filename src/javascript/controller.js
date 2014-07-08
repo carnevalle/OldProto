@@ -20,6 +20,8 @@ module.exports = Backbone.Marionette.Controller.extend({
         var teams = new TeamCollection();
         var TeamsIndexView = require('./views/teams.index');
 
+        App.layout.main.reset();
+
         $.when(teams.fetch())
         .done(function(teamCol){
 
@@ -35,6 +37,8 @@ module.exports = Backbone.Marionette.Controller.extend({
 
         var matches = new MatchCollection();
         var IndexView = require('./views/index');
+
+        App.layout.main.reset();
 
         $.when(matches.fetch())
         .done(function(){
@@ -55,6 +59,8 @@ module.exports = Backbone.Marionette.Controller.extend({
 
         var TeamShowView = require('./views/team.show');
 
+        App.layout.main.reset();
+
         team.fetch({
             success: function(data){
                 App.layout.main.show(new TeamShowView({
@@ -66,6 +72,8 @@ module.exports = Backbone.Marionette.Controller.extend({
 
     createMatch: function(){
         var MatchCreateView = require('./views/match.create');
+
+        App.layout.main.reset();
 
         App.layout.main.show(new MatchCreateView({
             model: new Match()
@@ -81,6 +89,8 @@ module.exports = Backbone.Marionette.Controller.extend({
         });
 
         var MatchShowView = require('./views/match.show');
+
+        App.layout.main.reset();
 
         match.fetch({
             success: function(data){
@@ -101,16 +111,16 @@ module.exports = Backbone.Marionette.Controller.extend({
         console.log(players);
 
         var matchEventTypes = new MatchEventTypeCollection();
-
-        //players.fetch();
-        //matchEventTypes.fetch();
-
         var MatchScoutView = require("./views/match.scout");
+
+        App.layout.main.reset();
 
         $.when(match.fetch(), matchEventTypes.fetch(), players.fetch())
         .done(function(){
 
-            players = players.fromNation('England');
+            console.log(match.toJSON());
+
+            players = players.fromNation(match.get('hometeam'));
 
             App.layout.main.show(new MatchScoutView({
                 model: match,
@@ -143,6 +153,8 @@ module.exports = Backbone.Marionette.Controller.extend({
         });
 
         var PlayerShowView = require('./views/player.show');
+
+        App.layout.main.reset();
 
         player.fetch({
             success: function(data){

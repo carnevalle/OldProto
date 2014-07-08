@@ -1,20 +1,23 @@
 var Backbone = require('backbone.marionette')
 
 var InputView = require('../views/match.scout.input');
-var Kinetic = require('kinetic');
+var d3 = require('d3');
 
 module.exports = InputView.extend({
     template: require('../templates/match.scout.pitch'),
+    className: 'pitch',
 
     hammerEvents: {
-        'touch #pitchcanvas':'onTap',
-        'drag #pitchcanvas':'onTap',
-        'release #pitchcanvas':'onTap'
+        'touch #toucharea':'onTap',
+        'drag #toucharea':'onTap',
+        'release #toucharea':'onTap'
     },
 
     initialize: function(options){
 
-
+        $(window).resize(_.debounce(_.bind(function(){
+            this.resizePitch();
+        },this), 150));
     },
 
     onTap: function(e){
@@ -28,6 +31,7 @@ module.exports = InputView.extend({
         if(e.type === "touch"){
 
             this.startpos = pos;
+            this.endpos = pos;
 
         }else if(e.type === "drag"){
 
@@ -39,7 +43,7 @@ module.exports = InputView.extend({
 
         }else if(e.type === "release"){
             this.endpos = pos;
-            this.draw();
+            //this.draw();
 
             setTimeout(_.bind(function(){
                 var normalizedStartPos = this.getNormalizedPosition(this.startpos);
@@ -56,8 +60,11 @@ module.exports = InputView.extend({
                     type: this.inputType
                 });
             },this),10);
-            //this.addMarker(pos.x, pos.y, "end");
+
         }
+        this.draw();
+
+        console.log(this.startpos, this.endpos);
 
         //var throttled = _.bind(_.throttle(this.draw, 500),this);
         //throttled();
@@ -70,43 +77,29 @@ module.exports = InputView.extend({
     },
 
     draw: function(){
-        this.layer.removeChildren();
 
-        this.line = new Kinetic.Line({
-            points: [this.startpos.x,this.startpos.y,this.endpos.x,this.endpos.y],
-            stroke: 'white',
-            strokeWidth: 1,
-            lineJoin: 'round',
-            dash: [10, 5]
-        });
-        this.layer.add(this.line);
-
-        this.startpin = new Kinetic.Circle({
-            x: this.startpos.x,
-            y: this.startpos.y,
-            radius: 5,
-            fill: 'green',
-            stroke: 'black',
-            strokeWidth: 1
-        });
-        this.layer.add(this.startpin);
-
-        this.endpin = new Kinetic.Circle({
-            x: this.endpos.x,
-            y: this.endpos.y,
-            radius: 5,
-            fill: 'red',
-            stroke: 'black',
-            strokeWidth: 1
-        });
-        this.layer.add(this.endpin);
-        this.layer.draw();
+        line.attr("x1", this.startpos.x)
+            .attr("y1", this.startpos.y)
+            .attr("x2", this.endpos.x)
+            .attr("y2", this.endpos.y);
     },
+
+    onRender: function(){
+        this.$canvas = this.$el.find("#pitchcanvas");
+        this.$toucharea = this.$el.find(".toucharea");
+    },
+
+    // onDomRefresh: function(){
+    //     console.log("ON DOM REFRESH!!");
+    //     console.log(this.$el.width(), this.$el.height());
+    // },
 
     onShow: function(){
 
-        this.width = this.$el.width();
-        this.height = 400;
+        // console.log("OnShow!");
+        // console.log(this.$toucharea.width(), this.$toucharea.innerWidth(), this.$toucharea.outerWidth(true), this.$toucharea.css( "width" ), this.$toucharea.offset());
+
+        this.resizePitch();
 
         if(typeof this.options.selectedValue != 'undefined'){
             this.startpos = this.convertNormalizedPosition(this.options.selectedValue.position_start_x, this.options.selectedValue.position_start_y);
@@ -117,26 +110,40 @@ module.exports = InputView.extend({
             this.endpos = this.getPosition(0,0);
         }
 
-        this.stage = new Kinetic.Stage({
-            // container: this.el,
-            container: this.$el.find('#pitchcanvas')[0],
-            width: this.width,
-            height: this.height
-        });
+        this.line;
 
-        this.layer = new Kinetic.Layer();
-        this.stage.add(this.layer);
+        this.vis = d3.select(".toucharea").append("svg");
+            // .on("mousedown", mousedown)
+            // .on("mouseup", mouseup);
+
+        line = this.vis.append("line")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", 0)
+            .style("stroke", "white")
+            .style("stroke-dasharray", "10px")
+            .style("stroke-width", "2px");
+
 
         if(this.drawOnShow){
             this.draw();
         }
 
+
+    },
+
+    resizePitch: function(){
+        this.width = this.$toucharea.outerWidth();//-15;
+        this.height = this.width * 0.65;
+
+        this.$toucharea.height(this.height);
     },
 
     getPosition: function(x, y){
 
-        x = x-this.$el.offset().left;
-        y = y-this.$el.offset().top;
+        x = x-this.$toucharea.offset().left;
+        y = y-this.$toucharea.offset().top;
 
         return {
             x: x,
@@ -155,8 +162,8 @@ module.exports = InputView.extend({
 
         //var pos = this.getPosition(x,y);
 
-        point.x = Math.round(point.x / this.$el.find('#pitchcanvas').width() * 100);
-        point.y = Math.round(point.y / this.$el.find('#pitchcanvas').height() * 100);
+        point.x = Math.round(point.x / this.width * 100);
+        point.y = Math.round(point.y / this.height * 100);
 
         // Clamping numbers 0-100
         point.x = Math.min(Math.max(point.x, 0),100);

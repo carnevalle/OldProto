@@ -10,7 +10,10 @@
     "marionette": "~1.8.4",
     "pace": "~0.5.1",
     "fastclick": "~1.0.1",
-    "classie": "~1.0.1"
+    "classie": "~1.0.1",
+    "d3": "~3.4.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "d3": "~3.4.8"
+  }
 }

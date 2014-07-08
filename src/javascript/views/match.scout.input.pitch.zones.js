@@ -3,6 +3,7 @@ var InputView = require('../views/match.scout.input');
 
 module.exports = InputView.extend({
     template: require('../templates/match.scout.pitch.zones'),
+    className: 'pitch',
 
     hammerEvents: {
         'tap .fnValueSelect':'onValueSelect'
@@ -43,10 +44,20 @@ module.exports = InputView.extend({
         });
     },
 
-    render: function(){
+    serializeData: function(){
         var zones = this.buildZones();
+        return {zones: zones};
+    },
 
-        this.$el.html(this.template({zones: zones}));
+    onRender: function(){
+        this.$toucharea = this.$el.find(".toucharea");
+    },
+
+    onShow: function(){
+
+        this.width = this.$toucharea.outerWidth();
+        this.height = this.width * 0.65;
+        this.$toucharea.height(this.height);
     },
 
     buildZones: function(){

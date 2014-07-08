@@ -5,7 +5,7 @@ require('browsernizr/lib/addTest.js');
 require('browsernizr/lib/prefixed.js');
 var Modernizr = require('browsernizr');
 
-console.log(Modernizr);
+//console.log(Modernizr);
 
 var attachFastClick = require('fastclick');
 attachFastClick(document.body);
@@ -17,9 +17,8 @@ var Backbone = require("backbone.marionette");
 
 Backbone.hammerOptions = {
   //preventDefault: true,
-  dragBlockVertical: true
+  //dragBlockVertical: true
 };
-
 
 // We require Backbone.Hammer to modify Backbone.View
 //require('backbone.hammer');
