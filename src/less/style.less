@@ -174,3 +174,40 @@ li{
         height: 6px;
     }
 }
+
+// ------------------------
+
+
+
+.pitch2{
+    padding: 10px 10px 5px 10px;
+    background-color: @secondary_color;
+    background-image: url('../images/pitch_bg_lowres.png');
+
+    .inner {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        //padding: 10px;
+        padding: 0;
+
+        &:after {
+            content: '';
+            display: block;
+            margin-top: 65%;
+        }
+
+        .toucharea {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-image: url('../images/pitch_transparent.svg');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+    }
+
+}

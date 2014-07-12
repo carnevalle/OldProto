@@ -106,6 +106,7 @@
     "underscore": "^1.6.0",
     "jquery": "^2.1.0",
     "hammerjs": "^1.1.2",
-    "jquery-hammerjs": "^1.1.2"
+    "jquery-hammerjs": "^1.1.2",
+    "simpleheat": "^0.2.0"
   }
 }
