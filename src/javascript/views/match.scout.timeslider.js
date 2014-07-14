@@ -9,7 +9,7 @@ module.exports = Backbone.Marionette.ItemView.extend({
     isOpen: false,
 
     initialize: function(options){
-        if(options){
+        if(options && options.value){
             this.value = options.value;
         }
 
@@ -18,7 +18,8 @@ module.exports = Backbone.Marionette.ItemView.extend({
     },
 
     hammerEvents: {
-        'tap .timeslider' : 'toggle'
+        'tap .slider' : 'setTime',
+        'drag .slider' : 'setTime'
     },
 
     toggle: function(){
@@ -37,6 +38,23 @@ module.exports = Backbone.Marionette.ItemView.extend({
     close: function(){
         TweenLite.to(this.$el.find('.timeprogress'), 0.25, {height: "5px", ease: "Power2.easeOut"});
         this.isOpen = false;
+    },
+
+    setTime: function(e){
+        e.gesture.preventDefault();
+
+        var x = e.gesture.center.pageX-this.$slider.offset().left;
+        var position = Math.min(x / this.$slider.width(), 1);
+
+        this.value = Math.round(this.maxValue*position);
+
+        if(e.type === "drag"){
+            this.$progressbar.width((position*100)+"%");
+        }else{
+            TweenLite.to(this.$progressbar, 0.25, {width: (position*100)+"%", ease:Linear.easeNone});
+        }
+
+        this.$timetxt.html(this.value+"&prime;");
     },
 
     setValue: function(value){
@@ -89,7 +107,10 @@ module.exports = Backbone.Marionette.ItemView.extend({
     },
 
     onRender: function(){
-        this.setValue(this.value);
-        this.startClock();
+        this.$slider = this.$el.find(".slider");
+        this.$progressbar = this.$el.find(".meter span");
+        this.$timetxt = this.$el.find(".time");
+        //this.setValue(this.value);
+        //this.startClock();
     }
 })

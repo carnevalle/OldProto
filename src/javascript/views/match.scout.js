@@ -265,7 +265,7 @@ module.exports = Backbone.Marionette.Layout.extend({
         // } );
 
 
-        //this.time.show(new MatchScoutTimeSliderView());
+        this.time.show(new MatchScoutTimeSliderView());
 
         //this.selector.show(new MatchScoutPitchZonesView());
         //this.showOption();
