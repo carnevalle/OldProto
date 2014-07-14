@@ -10,6 +10,7 @@ module.exports = new Backbone.Marionette.AppRouter({
         'create/match(/)':'createMatch',
         'create/player(/)':'createPlayer',
         'm/:id/scout(/)':'scoutMatch',
+        'm/:id/report(/)':'matchReport',
         'p/:id(/)':'showPlayer',
         '*notFound': 'notFound'
     }

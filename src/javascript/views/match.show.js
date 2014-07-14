@@ -16,7 +16,7 @@ module.exports = Backbone.Marionette.ItemView.extend({
 
         $(window).resize(_.debounce(_.bind(function(){
             this.resizeHeatmap();
-        },this), 150));
+        },this), 50));
 
         this.heat = simpleheat('canvas');
         this.heat.max(3);

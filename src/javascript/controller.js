@@ -108,7 +108,6 @@ module.exports = Backbone.Marionette.Controller.extend({
         });
 
         var players = new PlayerCollection();
-        console.log(players);
 
         var matchEventTypes = new MatchEventTypeCollection();
         var MatchScoutView = require("./views/match.scout");
@@ -117,8 +116,6 @@ module.exports = Backbone.Marionette.Controller.extend({
 
         $.when(match.fetch(), matchEventTypes.fetch(), players.fetch())
         .done(function(){
-
-            console.log(match.toJSON());
 
             players = players.fromNation(match.get('hometeam'));
 
@@ -129,16 +126,10 @@ module.exports = Backbone.Marionette.Controller.extend({
             }));
 
         });
+    },
 
-        /*
-        match.fetch({
-            success: function(data){
-                App.layout.main.show(new MatchScoutView({
-                    model: match
-                }));
-            }
-        })
-        */
+    matchReport: function(id){
+        console.log("match report");
     },
 
     createPlayer: function(){
