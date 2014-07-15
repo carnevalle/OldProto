@@ -221,6 +221,9 @@ module.exports = Backbone.Marionette.Layout.extend({
 
         var matchevent = new MatchEventModel({match_id: this.model.get("id")});
         matchevent.set("match_event_type_id", this.matcheventtype.id);
+        matchevent.set("time", this.time.currentView.getValue());
+        //matchevent.set("", this.matcheventtype.id);
+        console.log('time', this.time.currentView.getValue());
 
         _(this.values).each(function(value, key){
             if(typeof value === 'object'){

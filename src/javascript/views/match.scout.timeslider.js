@@ -3,7 +3,7 @@ var TweenLite = require('tweenlite');
 
 module.exports = Backbone.Marionette.ItemView.extend({
     template: require('../templates/match.scout.timeslider'),
-    value: 0,
+    value: null,
     minValue: 0,
     maxValue: 90,
     isOpen: false,
@@ -68,8 +68,8 @@ module.exports = Backbone.Marionette.ItemView.extend({
         TweenLite.to(this.$el.find('.timeprogress'), 1, {width: progress+"%", ease:Linear.easeNone});
     },
 
-    getValue: function(value){
-
+    getValue: function(){
+        return this.value;
     },
 
     onPlayClick: function(e){
