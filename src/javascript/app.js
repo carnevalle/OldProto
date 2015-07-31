@@ -7,11 +7,12 @@ var App = new Backbone.Marionette.Application();
 App.config = {
     apiroot: function(){
 
-        //console.log("http://"+window.location.host+":8000/v1");
+        return "http://api.betterteam.app:8000/v1";
 
         //return "http://10.113.206.32:8000/v1";
-        if(window.location.host === "localhost:8080"){
-            return "http://"+window.location.hostname+":8000/v1";
+        if(window.location.host === "api.betterteam.app:8080"){
+            return "http://api.betterteam.app:8000/v1";
+
             //return "http://api.betterteam.app:8000/v1";
         }else{
             return "http://api.betterteam.dk/v1";

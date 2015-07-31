@@ -25,7 +25,6 @@
   "browserify": {
     "transform": [
       "browserify-shim",
-      "coffeeify",
       "hbsfy"
     ]
   },
